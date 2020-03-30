@@ -10,7 +10,6 @@ class QuestionSet extends React.Component {
                                     
                     questionCounter: 0
         };
-
     }
 
     addOne = () => {
@@ -18,6 +17,7 @@ class QuestionSet extends React.Component {
             this.setState((previousState) => ({ questionCounter: previousState.questionCounter + 1 }));
         }
     }
+
     decOne = () => {
         if (!(this.state.questionCounter - 1 < 0)) {
             this.setState((previousState) => ({ questionCounter: previousState.questionCounter - 1 }));
