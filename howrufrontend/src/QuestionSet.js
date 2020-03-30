@@ -1,30 +1,37 @@
 import React from 'react';
 
-class QuestionSet extends React.Component{
+class QuestionSet extends React.Component {
 
-    
-
-    constructor (props) {
+    constructor(props) {
         super(props);
-        this.state={questionArray:["How did you sleep?", "How much coffee did you drink?"], 
-        questionCounter: 0};
-        
+        this.state = {
+                    questionArray: [{ question: "How did you sleep?", type: "range" }, 
+                                    { question: "How much coffee did you drink?", type: "text" }],
+                                    
+                    questionCounter: 0
+        };
+
     }
- 
+
     addOne = () => {
-        this.setState((previousState) => ({questionCounter: previousState.questionCounter+1}));
+        if (!(this.state.questionCounter+1 === this.state.questionArray.length)) {
+            this.setState((previousState) => ({ questionCounter: previousState.questionCounter + 1 }));
+        }
     }
     decOne = () => {
-        this.setState((previousState) => ({questionCounter: previousState.questionCounter-1}));
+        if (!(this.state.questionCounter - 1 < 0)) {
+            this.setState((previousState) => ({ questionCounter: previousState.questionCounter - 1 }));
+        }
     }
 
     render() {
-    let currentQuestion=<h2>{this.state.questionArray[this.state.questionCounter]}</h2>;
+        let currentQuestion = this.state.questionArray[this.state.questionCounter]
+
         return (
             <div id="questions" className="box">
-                <div>{currentQuestion}</div>
+                <div>{currentQuestion.question}</div>
                 <form>
-                    <input type="range" min="0" max="10" defaultValue="0"></input>
+                    <input type={currentQuestion.type} min="0" max="10" defaultValue="0"></input>
 
                 </form>
                 <div>
@@ -32,7 +39,7 @@ class QuestionSet extends React.Component{
                     <button onClick={this.addOne}>Next</button>
                 </div>
             </div>
-        )    
+        )
     }
 }
 
