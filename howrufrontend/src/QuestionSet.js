@@ -8,15 +8,13 @@ class QuestionSet extends React.Component () {
 
     state = ({questionCounter: 0});
 
-
     questions = () => {
         return ["How did you sleep?", "How much coffee did you drink?"];
     }
 
-    questionArray = this.questions(); 
-
     questionRow = () => {   
-        return this.questionArray[this.state.questionCounter];
+        questionArray = this.questions(); 
+        return questionArray[this.state.questionCounter];
     }
 
     addOne = () => {
