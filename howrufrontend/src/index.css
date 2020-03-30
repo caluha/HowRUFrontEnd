@@ -1,14 +1,17 @@
 body {
-  margin-top: 50px;
-  margin-left: 100px;
-  margin-right: 100px;
-  padding-left: 50px;
+margin-left: 100px;
+margin-right: 100px;
+}
+
+.startmenu {
+  align-items: center;
+  border-radius: 100px;
+  padding: 100px;
   text-align: center;
-  margin:50;
   font-family: sans-serif;
   background-color: rgb(190, 190, 190);
-
 }
+
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
