@@ -1,17 +1,21 @@
 import React from 'react';
 
-class QuestionSet extends React.Component () {
+class QuestionSet extends React.Component{
 
     
 
-    // constructor (props) {
-    //     this.state={questionArray:["How did you sleep?", "How much coffee did you drink?"], 
-    //     questionCounter: 0};
+    constructor (props) {
+        super(props);
+        this.state={questionArray:["How did you sleep?", "How much coffee did you drink?"], 
+        questionCounter: 0};
         
-    // }
+    }
  
     addOne = () => {
         this.setState((previousState) => ({questionCounter: previousState.questionCounter+1}));
+    }
+    decOne = () => {
+        this.setState((previousState) => ({questionCounter: previousState.questionCounter-1}));
     }
 
     render() {
@@ -23,7 +27,7 @@ class QuestionSet extends React.Component () {
                     <input type="range" min="0" max="10" defaultValue="0"></input>
                 </form>
                 <div>
-                    <button>Previous</button>
+                    <button onClick={this.decOne}>Previous</button>
                     <button onClick={this.addOne}>Next</button>
                 </div>
             </div>
