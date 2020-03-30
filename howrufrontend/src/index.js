@@ -5,7 +5,7 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <React.StrictMode>
-   <h1>Hello you  mptherfucker World</h1>
+   <h1>Hello you  motherfucker World</h1>
    <div class="box"></div>
   </React.StrictMode>,
   document.getElementById('root')
