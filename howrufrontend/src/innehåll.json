@@ -1,0 +1,49 @@
+[
+    {
+        "id": 1,
+        "name": "QSName1",
+        "creator": "Adam",
+        "created": "2020-03-30T17:15:06.003077",
+        "questions": [
+            {
+                "id": 1,
+                "question": "Your age?",
+                "type": "TEXTFIELD",
+                "responses": []
+            },
+            {
+                "id": 2,
+                "question": "How are you feeling?",
+                "type": "SLIDER",
+                "responses": []
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "QSName2",
+        "creator": "Jack",
+        "created": "2020-03-30T17:15:06.120076",
+        "questions": []
+    },
+    {
+        "id": 3,
+        "name": "QSName3",
+        "creator": "Bengt",
+        "created": "2020-03-30T17:15:06.126074",
+        "questions": [
+            {
+                "id": 3,
+                "question": "Check all that apply",
+                "type": "CHECKBOX",
+                "responses": [{"Option": "Äpple", "value": 1}, {"Option": "Banan", "value": 15}]
+            },
+            {
+                "id": 4,
+                "question": "Pick one",
+                "type": "RADIO",
+                "responses": []
+            }
+        ]
+    }
+]
