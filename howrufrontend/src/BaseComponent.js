@@ -16,8 +16,8 @@ class Base extends React.Component {
         return (
             <React.Fragment>
                 <Router>
-                    <div>
-                        <div className="box">
+                    <div className="startmenu">
+                        <div className="box" >
                             <Link to="/migraine">Migraine</Link>
                         </div>
                         <div className="box">

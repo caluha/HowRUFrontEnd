@@ -4,9 +4,9 @@ margin-right: 100px;
 }
 
 .startmenu {
+  padding: 50px;
   align-items: center;
   border-radius: 100px;
-  padding: 100px;
   text-align: center;
   font-family: sans-serif;
   background-color: rgb(190, 190, 190);
@@ -14,7 +14,7 @@ margin-right: 100px;
 
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family:'Courier New',
     monospace;
 }
 
@@ -28,19 +28,7 @@ code {
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
-  -webkit-transition: background-color 3s ease-out;
-  -moz-transition: background-color 3s ease-out;
-  -o-transition: background-color 3s ease-out;
-  transition: background-color 3s ease-out;
-}
-
-.box:hover {
-  background-color: rgb(77, 168, 77);
-  cursor: pointer;
-  -webkit-transition: background-color 3s ease-out;
-  -moz-transition: background-color 3s ease-out;
-  -o-transition: background-color 3s ease-out;
-  transition: background-color 3s ease-out;
+  padding: 10px;
 }
 
 
