@@ -7,9 +7,9 @@ class Feelz1 extends React.Component {
       <div><h1>All Dem Feelz</h1>
         <div class="box">Moodz</div>
         <div class="box">Feelz</div>
-        <div class="box">Journal</div>
-        <div class="box">Create own</div>
-        <div class="box">Calender</div>
+        <div class="box">Journalz</div>
+        <div class="box">Createz own</div>
+        <div class="box">Settingz</div>
       </div>
     )
   }

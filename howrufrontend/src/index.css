@@ -1,4 +1,8 @@
 body {
+  margin-top: 50px;
+  margin-left: 100px;
+  margin-right: 100px;
+  padding-left: 50px;
   text-align: center;
   margin:50;
   font-family: sans-serif;
