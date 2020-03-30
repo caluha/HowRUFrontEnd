@@ -21,10 +21,11 @@ class QuestionSet extends React.Component{
     render() {
     let currentQuestion=<h2>{this.state.questionArray[this.state.questionCounter]}</h2>;
         return (
-            <div id="questions">
+            <div id="questions" className="box">
                 <div>{currentQuestion}</div>
                 <form>
                     <input type="range" min="0" max="10" defaultValue="0"></input>
+
                 </form>
                 <div>
                     <button onClick={this.decOne}>Previous</button>
