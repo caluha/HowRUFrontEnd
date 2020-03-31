@@ -1,52 +1,21 @@
 import React from 'react';
 import Question from './Question';
+import Questions from './questionsTest.json';
+
 
 class QuestionSet extends React.Component {
-//         "id": 1,
-    //     "name": "QSName1",
-    //     "creator": "Adam",
-    //     "created": "2020-03-30T17:15:06.003077",
-
-    // }
-
 
     constructor(props) {
         super(props);
         this.state = {
-            questions: [
-            {
-                id: 1,
-                question: "Your age?",
-                type: "TEXT",
-                responses: []
-            },
-            {
-                id: 2,
-                question: "How are you feeling?",
-                type: "RANGE",
-                responses: []
-            },
-            {
-                id: 3,
-                question: "Check all that apply",
-                type: "CHECKBOX",
-                responses: [{
-                            option: "Äpple", 
-                            value: 1
-                        },             
-                        {
-                            option: "Banan", 
-                            value: 15}]
-            },
-        ],
-        
-        questionCounter: 0                            
-                    
+            Questions,
+            questionCounter: 0                            
         };
     }
 
     addOne = () => {
-        if (!(this.state.questionCounter+1 === this.state.questions.length)) {
+
+        if (!(this.state.questionCounter+1 === this.state.Questions.questions.length)) {
             this.setState((previousState) => ({ questionCounter: previousState.questionCounter + 1 }));
         }
     }
@@ -58,7 +27,7 @@ class QuestionSet extends React.Component {
     }
 
     render() {
-        let currentQuestion = this.state.questions[this.state.questionCounter]
+        let currentQuestion = this.state.Questions.questions[this.state.questionCounter]
 
         return (
             <div id="questions" className="box">
