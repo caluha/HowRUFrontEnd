@@ -62,7 +62,7 @@ class QuestionSet extends React.Component {
 
         return (
             <div id="questions" className="box">
-                <Question id= {currentQuestion.id} question={currentQuestion.question} type={currentQuestion.type} responses={currentQuestion.responses}/>
+                <Question id={currentQuestion.id} question={currentQuestion.question} type={currentQuestion.type} responses={currentQuestion.responses}/>
                 <div>
                     <button onClick={this.decOne}>Previous</button>
                     <button onClick={this.addOne}>Next</button>
