@@ -1,8 +1,14 @@
+html {
+  height: 100%;
+}
+
 body {
   background: white;
   color: black;
   display: flex;
   justify-content: center;
+  height:100%;
+
  
 }
 .startmenu {
@@ -11,12 +17,17 @@ body {
   background-color: rgb(190, 190, 190);
   height: auto;
 }
-
+.boxbar {
+  width: 5px;
+  color: blueviolet;
+}
 .box {
   width: auto;
-  height: 25px;
+  height: 35px;
   background: rgb(206, 205, 205);
   margin-top: 1px;
-  padding: 1px;
+  padding: 5px;
+  justify-content: space-evenly;
+
 }
 
