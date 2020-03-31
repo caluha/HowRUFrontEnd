@@ -2,6 +2,8 @@ html {
   width: 100%;
   height: 100%;
   background: rgb(190, 190, 190);
+  display: flex;
+
 }
 
 body {
@@ -9,11 +11,17 @@ body {
   color: black;
   display: flex;
   height:100%;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
 }
 .startmenu {
   font-family: sans-serif;
   background: rgb(190, 190, 190);
   height: 100%;
+
 }
 
 .box {
@@ -34,21 +42,16 @@ body {
   border-left: 15px solid #F7767A;
 }
 #pen {
-  float: right;
- 
+  float: right; 
 }
 
-
 .floating-menu-icon{
-	display: inline-block;
   width: auto;
   padding: 10px;
 	background: #e53935;
 	border-radius: 10%;
-	box-shadow: 0 4px 8px rgba(0,0,0,.5);
-  position: fixed;
-	right: 10px;
-	bottom: 10px;
-	height: 50px;
-	text-align: right;
+  box-shadow: 0 4px 8px rgba(0,0,0,.5);
+  position: absolute;
+  right: 25px;
+  bottom: 25px;
 }

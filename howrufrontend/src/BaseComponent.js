@@ -39,11 +39,6 @@ class Base extends React.Component {
                         <div className="box" id="lightred_box">
                             Calender
                         </div>
-                        <div className="floating-menu-icon">
-                        <Link to="/new">New Tracker +</Link>
-                        </div>
-
-
                         <Switch>
                             <Route path="/migraine">
                                 <Migraine />
@@ -52,7 +47,14 @@ class Base extends React.Component {
                                 <Feelz />
                             </Route>
                         </Switch>
-                    </Router>
+                       
+                        <div className="floating-menu-icon">
+                            <Link to="/new">New Tracker +</Link>
+                        </div>
+                        </Router>
+
+
+                   
                 </div>
             </div>
 
