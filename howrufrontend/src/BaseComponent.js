@@ -10,46 +10,45 @@ import {
 import QuestionSet from './QuestionSet';
 import { ThemeProvider } from 'styled-components';
 import Toolbar from './components/Toolbar/Toolbar'
-
+import coffe from './coffe.jpg';
 
 
 class Base extends React.Component {
     render() {
         return (
-                 
-                <Router> 
-                    <Toolbar />
-                    
-                    <div className="startmenu">
-
-                        <div className="box" >
-                            <Link to="/migraine">Migraine</Link>
+            <Router>
+              
+                <div className="startmenu"> 
+                   <Toolbar />
+                    <img src={coffe} style={{ width: "350px" }} />
+                    <div className="box" >
+                        <Link to="/migraine">Migraine</Link>
+                    </div>
+                    <div className="box">
+                        <Link to="/feelz">Feelz</Link>
+                    </div>
+                    <div className="box">
+                        Journal
                         </div>
-                        <div className="box">
-                            <Link to="/feelz">Feelz</Link>
+                    <div className="box">
+                        Create own
                         </div>
-                        <div className="box">
-                            Journal
-                        </div>
-                        <div className="box">
-                            Create own
-                        </div>
-                        <div className="box">
-                            Calender
+                    <div className="box">
+                        Calender
                     </div>
 
-                        <Switch>
-                            <Route path="/migraine">
-                                <Migraine />
-                            </Route>
-                            <Route path="/feelz">
-                                <Feelz />
-                            </Route>
-                        </Switch>
-                    </div>
-                </Router>
+                    <Switch>
+                        <Route path="/migraine">
+                            <Migraine />
+                        </Route>
+                        <Route path="/feelz">
+                            <Feelz />
+                        </Route>
+                    </Switch>
+                </div>
+            </Router>
 
-         
+
 
         );
     }
