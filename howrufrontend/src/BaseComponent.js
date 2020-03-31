@@ -9,18 +9,18 @@ import {
 } from "react-router-dom";
 import QuestionSet from './QuestionSet';
 import { ThemeProvider } from 'styled-components';
-import { GlobalStyles } from './global';
-import { theme } from './theme';
-import { Burger, Menu } from './components';
+import Toolbar from './components/Toolbar/Toolbar'
+
+
 
 class Base extends React.Component {
     render() {
         return (
-            <div className="startmenu">
-                <ThemeProvider theme={theme}>
-                    <GlobalStyles />
-
-                    <Router>
+                 
+                <Router> 
+                    <Toolbar />
+                    
+                    <div className="startmenu">
 
                         <div className="box" >
                             <Link to="/migraine">Migraine</Link>
@@ -46,11 +46,11 @@ class Base extends React.Component {
                                 <Feelz />
                             </Route>
                         </Switch>
+                    </div>
+                </Router>
 
-                    </Router>
+         
 
-                </ThemeProvider>
-            </div>
         );
     }
 }
@@ -64,8 +64,6 @@ function Migraine() {
 function Feelz() {
     return <QuestionSet />
 }
-
-
 
 export default Base;
 
