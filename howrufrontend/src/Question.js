@@ -10,8 +10,8 @@ class Question extends React.Component {
     addResponses() {
         if (this.props.responses.length > 0) {
             return this.props.responses.map((e) => <Response type={this.props.type} value={e.value} option={e.option}/>)
-        } else if (this.props.type === "range"){
-            return <Response type="range" min/>
+        } else {
+            return <Response type={this.props.type}/>
         }
     }
 

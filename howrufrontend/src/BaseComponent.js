@@ -8,7 +8,6 @@ import {
     useParams
 } from "react-router-dom";
 import QuestionSet from './QuestionSet';
-import { ThemeProvider } from 'styled-components';
 import Toolbar from './components/Toolbar/Toolbar'
 import coffe from './coffe.jpg';
 
