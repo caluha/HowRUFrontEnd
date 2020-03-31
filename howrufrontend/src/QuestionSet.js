@@ -8,15 +8,24 @@ class QuestionSet extends React.Component {
     constructor(props) {
         super(props);
         this.handleAnswer = this.handleAnswer.bind(this);
+        this.addOne = this.addOne.bind(this);
+        this.decOne = this.decOne.bind(this);
+
         this.state = {
             Questions,
             questionCounter: 0,
-            answers: []                                      
+            answers:{ }                                     
         };
     }
 
-    handleAnswer = (answer) => {
-        this.setState((previousState) => ({ answers: previousState.answers.push(answer)}))
+    handleAnswer = (id, nextAnswer) => {
+        this.setState((previousState) => {
+            let ns = previousState;
+            ns.answers[id]=nextAnswer;
+            return ns; 
+        })
+
+        console.log(this.state);
     }
 
     addOne = () => {
@@ -37,11 +46,10 @@ class QuestionSet extends React.Component {
 
         return (
             <div id="questions" className="box">
-                <Question id={currentQuestion.id} question={currentQuestion.question} type={currentQuestion.type} responses={currentQuestion.responses} handleAnswer={this.handleAnswer}/>
-                <div>
-                    <button onClick={this.decOne}>Previous</button>
-                    <button onClick={this.addOne}>Next</button>
-                </div>
+                <Question id={currentQuestion.id} question={currentQuestion.question} type={currentQuestion.type}
+                         responses={currentQuestion.responses} handleAnswer={this.handleAnswer}
+                         next={this.addOne} previous={this.decOne}/>
+
             </div>
         )
     }
