@@ -17,14 +17,14 @@ class Question extends React.Component {
 
     render() {
         return(
-                <div>
-                    <form>
-                        <div>{this.props.question}</div>
-                        <div id="responsecontainer">
-                            {this.addResponses()}
-                        </div>
-                    </form>
-                </div>
+            <div>
+                <form>
+                    <div>{this.props.question}</div>
+                    <div id="responsecontainer">
+                        {this.addResponses()}
+                    </div>
+                </form>
+            </div>
         )
     }
 }
