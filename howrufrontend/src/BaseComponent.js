@@ -26,19 +26,19 @@ class Base extends React.Component {
                         <Switch>
                             <Route exact path="/">
                                 <img src={coffe} style={{ width: "auto" }} />
-                                <div className="box" >
+                                <div className="box" id="lightred_box">
                                     <NavLink exact to="/migraine">Migraine</NavLink>
                                 </div>
-                                <div className="box">
+                                <div className="box" id="lightred_box">
                                     <NavLink exact to="/feelz">Feelz</NavLink>
                                 </div>
-                                <div className="box">
+                                <div className="box" id="red_box">
                                     Journal
                                 </div>
-                                <div className="box">
+                                <div className="box" id="lightred_box">
                                     Create own
                                 </div>
-                                <div className="box">
+                                <div className="box" id="green_box">
                                     Calender
                                 </div>
                             </Route>
