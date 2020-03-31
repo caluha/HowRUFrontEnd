@@ -7,10 +7,16 @@ class QuestionSet extends React.Component {
 
     constructor(props) {
         super(props);
+        this.handleAnswer = this.handleAnswer.bind(this);
         this.state = {
             Questions,
-            questionCounter: 0                            
+            questionCounter: 0,
+            answers: []                                      
         };
+    }
+
+    handleAnswer = (answer) => {
+        this.setState((previousState) => ({ answers: previousState.answers.push(answer)}))
     }
 
     addOne = () => {
@@ -31,7 +37,7 @@ class QuestionSet extends React.Component {
 
         return (
             <div id="questions" className="box">
-                <Question id={currentQuestion.id} question={currentQuestion.question} type={currentQuestion.type} responses={currentQuestion.responses}/>
+                <Question id={currentQuestion.id} question={currentQuestion.question} type={currentQuestion.type} responses={currentQuestion.responses} handleAnswer={this.handleAnswer}/>
                 <div>
                     <button onClick={this.decOne}>Previous</button>
                     <button onClick={this.addOne}>Next</button>
