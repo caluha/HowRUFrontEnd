@@ -4,9 +4,9 @@ margin-right: 100px;
 }
 
 .startmenu {
-  padding: 50px;
+  padding: 100px;
   align-items: center;
-  border-radius: 100px;
+  border-radius: 5px;
   text-align: center;
   font-family: sans-serif;
   background-color: rgb(190, 190, 190);

@@ -8,15 +8,20 @@ import {
     useParams
 } from "react-router-dom";
 import QuestionSet from './QuestionSet';
-
-
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyles } from './global';
+import { theme } from './theme';
+import { Burger, Menu } from './components';
 
 class Base extends React.Component {
     render() {
         return (
-            <React.Fragment>
-                <Router>
-                    <div className="startmenu">
+            <div className="startmenu">
+                <ThemeProvider theme={theme}>
+                    <GlobalStyles />
+
+                    <Router>
+
                         <div className="box" >
                             <Link to="/migraine">Migraine</Link>
                         </div>
@@ -41,10 +46,11 @@ class Base extends React.Component {
                                 <Feelz />
                             </Route>
                         </Switch>
-                    </div>
-                </Router>
 
-            </React.Fragment>
+                    </Router>
+
+                </ThemeProvider>
+            </div>
         );
     }
 }
@@ -56,7 +62,7 @@ function Migraine() {
 }
 
 function Feelz() {
-    return <h2>Feelz</h2>
+    return <QuestionSet />
 }
 
 
