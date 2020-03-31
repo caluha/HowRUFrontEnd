@@ -11,10 +11,10 @@ body {
  
 }
 .startmenu {
-  padding-bottom: 50px;
+
   font-family: sans-serif;
   background-color: rgb(190, 190, 190);
-  height: auto;
+  height: 100%;
 }
 
 .box {
@@ -22,8 +22,6 @@ body {
   height: auto;
   background: rgb(255, 255, 255);
   margin-top: 1px;
-  margin-left: 5px;
-  margin-right: 5px;
   padding: 5px;
 }
 

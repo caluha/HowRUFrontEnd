@@ -8,40 +8,20 @@ import {
     useParams
 } from "react-router-dom";
 import QuestionSet from './QuestionSet';
-import Toolbar from './components/Toolbar/Toolbar';
-import SideDrawer from './components/SideDrawer/SideDrawer';
-import Backdrop from './components/Backdrop/Backdrop';
 import coffe from './coffe.jpg';
+import App from './components/App';
 
 
 class Base extends React.Component {
-    state = {
-        sideDrawerOpen: false
-    };
-
-    drawerToggleClickHandler = () => {
-        this.setState((prevState) => {
-            return { sideDrawerOpen: !prevState.sideDrawerOpen };
-        });
-    };
-
-    backdropClickHandler = () => {
-        this.setState({sideDrawerOpen: false})
-    } 
+   
 
     render() {
-        let backdrop;
-
-        if(this.state.sideDrawerOpen) {
-            backdrop = <Backdrop click={this.backdropClickHandler}/>
-        }
+        
         return (
             <div style={{ height: "100%" }}>
                 <div className="startmenu">
                     <Router>
-                        <Toolbar drawerClickHandler ={this.drawerToggleClickHandler} />
-                        <SideDrawer show={this.state.sideDrawerOpen}/>
-                        {backdrop}
+                        <App />
                         <img src={coffe} style={{ width: "auto" }} />
                         <div className="box" >
                             <Link to="/migraine">Migraine</Link>
