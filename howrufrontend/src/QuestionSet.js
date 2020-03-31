@@ -2,19 +2,45 @@ import React from 'react';
 import Question from './Question';
 
 class QuestionSet extends React.Component {
+//         "id": 1,
+    //     "name": "QSName1",
+    //     "creator": "Adam",
+    //     "created": "2020-03-30T17:15:06.003077",
+
+    // }
+
 
     constructor(props) {
         super(props);
         this.state = {
-                    questionArray: [{ question: "How did you sleep?", type: "range" }, 
-                                    { question: "How much coffee did you drink?", type: "text" }],
-                                    
-                    questionCounter: 0
+            questions: [
+            {
+                id: 1,
+                question: "Your age?",
+                type: "text",
+                responses: []
+            },
+            {
+                id: 2,
+                question: "How are you feeling?",
+                type: "range",
+                responses: []
+            },
+            {
+                id: 3,
+                question: "Pick one!",
+                type: "radio",
+                responses: ["One", "Two", "Three"]
+            }
+        ],
+        
+        questionCounter: 0                            
+                    
         };
     }
 
     addOne = () => {
-        if (!(this.state.questionCounter+1 === this.state.questionArray.length)) {
+        if (!(this.state.questionCounter+1 === this.state.questions.length)) {
             this.setState((previousState) => ({ questionCounter: previousState.questionCounter + 1 }));
         }
     }
@@ -26,11 +52,11 @@ class QuestionSet extends React.Component {
     }
 
     render() {
-        let currentQuestion = this.state.questionArray[this.state.questionCounter]
+        let currentQuestion = this.state.questions[this.state.questionCounter]
 
         return (
             <div id="questions" className="box">
-                <Question question={currentQuestion.question} type={currentQuestion.type}></Question>
+                <Question question={currentQuestion.question} type={currentQuestion.type} responses={currentQuestion.responses}/>
                 <div>
                     <button onClick={this.decOne}>Previous</button>
                     <button onClick={this.addOne}>Next</button>
