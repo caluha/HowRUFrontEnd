@@ -1,4 +1,5 @@
 import React from 'react';
+import Question from './Question';
 
 class QuestionSet extends React.Component {
 
@@ -29,11 +30,7 @@ class QuestionSet extends React.Component {
 
         return (
             <div id="questions" className="box">
-                <div>{currentQuestion.question}</div>
-                <form>
-                    <input type={currentQuestion.type} min="0" max="10" defaultValue="0"></input>
-
-                </form>
+                <Question question={currentQuestion.question} type={currentQuestion.type}></Question>
                 <div>
                     <button onClick={this.decOne}>Previous</button>
                     <button onClick={this.addOne}>Next</button>
