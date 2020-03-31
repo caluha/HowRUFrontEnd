@@ -20,7 +20,7 @@ class Base extends React.Component {
         
         return (
             <div style={{ height: "100%" }}>
-                <div className="startmenu">
+                <div className="mainpage">
                     <Router>
                     <Navbar />   
                         <Switch>
