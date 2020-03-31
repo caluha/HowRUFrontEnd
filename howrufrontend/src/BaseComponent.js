@@ -30,11 +30,9 @@ class Base extends React.Component {
     } 
 
     render() {
-        let sideDrawer;
         let backdrop;
 
         if(this.state.sideDrawerOpen) {
-            sideDrawer = <SideDrawer />;
             backdrop = <Backdrop click={this.backdropClickHandler}/>
         }
         return (
@@ -42,9 +40,9 @@ class Base extends React.Component {
                 <div className="startmenu">
                     <Router>
                         <Toolbar drawerClickHandler ={this.drawerToggleClickHandler} />
-                        {sideDrawer}
+                        <SideDrawer show={this.state.sideDrawerOpen}/>
                         {backdrop}
-                        <img src={coffe} style={{ width: "350px" }} />
+                        <img src={coffe} style={{ width: "auto" }} />
                         <div className="box" >
                             <Link to="/migraine">Migraine</Link>
                         </div>

@@ -5,8 +5,8 @@
     top: 5px;
     background: rgba(0, 0, 0, 0.5);
     box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.5);
-    width: 90%;
-    max-width: 350px;
+    width: 110%;
+    max-width: auto;
     z-index: 100;
 
 }
