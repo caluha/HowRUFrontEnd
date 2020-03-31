@@ -10,6 +10,7 @@ import {
 import QuestionSet from './QuestionSet';
 import coffe from './coffe.jpg';
 import App from './components/App';
+import {NavLink} from "react-router-dom";
 
 
 class Base extends React.Component {
@@ -21,26 +22,26 @@ class Base extends React.Component {
             <div style={{ height: "100%" }}>
                 <div className="startmenu">
                     <Router>
-                        <App />
-                        <img src={coffe} style={{ width: "auto" }} />
-                        <div className="box" >
-                            <Link to="/migraine">Migraine</Link>
-                        </div>
-                        <div className="box">
-
-                            <Link to="/feelz">Feelz</Link>
-                        </div>
-                        <div className="box">
-                            Journal
-                        </div>
-                        <div className="box">
-                            Create own
-                        </div>
-                        <div className="box">
-                            Calender
-                    </div>
-
+                    <App />   
                         <Switch>
+                            <Route exact path="/">
+                                <img src={coffe} style={{ width: "auto" }} />
+                                <div className="box" >
+                                    <NavLink exact to="/migraine">Migraine</NavLink>
+                                </div>
+                                <div className="box">
+                                    <NavLink exact to="/feelz">Feelz</NavLink>
+                                </div>
+                                <div className="box">
+                                    Journal
+                                </div>
+                                <div className="box">
+                                    Create own
+                                </div>
+                                <div className="box">
+                                    Calender
+                                </div>
+                            </Route>
                             <Route path="/migraine">
                                 <Migraine />
                             </Route>
