@@ -5,7 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function navbar() {
   return (
-    <Navbar collapseOnSelect expand="x1" bg="dark" variant="dark">
+    <Navbar  collapseOnSelect expand="x1" bg="dark" variant="dark">
       <Navbar.Brand href="/">
         HowRU
       </Navbar.Brand>
