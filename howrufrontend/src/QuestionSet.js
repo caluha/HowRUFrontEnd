@@ -28,16 +28,16 @@ class QuestionSet extends React.Component {
             },
             {
                 id: 3,
-                question: "Pick one!",
-                type: "radio",
-                responses: ["One", "Two", "Three"]
-            },
-            {
-                id: 4,
-                question: "Pick several!",
+                question: "Check all that apply",
                 type: "checkbox",
-                responses: ["One", "Two", "Three"]
-            }
+                responses: [{
+                            option: "Äpple", 
+                            value: 1
+                        },             
+                        {
+                            option: "Banan", 
+                            value: 15}]
+            },
         ],
         
         questionCounter: 0                            

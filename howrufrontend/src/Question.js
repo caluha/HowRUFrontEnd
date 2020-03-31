@@ -11,7 +11,7 @@ class Question extends React.Component {
         console.log(this.props.type);
 
         if (this.props.responses.length > 0) {
-            return this.props.responses.map((e, index) => <div><Response key={index} type={this.props.type} name={e}/></div>)
+            return this.props.responses.map((e) => <Response type={this.props.type} value={e.value} option={e.option}/>)
         } else {
             return <Response type={this.props.type} />
         }
