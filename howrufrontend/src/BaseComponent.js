@@ -13,32 +13,35 @@ import App from './components/App';
 
 
 class Base extends React.Component {
-   
+
 
     render() {
-        
+
         return (
             <div style={{ height: "100%" }}>
                 <div className="startmenu">
                     <Router>
                         <App />
-                        <img src={coffe} style={{ width: "auto" }} />
-                        <div className="box" >
+                        <img src={coffe} style={{ width: "375px" }} />
+                        <div className="box" id="green_box" >
                             <Link to="/migraine">Migraine</Link>
                         </div>
-                        <div className="box">
-
+                        <div className="box" id="red_box">
                             <Link to="/feelz">Feelz</Link>
                         </div>
-                        <div className="box">
+                        <div className="box" id="lightred_box">
                             Journal
                         </div>
-                        <div className="box">
+                        <div className="box" id="green_box">
                             Create own
                         </div>
-                        <div className="box">
+                        <div className="box" id="lightred_box">
                             Calender
-                    </div>
+                        </div>
+                        <div className="floating-menu-icon">
+                        <Link to="/new">New Tracker +</Link>
+                        </div>
+
 
                         <Switch>
                             <Route path="/migraine">
