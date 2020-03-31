@@ -20,12 +20,12 @@ class Base extends React.Component {
         
         return (
             <div style={{ height: "100%" }}>
-                <div className="startmenu">
+                <div className="mainpage">
                     <Router>
                     <Navbar />   
                         <Switch>
                             <Route exact path="/">
-                                <img src={coffe} style={{ width: "auto" }} />
+                                <img src={coffe} style={{ width: "350px" }} />
                                 <div className="box" id="lightred_box">
                                     <NavLink exact to="/migraine">Migraine</NavLink>
                                 </div>
