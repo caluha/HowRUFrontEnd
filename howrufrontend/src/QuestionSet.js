@@ -17,19 +17,19 @@ class QuestionSet extends React.Component {
             {
                 id: 1,
                 question: "Your age?",
-                type: "text",
+                type: "TEXT",
                 responses: []
             },
             {
                 id: 2,
                 question: "How are you feeling?",
-                type: "range",
+                type: "RANGE",
                 responses: []
             },
             {
                 id: 3,
                 question: "Check all that apply",
-                type: "checkbox",
+                type: "CHECKBOX",
                 responses: [{
                             option: "Äpple", 
                             value: 1
