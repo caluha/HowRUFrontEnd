@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import QuestionSet from './QuestionSet';
 import coffe from './coffe.jpg';
-import App from './components/App';
+import Navbar from './components/Navbar';
 import {NavLink} from "react-router-dom";
 
 
@@ -22,7 +22,7 @@ class Base extends React.Component {
             <div style={{ height: "100%" }}>
                 <div className="startmenu">
                     <Router>
-                    <App />   
+                    <Navbar />   
                         <Switch>
                             <Route exact path="/">
                                 <img src={coffe} style={{ width: "auto" }} />
