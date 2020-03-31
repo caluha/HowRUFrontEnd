@@ -31,6 +31,12 @@ class QuestionSet extends React.Component {
                 question: "Pick one!",
                 type: "radio",
                 responses: ["One", "Two", "Three"]
+            },
+            {
+                id: 4,
+                question: "Pick several!",
+                type: "checkbox",
+                responses: ["One", "Two", "Three"]
             }
         ],
         
@@ -56,7 +62,7 @@ class QuestionSet extends React.Component {
 
         return (
             <div id="questions" className="box">
-                <Question question={currentQuestion.question} type={currentQuestion.type} responses={currentQuestion.responses}/>
+                <Question id= {currentQuestion.id} question={currentQuestion.question} type={currentQuestion.type} responses={currentQuestion.responses}/>
                 <div>
                     <button onClick={this.decOne}>Previous</button>
                     <button onClick={this.addOne}>Next</button>
