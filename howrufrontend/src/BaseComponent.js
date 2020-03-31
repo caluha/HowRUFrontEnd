@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import QuestionSet from './QuestionSet';
 import coffe from './coffe.jpg';
-import App from './components/App';
+import Navbar from './components/Navbar';
 
 
 class Base extends React.Component {
@@ -21,10 +21,11 @@ class Base extends React.Component {
             <div style={{ height: "100%" }}>
                 <div className="startmenu">
                     <Router>
-                        <App />
+                        <Navbar />
                         <img src={coffe} style={{ width: "375px" }} />
                         <div className="box" id="green_box" >
                             <Link to="/migraine">Migraine</Link>
+                            <button id="pen"> x </button>
                         </div>
                         <div className="box" id="red_box">
                             <Link to="/feelz">Feelz</Link>
