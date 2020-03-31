@@ -8,11 +8,12 @@ class Question extends React.Component {
     }
 
     addResponses() {
-        if (this.props.responses.length > 0) {
-            return this.props.responses.map((e) => <Response type={this.props.type} value={e.value} option={e.option}/>)
-        } else {
-            return <Response type={this.props.type}/>
-        }
+        // if (this.props.responses.length > 0) {
+        //     return this.props.responses.map((e) => <Response type={this.props.type} value={e.value} option={e.option}/>)
+        // } else {
+        //     return <Response type={this.props.type}/>
+        // }
+        return this.props.responses.map((e) => <Response type={this.props.type} key={e.id} id={e.id} value={e.value} min={e.min} max={e.max} min_description={e.min_description} max_description={e.max_description}  option={e.option}/>)
     }
 
     render() {

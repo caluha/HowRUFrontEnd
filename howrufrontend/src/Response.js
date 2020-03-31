@@ -4,16 +4,20 @@ class Response extends React.Component {
 
     addInput() {
         switch (this.props.type) {
-            case "text":
-                return <input type="text"/>;
-            case "range":
-                return <input type="range" min={this.props.min} max={this.props.max}/>
-            default:
+            case "TEXT":
+                return <input type="text" id={this.props.id}/>;
+            case "RANGE":
+                return <input type="range" id={this.props.id} defaultValue={this.props.value} min={this.props.min} max={this.props.max}/>
+            case "RADIO":
+            case "CHECKBOX":
                 return <div>
-                            <input type={this.props.type} value={this.props.value}/>
-                            {this.props.option}                           
+                            <input type={this.props.type} id={this.props.id} name="selection"/>
+                            {this.props.option}    
                         </div> 
+            default:
+                return <div>OH HELL NO!</div>
         }
+    
     }
 
     render() {
