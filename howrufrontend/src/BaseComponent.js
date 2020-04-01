@@ -7,13 +7,8 @@ import {
     useRouteMatch,
     useParams
 } from "react-router-dom";
-import './index.css';
 import QuestionSet from './QuestionSet';
 import coffee2 from './images/coffee2.jpg';
-import edit_01 from './images/edit_01.png';
-import answered_01 from './images/answered_01.png';
-import arrow from './images/arrow.png';
-import unanswered_01 from './images/unanswered_01.png';
 import {NavLink} from "react-router-dom";
 import Navbar from './components/Navbar';
 import mockQuestionSet from './mockQuestionSet';
@@ -39,9 +34,6 @@ class Base extends React.Component {
                             </Route>
                             {routeFactory()}
                         </Switch>
-                        <div >
-                            <Link to="/new"><button className="floating-menu-icon">New Tracker +</button></Link>
-                        </div>
                     </Router>
 
 
