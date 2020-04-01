@@ -70,7 +70,5 @@ body {
 .question {
   text-align: center;
   border:5px rosybrown;
-  height: 50px;
-
-  
+  height: 100px;
 }
