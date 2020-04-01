@@ -39,9 +39,9 @@ class Base extends React.Component {
                     </Router>
 
                 <div className="grad1" />
-                <div>
+                {/* <div>
                     <APIConnection/>
-                </div>
+                </div> */}
                     
                 </div>
             </div>
