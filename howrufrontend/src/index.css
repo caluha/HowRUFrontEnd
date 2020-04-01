@@ -42,9 +42,12 @@ body {
   border-left: 15px solid #F7767A;
 }
 .pen {
+  
   float: right; 
   padding-left: 10px;
 }
+
+
 
 .floating-menu-icon{
   width: auto;
@@ -62,6 +65,12 @@ body {
   height: 250px;
 }
 
-#questions {
+
+
+.question {
   text-align: center;
+  border:5px rosybrown;
+  height: 50px;
+
+  
 }
