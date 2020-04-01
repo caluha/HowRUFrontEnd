@@ -7,14 +7,38 @@ class Question extends React.Component {
     constructor(props) {
         super(props);
         this.updateAnswer = this.updateAnswer.bind(this);
-
-        this.state = { 
-            
-                responses: [],
-                value:"",
-                text:"",
-                optionType:""
-            
+        switch(this.props.type) {
+            case "TEXT":
+                this.state = {
+                    responses: [{
+                        optionId: this.props.responses[0].id,
+                        username: "Adam",
+                        text: "",
+                        value: null
+                    }]
+                }
+                break;
+            case "RANGE":
+                this.state = {
+                    responses: [{optionId: this.props.responses[0].id,
+                                username: "Adam",
+                                text: null,
+                                value: (this.props.responses[0].min + this.props.responses[0].min) / 2
+                 }]
+                }
+                break;
+            case "RADIO":
+                this.state = {
+                    responses: []
+                }
+                break;
+            case "CHECKBOX":
+                this.state = {
+                    
+                }
+                break;
+            default:
+                break;
         }
     }
 
@@ -26,11 +50,17 @@ class Question extends React.Component {
         // } else {
         //     return <Response type={this.props.type}/>
         // }
-        return this.props.responses.map((e) => <Response type={this.props.type} key={e.id} 
-                                                id={e.id} value={e.value} min={e.min} max={e.max} 
-                                                min_description={e.min_description} max_description={e.max_description}  
-                                                option={e.option}
-                                                updateAnswer = {this.updateAnswer} />)
+        return this.props.responses.map((e) => <Response type={this.props.type} 
+                                                        key={e.id} 
+                                                        id={e.id} 
+                                                        value={e.value} 
+                                                        min={e.min} 
+                                                        max={e.max} 
+                                                        min_description={e.min_description} 
+                                                        max_description={e.max_description}  
+                                                        option={e.option}
+                                                        defaultValue={this.state.responses}
+                                                        updateAnswer = {this.updateAnswer} />)
     }
 
     updateAnswer(event){
@@ -52,40 +82,9 @@ class Question extends React.Component {
                 break;
 
         }
-        // let newValue = event.target.value;
-        // let newId = event.target.id;
-        // if(this.checkResponseArray(newId)){
-        //     this.setState((previousState) => {
-        //         let ns = previousState;
-        //         for (const index in ns.responses) {
-        //             if(ns.responses[index].responseId === newId){
-        //                 ns.responses[index].responseValue = newValue;
-        //             }
-        //         }
-        //         return ns;
-        //     })
-        // } else {
-        //     this.setState({ responses: this.state.responses.concat(
-        //         {   responseId: newId,
-        //             responseValue: newValue
-        //         }
-        //     ) 
-        // })
-        // }
+
     }
 
-    // handleAnswer = (id, nextAnswer) => {
-    //     this.setState((previousState) => {
-    //         let ns = previousState;
-    //         ns.answers[id] = nextAnswer;
-    //         return ns;
-    //     })
-    
-    // for (const response of this.state.responses) {
-    //     if(response.responseId === event.target.id){
-    //         response.responseValue = event.target.value;
-    //     }
-    // }
 
     checkResponseArray(responseId){
         let counter = 0;

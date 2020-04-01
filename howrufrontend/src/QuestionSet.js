@@ -19,14 +19,26 @@ class QuestionSet extends React.Component {
         };
     }
 
+    componentDidMount() {
+        let questionComponents = [];
+        console.log(Questions.questions);
+        for (const e of Questions.questions) {
+            questionComponents.push(<Question key={e.id} id={e.id} question={e.question} type={e.type}
+                        responses={e.responses} handleAnswer={this.handleAnswer}
+                        next={this.addOne} previous={this.decOne} />)
+        }
+
+        // this.questionComponents = questionComponents;
+        this.setState({questionComponents: questionComponents});
+    }
+
     handleAnswer = (id, nextAnswer) => {
         this.setState((previousState) => {
             let ns = previousState;
             ns.answers[id] = nextAnswer;
             return ns;
         })
-
-        console.log(this.state);
+        console.log(this.state.answers);
     }
 
     addOne = () => {
@@ -43,14 +55,11 @@ class QuestionSet extends React.Component {
     }
 
     render() {
-        let currentQuestion = this.state.Questions.questions[this.state.questionCounter]
-
+        
         return (
             <div>
                 <div className="box_question">
-                    <Question id={currentQuestion.id} question={currentQuestion.question} type={currentQuestion.type}
-                        responses={currentQuestion.responses} handleAnswer={this.handleAnswer}
-                        next={this.addOne} previous={this.decOne} />
+                    {this.state.questionComponents ? this.state.questionComponents[this.state.questionCounter] : <h2>Loading...</h2>}
                 </div>
             </div>
         )

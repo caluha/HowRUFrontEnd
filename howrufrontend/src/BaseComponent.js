@@ -28,7 +28,7 @@ class Base extends React.Component {
                         <Navbar />
                         <Switch>
                             <Route exact path="/">
-                                <img src={coffee2} style={{ width: "350px" }} />
+                                <img src={coffee2} style={{ width: "360px" }} />
                                 <div>
                                     {questionSetFactory()}
                                 </div>
