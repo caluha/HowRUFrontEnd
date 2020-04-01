@@ -46,13 +46,10 @@ class Base extends React.Component {
 }
 
 function questionSetFactory(){
-
-    return mockQuestionSet.map((e) => <QuestionSetButton id={e.id} name={e.name}/>)
-                              
+    return mockQuestionSet.map((e) => <QuestionSetButton id={e.id} name={e.name}/>)                   
 }
 
 function routeFactory(){
-    // return mockQuestionSet.map((e) => <RouteContainer id={e.id} name={e.name}/>)
     return mockQuestionSet.map((e) => <Route path={"/"+ e.name}><QuestionSet/></Route>)
 }
 
