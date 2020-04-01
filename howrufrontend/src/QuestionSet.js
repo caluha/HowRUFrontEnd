@@ -24,10 +24,8 @@ class QuestionSet extends React.Component {
     }
 
     componentDidMount() {
-        // this.getAllQuestionSets();
-        // console.log(this.state.questionSet);
-        // this.questionComponents = questionComponents;
-        // this.setState({questionComponents: questionComponents});
+        this.getAllQuestionSets()
+
     }
 
     handleAnswer = (id, nextAnswer) => {
@@ -62,9 +60,10 @@ class QuestionSet extends React.Component {
     getAllQuestionSets = () => {
         let url = "http://localhost:8080/questionset";
         fetch(url)
-            // .then(result => result.json() )
+            .then(result => result.json() )
             .then(result => {
-                this.setState({questionSet: result.json})
+                this.setState({questionSet: result});
+                console.log(result);
             })
     }
 
