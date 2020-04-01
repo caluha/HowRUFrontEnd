@@ -1,8 +1,6 @@
 html {
-  
   width: 100%;
   height: 100%;
- 
   background: rgb(124, 124, 124);
   display: flex;
 }
@@ -69,3 +67,8 @@ body {
   height: 250px;
 }
 
+.grad1 {
+  height: 55%;
+  background-color: #cccccc;
+  background-image: linear-gradient(rgb(255, 118, 118), rgb(191, 255, 148), rgb(245, 211, 99));
+}

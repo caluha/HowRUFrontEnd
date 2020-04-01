@@ -22,7 +22,7 @@ class Base extends React.Component {
 
         return (
             <div style={{ height: "100%" }}>
-                <div className="mainpage">
+                <div className="mainpage">                   
                     <Router>
                         <Navbar />
                         <Switch>
@@ -34,9 +34,10 @@ class Base extends React.Component {
                             </Route>
                             {routeFactory()}
                         </Switch>
+                        
                     </Router>
 
-
+                <div className="grad1" />
 
                 </div>
             </div>
