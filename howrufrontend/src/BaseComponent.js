@@ -34,11 +34,8 @@ class Base extends React.Component {
                             </Route>
                             {routeFactory()}
                         </Switch>
-                        
                     </Router>
-
-                <div className="grad1" />
-                {/* <div>
+                <div>
                     <APIConnection/>
                 </div> */}
                     

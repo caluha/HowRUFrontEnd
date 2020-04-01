@@ -6,8 +6,6 @@ class Question extends React.Component {
   constructor(props) {
     super(props);
 
-    console.log("creating question "+props.id)
-
     this.updateAnswer = this.updateAnswer.bind(this);
 
     if (props.initialState) {
@@ -61,11 +59,7 @@ class Question extends React.Component {
   }
 
   addResponses() {
-    // if (this.props.responses.length > 0) {
-    //     return this.props.responses.map((e) => <Response type={this.props.type} value={e.value} option={e.option}/>)
-    // } else {
-    //     return <Response type={this.props.type}/>
-    // }
+
     return this.props.responses.map(e => (
       <Response
         type={this.props.type}
