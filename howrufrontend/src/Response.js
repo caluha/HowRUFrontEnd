@@ -15,25 +15,26 @@ class Response extends React.Component {
                                 max={this.props.responseData.max} 
                                 onChange={this.props.updateAnswer}/>
             case "RADIO":
-                console.log(this.props.defaultValue);
-                console.log( this.props.responseData.id);
-                if(this.props.defaultValue.length>0 && this.props.defaultValue[0].optionId === this.props.responseData.id){
                     return <React.Fragment>
                                 <input type="radio" id={this.props.responseData.id} 
-                                checked
-                                name={"select"} onChange={this.props.updateAnswer}/>
+                                checked={ this.props.defaultValue.length>0 ? 
+                                    this.props.defaultValue[0].optionId == this.props.responseData.id : false }
+                                name={"select"} 
+                                onChange={this.props.updateAnswer}/>
                                 {this.props.responseData.option}    
                             </React.Fragment> 
-                } else {
-                    return <React.Fragment>
-                                <input type={this.props.type} id={this.props.responseData.id} name={"select"} onChange={this.props.updateAnswer}/>
-                                {this.props.responseData.option}    
-                            </React.Fragment> 
-                }
-
+                
             case "CHECKBOX":
+                // console.log(this.props.defaultValue);
                 return <React.Fragment>
-                            <input type={this.props.type} id={this.props.responseData.id} name={"sel"+this.props.responseData.id} onChange={this.props.updateAnswer}/>
+                            <input type={this.props.type} 
+                            id={this.props.responseData.id} 
+                            name={"sel"+this.props.responseData.id} 
+                            onChange={this.props.updateAnswer}
+                            checked={ this.props.defaultValue.length>0 ? 
+                                this.props.defaultValue.reduce( (prev, current) => { return (current.optionId == this.props.responseData.id) || prev }, false )
+                                : false }
+                            />
                             {this.props.responseData.option}    
                         </React.Fragment> 
             default:

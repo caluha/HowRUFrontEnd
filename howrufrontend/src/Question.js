@@ -46,16 +46,14 @@ class Question extends React.Component {
           };
           break;
         case "CHECKBOX":
-          this.state = {};
+          this.state = {
+            responses: []
+          };
           break;
         default:
           break;
       }
     }
-  }
-
-  componentDidMount() {
-
   }
 
   addResponses() {
@@ -71,16 +69,16 @@ class Question extends React.Component {
   }
 
   updateAnswer(event) {
-    // console.log(event.target.id);
-    // console.log(event.target.value);
+    const targetId = event.target.id;
+    const targetValue = event.target.value;
     switch (this.props.type) {
       case "TEXT":
         this.setState({
           responses: [
             {
-              optionId: event.target.id,
+              optionId: targetId,
               username: "Adam",
-              text: event.target.value,
+              text: targetValue,
               value: null
             }
           ]
@@ -90,10 +88,10 @@ class Question extends React.Component {
         this.setState({
           responses: [
             {
-              optionId: event.target.id,
+              optionId: targetId,
               username: "Adam",
               text: null,
-              value: event.target.value
+              value:targetValue
             }
           ]
         });
@@ -102,7 +100,7 @@ class Question extends React.Component {
         this.setState({
           responses: [
             {
-              optionId: event.target.id,
+              optionId:targetId,
               username: "Adam",
               text: null,
               value: null
@@ -111,6 +109,22 @@ class Question extends React.Component {
         });
         break;
       case "CHECKBOX":
+        let i = this.state.responses.findIndex( t => t.optionId == targetId);
+        if(i===-1){//if the response is not already in the list, i.e. not selected, then add it
+            let newResp =
+                [...this.state.responses, {
+                    optionId: targetId,
+                    username: "Adam",
+                    text: null,
+                    value: null }] 
+            this.setState({responses:newResp});
+        } else { //else, if it is there, then remove it from the list, de-selecting it. 
+            let newResp = this.state.responses;
+            newResp.splice(i,1);
+            this.setState({responses:newResp});
+
+        }
+        
         break;
       default:
         break;
@@ -146,7 +160,7 @@ class Question extends React.Component {
   render() {
     return (
       <div>
-        <form onChange={this.updateAnswer}>
+         <form > 
           <div className="question">{this.props.question}</div>
           <div id="responsecontainer" className="response">
             {this.addResponses()}
