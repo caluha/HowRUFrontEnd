@@ -24,11 +24,14 @@ class QuestionSet extends React.Component {
     }
 
     componentDidMount() {
-        this.getAllQuestionSets()
-
+        this.getAllQuestionSets();
+        // console.log(this.state.questionSet);
+        // this.questionComponents = questionComponents;
+        // this.setState({questionComponents: questionComponents});
     }
 
     handleAnswer = (id, nextAnswer) => {
+        console.log(this.state.questionSet);
         this.setState((previousState) => {
             let ns = previousState;
             ns.answers[id] = nextAnswer;
@@ -62,8 +65,8 @@ class QuestionSet extends React.Component {
         fetch(url)
             .then(result => result.json() )
             .then(result => {
-                this.setState({questionSet: result});
-                console.log(result);
+                this.setState({questionSet: result})
+                // console.log(result)
             })
     }
 
