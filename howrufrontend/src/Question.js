@@ -10,7 +10,7 @@ class Question extends React.Component {
 
         this.state = { 
             
-                responseId: -1,
+                responses: [],
                 value:"",
                 text:"",
                 optionType:""
@@ -34,22 +34,78 @@ class Question extends React.Component {
     }
 
     updateAnswer(event){
+        // console.log(event.target.id);
+        // console.log(event.target.value);
+        switch (this.props.type){
+            case "TEXT":
+                this.setState({responses: [{optionId:event.target.id, username:"Adam", text:event.target.value, value:null}]})
+                break;
+            case "RANGE":
+                this.setState({responses: [{optionId:event.target.id, username:"Adam", text:null, value:event.target.value}]})
+                break;
+            case "RADIO":
+                this.setState({responses: [{optionId:event.target.id, username:"Adam", text:null, value:null}]})
+                break;
+            case "CHECKBOX":
+                break;
+            default:
+                break;
 
-        this.setState({ responseId:event.target.id, value : event.target.value})
-        
-        console.log(event.target.id);
+        }
+        // let newValue = event.target.value;
+        // let newId = event.target.id;
+        // if(this.checkResponseArray(newId)){
+        //     this.setState((previousState) => {
+        //         let ns = previousState;
+        //         for (const index in ns.responses) {
+        //             if(ns.responses[index].responseId === newId){
+        //                 ns.responses[index].responseValue = newValue;
+        //             }
+        //         }
+        //         return ns;
+        //     })
+        // } else {
+        //     this.setState({ responses: this.state.responses.concat(
+        //         {   responseId: newId,
+        //             responseValue: newValue
+        //         }
+        //     ) 
+        // })
+        // }
+    }
 
+    // handleAnswer = (id, nextAnswer) => {
+    //     this.setState((previousState) => {
+    //         let ns = previousState;
+    //         ns.answers[id] = nextAnswer;
+    //         return ns;
+    //     })
+    
+    // for (const response of this.state.responses) {
+    //     if(response.responseId === event.target.id){
+    //         response.responseValue = event.target.value;
+    //     }
+    // }
+
+    checkResponseArray(responseId){
+        let counter = 0;
+        for (const response of this.state.responses) {
+            if (response.responseId === responseId){
+                counter++;
+            }
+        }
+        return counter > 0 ? true : false;       
     }
 
     previous = () => {
 
-        this.props.handleAnswer(this.props.id, this.state);
+        this.props.handleAnswer(this.props.id, this.state.responses);
         this.props.previous();
 
     }
 
     next = () => {
-        this.props.handleAnswer(this.props.id, this.state);
+        this.props.handleAnswer(this.props.id, this.state.responses);
         this.props.next();
     }
 
