@@ -9,7 +9,7 @@ import {
 } from "react-router-dom";
 import './index.css';
 import QuestionSet from './QuestionSet';
-import coffe from './images/coffe.jpg';
+import coffee2 from './images/coffee2.jpg';
 import edit_01 from './images/edit_01.png';
 import answered_01 from './images/answered_01.png';
 import arrow from './images/arrow.png';
@@ -32,19 +32,12 @@ class Base extends React.Component {
                         <Navbar />
                         <Switch>
                             <Route exact path="/">
-                                <img src={coffe} style={{ width: "350px" }} />
-                     
+                                <img src={coffee2} style={{ width: "350px" }} />
                                 <div>
                                     {questionSetFactory()}
                                 </div>
-
                             </Route>
-                            <Route path="/migraine test">
-                                <Migraine />
-                            </Route>
-                            <Route path="/feelz test">
-                                <Feelz />
-                            </Route>
+                            {routeFactory()}
                         </Switch>
                         <div >
                             <Link to="/new"><button className="floating-menu-icon">New Tracker +</button></Link>
@@ -60,16 +53,6 @@ class Base extends React.Component {
     }
 }
 
-function Migraine() {
-    return (
-        <QuestionSet />
-    )
-}
-
-function Feelz() {
-    return <QuestionSet />
-}
-
 function questionSetFactory(){
 
     return mockQuestionSet.map((e) => <QuestionSetButton id={e.id} name={e.name}/>)
@@ -77,7 +60,8 @@ function questionSetFactory(){
 }
 
 function routeFactory(){
-
+    // return mockQuestionSet.map((e) => <RouteContainer id={e.id} name={e.name}/>)
+    return mockQuestionSet.map((e) => <Route path={"/"+ e.name}><QuestionSet/></Route>)
 }
 
 export default Base;
