@@ -19,8 +19,9 @@ html {
   
   .card-signin .card-title {
     margin-bottom: 2rem;
-    font-weight: 300;
-    font-size: 1.5rem;
+    font-weight: 600;
+    font-size: 35px;
+    color: #f37a79;
   }
   
   .card-signin .card-body {

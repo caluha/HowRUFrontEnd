@@ -20,7 +20,6 @@ class Base extends React.Component {
 
 
     render() {
-
         return (
             <div style={{ height: "100%" }}>
                 <div className="mainpage">                   
