@@ -33,18 +33,11 @@ class Base extends React.Component {
                         <Switch>
                             <Route exact path="/">
                                 <img src={coffe} style={{ width: "350px" }} />
-                     
                                 <div>
                                     {questionSetFactory()}
                                 </div>
-
                             </Route>
-                            <Route path="/migraine test">
-                                <Migraine />
-                            </Route>
-                            <Route path="/feelz test">
-                                <Feelz />
-                            </Route>
+                            {routeFactory()}
                         </Switch>
 
                         <div className="floating-menu-icon">
@@ -78,7 +71,8 @@ function questionSetFactory(){
 }
 
 function routeFactory(){
-
+    // return mockQuestionSet.map((e) => <RouteContainer id={e.id} name={e.name}/>)
+    return mockQuestionSet.map((e) => <Route path={"/"+ e.name}><QuestionSet/></Route>)
 }
 
 export default Base;
