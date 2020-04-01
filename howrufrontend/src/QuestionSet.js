@@ -15,21 +15,18 @@ class QuestionSet extends React.Component {
         this.state = {
             Questions,
             questionCounter: 0,
-            answers: {}
+            answers: {},
+            questionStates: {},
         };
+
+        this.storeQuestionState = this.storeQuestionState.bind(this);
     }
 
     componentDidMount() {
-        let questionComponents = [];
-        console.log(Questions.questions);
-        for (const e of Questions.questions) {
-            questionComponents.push(<Question key={e.id} id={e.id} question={e.question} type={e.type}
-                        responses={e.responses} handleAnswer={this.handleAnswer}
-                        next={this.addOne} previous={this.decOne} />)
-        }
+
 
         // this.questionComponents = questionComponents;
-        this.setState({questionComponents: questionComponents});
+        // this.setState({questionComponents: questionComponents});
     }
 
     handleAnswer = (id, nextAnswer) => {
@@ -38,7 +35,7 @@ class QuestionSet extends React.Component {
             ns.answers[id] = nextAnswer;
             return ns;
         })
-        console.log(this.state.answers);
+        // console.log(this.state.answers);
     }
 
     addOne = () => {
@@ -54,12 +51,37 @@ class QuestionSet extends React.Component {
         }
     }
 
+    storeQuestionState (questionId, questionState)  {
+        this.setState( (prev) => {
+            let ns = prev;
+            ns.questionStates[questionId] = questionState;
+            return ns;
+        } )
+    }
+
     render() {
+
+        let questionComponents = [];
+        // console.log(Questions.questions);
+        for (const e of Questions.questions) {
+
+            
+            questionComponents.push(<Question 
+                        // initialState={this.state.answers[e.id] ? this.state.answers[e.id] : undefined }
+                        key={e.id} id={e.id} question={e.question} type={e.type}
+                        responses={e.responses} handleAnswer={this.handleAnswer}
+                        next={this.addOne} previous={this.decOne} 
+
+                        storeState={this.storeQuestionState}
+                        initialState = {this.state.questionStates[e.id] ? this.state.questionStates[e.id] : undefined }
+                        />)
+        }
         
         return (
             <div>
                 <div className="box_question">
-                    {this.state.questionComponents ? this.state.questionComponents[this.state.questionCounter] : <h2>Loading...</h2>}
+                    {questionComponents[this.state.questionCounter]}
+                    {/* {this.state.questionComponents ? this.state.questionComponents[this.state.questionCounter] : <h2>Loading...</h2>} */}
                 </div>
             </div>
         )
