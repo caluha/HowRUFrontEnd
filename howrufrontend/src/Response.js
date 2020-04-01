@@ -5,18 +5,24 @@ class Response extends React.Component {
     addInput() {
         switch (this.props.type) {
             case "TEXT":
-                return <input type="text" id={this.props.id} defaultValue={this.props.defaultValue[0].value} onChange={this.props.updateAnswer}/>;
+                return <input type="text" id={this.props.responseData.id} 
+                            defaultValue={this.props.defaultValue[0].text}
+                            onChange={this.props.updateAnswer}/>;
             case "RANGE":
-                return <input type="range" id={this.props.id} defaultValue={this.props.defaultValue[0].value} min={this.props.min} max={this.props.max} onChange={this.props.updateAnswer}/>
+                return <input type="range" id={this.props.responseData.id} 
+                                defaultValue={this.props.defaultValue[0].value} 
+                                min={this.props.responseData.min} 
+                                max={this.props.responseData.max} 
+                                onChange={this.props.updateAnswer}/>
             case "RADIO":
                 return <React.Fragment>
-                            <input type={this.props.type} id={this.props.id} name={"select"} onChange={this.props.updateAnswer}/>
-                            {this.props.option}    
+                            <input type={this.props.type} id={this.props.responseData.id} name={"select"} onChange={this.props.updateAnswer}/>
+                            {this.props.responseData.option}    
                         </React.Fragment> 
             case "CHECKBOX":
                 return <React.Fragment>
-                            <input type={this.props.type} id={this.props.id} name={"sel"+this.props.id} onChange={this.props.updateAnswer}/>
-                            {this.props.option}    
+                            <input type={this.props.type} id={this.props.responseData.id} name={"sel"+this.props.responseData.id} onChange={this.props.updateAnswer}/>
+                            {this.props.responseData.option}    
                         </React.Fragment> 
             default:
                 return <div>OH HELL NO!</div>
@@ -25,6 +31,7 @@ class Response extends React.Component {
     }
 
     render() {
+        console.log(this.props.defaultValue[0].value);
         return (
             this.addInput()
         )
