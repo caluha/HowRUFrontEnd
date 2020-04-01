@@ -13,8 +13,10 @@ import edit_01 from './images/edit_01.png';
 import answered_01 from './images/answered_01.png';
 import arrow from './images/arrow.png';
 import unanswered_01 from './images/unanswered_01.png';
-import Navbar from './components/Navbar';
 import {NavLink} from "react-router-dom";
+import Navbar from './components/Navbar';
+import mockQuestionSet from './mockQuestionSet';
+import QuestionSetButton from './QuestionSetButton';
 
 
 class Base extends React.Component {
@@ -30,41 +32,15 @@ class Base extends React.Component {
                         <Switch>
                             <Route exact path="/">
                                 <img src={coffe} style={{ width: "350px" }} />
-                                <div className="box" id="lightred_box">
-                                <NavLink exact to="/migraine"><a className="pen"><img src={arrow} style={{height:"25px"}} /></a></NavLink>
-                                <NavLink exact to="/unchecked"><a className="pen"><img src={unanswered_01} style={{height:"25px"}} /></a></NavLink>
-                                <NavLink exact to="/"><a className="pen"><img src={edit_01} style={{height:"25px"}} /></a></NavLink>
-                                    <div>Migraine</div>
-                                </div>
-                                <div className="box" id="lightred_box">
-                                <NavLink exact to="/feelz"><a className="pen"><img src={arrow} style={{height:"25px"}} /></a></NavLink>
-                                <NavLink exact to="/check"><a className="pen"><img src={answered_01} style={{height:"25px"}} /></a></NavLink>
-                                <NavLink exact to="/"><a className="pen"><img src={edit_01} style={{height:"25px"}} /></a></NavLink>
-                                    <div>Feelz</div>
-                                </div>
-                                <div className="box" id="red_box">
-                                <NavLink exact to="/migraine"><a className="pen"><img src={arrow} style={{height:"25px"}} /></a></NavLink>
-                                <NavLink exact to="/check"><a className="pen"><img src={answered_01} style={{height:"25px"}} /></a></NavLink>
-                                <NavLink exact to="/"><a className="pen"><img src={edit_01} style={{height:"25px"}} /></a></NavLink>
-                                    Journal
-                                </div>
-                                <div className="box" id="lightred_box">
-                                <NavLink exact to="/migraine"><a className="pen"><img src={arrow} style={{height:"25px"}} /></a></NavLink>
-                                <NavLink exact to="/check"><a className="pen"><img src={answered_01} style={{height:"25px"}} /></a></NavLink>
-                                <NavLink exact to="/"><a className="pen"><img src={edit_01} style={{height:"25px"}} /></a></NavLink>
-                                    Create own
-                                </div>
-                                <div className="box" id="green_box">
-                                <NavLink exact to="/migraine"><a className="pen"><img src={arrow} style={{height:"25px"}} /></a></NavLink>
-                                <NavLink exact to="/unchecked"><a className="pen"><img src={unanswered_01} style={{height:"25px"}} /></a></NavLink>
-                                <NavLink exact to="/"><a className="pen"><img src={edit_01} style={{height:"25px"}} /></a></NavLink>
-                                    Calender
+                     
+                                <div>
+                                    {questionSetFactory()}
                                 </div>
                             </Route>
-                            <Route path="/migraine">
+                            <Route path="/migraine test">
                                 <Migraine />
                             </Route>
-                            <Route path="/feelz">
+                            <Route path="/feelz test">
                                 <Feelz />
                             </Route>
                         </Switch>
@@ -79,8 +55,6 @@ class Base extends React.Component {
                 </div>
             </div>
 
-
-
         );
     }
 }
@@ -93,6 +67,16 @@ function Migraine() {
 
 function Feelz() {
     return <QuestionSet />
+}
+
+function questionSetFactory(){
+
+    return mockQuestionSet.map((e) => <QuestionSetButton id={e.id} name={e.name}/>)
+                              
+}
+
+function routeFactory(){
+
 }
 
 export default Base;
