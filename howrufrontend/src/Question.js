@@ -57,12 +57,12 @@ class Question extends React.Component {
             <div>
                 <form onChange={this.updateAnswer}>
                     <div className="question">{this.props.question}</div>
-                    <div id="responsecontainer">
+                    <div id="responsecontainer" className="response">
                         {this.addResponses()}
                     </div>
                 </form>
-                <div>
-                    <button onClick={this.previous}>Previous</button>
+                <div className="prev-next_button">
+                    <button onClick={this.previous} >Previous</button>
                     <button onClick={this.next}>Next</button>
                 </div>
             </div>

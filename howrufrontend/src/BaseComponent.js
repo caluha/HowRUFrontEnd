@@ -46,9 +46,8 @@ class Base extends React.Component {
                                 <Feelz />
                             </Route>
                         </Switch>
-
-                        <div className="floating-menu-icon">
-                            <Link to="/new">New Tracker +</Link>
+                        <div >
+                            <Link to="/new"><button className="floating-menu-icon">New Tracker +</button></Link>
                         </div>
                     </Router>
 

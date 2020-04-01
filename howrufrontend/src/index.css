@@ -29,17 +29,23 @@ body {
   margin-top: 1px;
   padding: 5px;
 }
+.box_question {
+  background: rgb(190, 190, 190);
+  margin-top: 1px;
+  padding: 5px;
+}
+
 
 #green_box {
   border-left: 15px solid #00963D;
 }
+
 #red_box {
- 
   border-left: 15px solid #DD3146;
 }
+
 #lightred_box {
- 
-  border-left: 15px solid #F7767A;
+   border-left: 15px solid #F7767A;
 }
 .pen {
   
@@ -47,13 +53,11 @@ body {
   padding-left: 10px;
 }
 
-
-
 .floating-menu-icon{
   width: auto;
   padding: 10px;
-	background: #e53935;
-	border-radius: 10%;
+	background: #d8312e;
+	border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0,0,0,.5);
   position: absolute;
   right: 25px;
@@ -65,10 +69,28 @@ body {
   height: 250px;
 }
 
-
-
 .question {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(250,250,250);
   text-align: center;
-  border:5px rosybrown;
+  font-weight: 900;
   height: 100px;
+}
+
+.response {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgb(250,250,250);
+  margin-top: 5px;
+  height: 50px;
+  text-align: center;
+  width: auto;
+}
+
+.prev-next_button {
+text-align: right;
+padding-top: 50px;
 }
