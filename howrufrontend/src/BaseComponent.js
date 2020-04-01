@@ -37,7 +37,7 @@ class Base extends React.Component {
                     </Router>
                 <div>
                     <APIConnection/>
-                </div>
+                </div> */}
                     
                 </div>
             </div>

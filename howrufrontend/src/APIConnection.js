@@ -1,22 +1,23 @@
-import React from 'react';
-import { Button } from 'react-bootstrap';
+// import React from 'react';
+// import { Button } from 'react-bootstrap';
 
-class APIConnection extends React.Component {
+// class APIConnection extends React.Component {
 
-    getAllQuestionSets(page) {
-        const url = "http://localhost:8080/questionset";
-        return fetch(url)
-            .then(result => {return result.json() })
-        
-    }
+//     static getAllQuestionSets = () => {
+//         url = "http://localhost:8080/questionset";
+//         fetch(url)
+//             .then(result => result.json())
+//             .then(result => {return result})
+//     }
 
-    iAmConfusion = () => {
-        this.getAllQuestionSets().then(result => console.log(result));
-    }
+//     static iAmConfusion = () => {
+//         APIConnection.getAllQuestionSets().then(result => {var foo = result});
+//         console.log();
+//     }
 
-    render() {
-        return (<React.Fragment><Button onClick={this.iAmConfusion}>Kansas</Button></React.Fragment>);
-    }
-}
+//     render() {
+//         return (<React.Fragment><Button onClick={APIConnection.iAmConfusion}>Kansas</Button></React.Fragment>);
+//     }
+// }
 
-export default APIConnection
+// export default APIConnection

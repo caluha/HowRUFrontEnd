@@ -1,6 +1,7 @@
 import React from 'react';
 import Question from './Question';
 import Questions from './questionsTest.json';
+import APIConnection from './APIConnection';
 
 
 
@@ -11,7 +12,7 @@ class QuestionSet extends React.Component {
         this.handleAnswer = this.handleAnswer.bind(this);
         this.addOne = this.addOne.bind(this);
         this.decOne = this.decOne.bind(this);
-
+    
         this.state = {
             Questions,
             questionCounter: 0,
@@ -23,10 +24,8 @@ class QuestionSet extends React.Component {
     }
 
     componentDidMount() {
+        this.getAllQuestionSets()
 
-
-        // this.questionComponents = questionComponents;
-        // this.setState({questionComponents: questionComponents});
     }
 
     handleAnswer = (id, nextAnswer) => {
@@ -39,7 +38,6 @@ class QuestionSet extends React.Component {
     }
 
     addOne = () => {
-
         if (!(this.state.questionCounter + 1 === this.state.Questions.questions.length)) {
             this.setState((previousState) => ({ questionCounter: previousState.questionCounter + 1 }));
         }
@@ -59,6 +57,17 @@ class QuestionSet extends React.Component {
         } )
     }
 
+    getAllQuestionSets = () => {
+        let url = "http://localhost:8080/questionset";
+        fetch(url)
+            .then(result => result.json() )
+            .then(result => {
+                this.setState({questionSet: result});
+                console.log(result);
+            })
+    }
+
+   
     render() {
 
         let questionComponents = [];
