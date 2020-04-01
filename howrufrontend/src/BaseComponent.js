@@ -7,6 +7,7 @@ import {
     useRouteMatch,
     useParams
 } from "react-router-dom";
+import './index.css';
 import QuestionSet from './QuestionSet';
 import coffe from './images/coffe.jpg';
 import edit_01 from './images/edit_01.png';
@@ -20,15 +21,15 @@ import QuestionSetButton from './QuestionSetButton';
 
 
 class Base extends React.Component {
-   
+
 
     render() {
-        
+
         return (
             <div style={{ height: "100%" }}>
                 <div className="mainpage">
                     <Router>
-                    <Navbar />   
+                        <Navbar />
                         <Switch>
                             <Route exact path="/">
                                 <img src={coffe} style={{ width: "350px" }} />
@@ -36,6 +37,7 @@ class Base extends React.Component {
                                 <div>
                                     {questionSetFactory()}
                                 </div>
+
                             </Route>
                             <Route path="/migraine test">
                                 <Migraine />
@@ -44,14 +46,14 @@ class Base extends React.Component {
                                 <Feelz />
                             </Route>
                         </Switch>
-                       
+
                         <div className="floating-menu-icon">
                             <Link to="/new">New Tracker +</Link>
                         </div>
-                        </Router>
+                    </Router>
 
 
-                   
+
                 </div>
             </div>
 

@@ -56,7 +56,7 @@ class Question extends React.Component {
         return(
             <div>
                 <form onChange={this.updateAnswer}>
-                    <div>{this.props.question}</div>
+                    <div className="question">{this.props.question}</div>
                     <div id="responsecontainer">
                         {this.addResponses()}
                     </div>
