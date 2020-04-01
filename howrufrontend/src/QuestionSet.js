@@ -14,15 +14,15 @@ class QuestionSet extends React.Component {
         this.state = {
             Questions,
             questionCounter: 0,
-            answers:{ }                                     
+            answers: {}
         };
     }
 
     handleAnswer = (id, nextAnswer) => {
         this.setState((previousState) => {
             let ns = previousState;
-            ns.answers[id]=nextAnswer;
-            return ns; 
+            ns.answers[id] = nextAnswer;
+            return ns;
         })
 
         console.log(this.state);
@@ -30,7 +30,7 @@ class QuestionSet extends React.Component {
 
     addOne = () => {
 
-        if (!(this.state.questionCounter+1 === this.state.Questions.questions.length)) {
+        if (!(this.state.questionCounter + 1 === this.state.Questions.questions.length)) {
             this.setState((previousState) => ({ questionCounter: previousState.questionCounter + 1 }));
         }
     }
@@ -45,11 +45,13 @@ class QuestionSet extends React.Component {
         let currentQuestion = this.state.Questions.questions[this.state.questionCounter]
 
         return (
-            <div id="questions" className="box">
-                <Question id={currentQuestion.id} question={currentQuestion.question} type={currentQuestion.type}
-                         responses={currentQuestion.responses} handleAnswer={this.handleAnswer}
-                         next={this.addOne} previous={this.decOne}/>
-
+            <div>
+            <div className="image"/>
+                <div id="questions" className="box">
+                    <Question id={currentQuestion.id} question={currentQuestion.question} type={currentQuestion.type}
+                        responses={currentQuestion.responses} handleAnswer={this.handleAnswer}
+                        next={this.addOne} previous={this.decOne} />
+                </div>
             </div>
         )
     }
