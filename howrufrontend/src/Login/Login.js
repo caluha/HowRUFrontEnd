@@ -22,7 +22,7 @@ export default class Login extends Component {
     async login(username, password) {
         let url = "http://localhost:8080/login";
         var myHeaders = new Headers();
-        myHeaders.append("Authorization", "Basic " + Buffer.from(username + ":" + password).toString('base64'));
+        // myHeaders.append("Authorization", "Basic " + Buffer.from(username + ":" + password).toString('base64'));
         myHeaders.append('Content-Type', 'application/json');
         var requestOptions = {
             method: "POST",
@@ -34,24 +34,22 @@ export default class Login extends Component {
             redirect: "follow"
         };
         return await fetch(url, requestOptions)
-            .then(r => console.log(r))
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
+                console.log(result);
                 this.loggedUser = result;
-                this.loggedUser.password = password;
                 return this.loggedUser;
             })
             .catch(error => console.log("error", error));
     }
 
     handleSubmit(event) {
-        this.login(this.state.userName, this.state.password);
-        console.log("login", this.state.userName)
+        this.login(this.state.username, this.state.password);
+        console.log("login", this.state.username)
 
-        //         { withCredentials: true }
+        //        { withCredentials: true }
 
-        console.log("form submitted"); //post to api post(url) sends the array as json, don't forget ", withCredential: true"
+        console.log("form submitted");
         event.preventDefault();
     }
 
