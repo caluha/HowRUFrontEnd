@@ -13,8 +13,8 @@ import { NavLink } from "react-router-dom";
 import Navbar from './Navbar';
 import mockQuestionSet from '../../json/mockQuestionSet.json';
 import QuestionSetButton from './QuestionSetButton';
-
 import CreateQuestionSet from '../CreateEdit/CreateQuestionSet';
+import LoginPage from '../../LoginPage'
 
 
 
@@ -58,6 +58,9 @@ class Base extends React.Component {
                             </Route>
                             <Route exact path="/create">
                                <CreateQuestionSet />
+                            </Route>
+                            <Route exact path="/login">
+                               <LoginPage />
                             </Route>
                             {routeFactory(this.state.questionSet)}
                         </Switch>
