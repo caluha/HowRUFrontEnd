@@ -7,14 +7,14 @@ import {
     useRouteMatch,
     useParams
 } from "react-router-dom";
-import QuestionSet from './QuestionSet';
-import coffee2 from './images/coffee2.jpg';
+import QuestionSet from '../QuestionSet/QuestionSet';
+import coffee2 from '../../images/coffee2.jpg';
 import { NavLink } from "react-router-dom";
-import Navbar from './components/Navbar';
-import mockQuestionSet from './mockQuestionSet';
+import Navbar from '../Navbar';
+import mockQuestionSet from '../../json/mockQuestionSet.json';
 import QuestionSetButton from './QuestionSetButton';
 
-import CreateQuestionSet from './components/CreateEdit/CreateQuestionSet';
+import CreateQuestionSet from '../CreateEdit/CreateQuestionSet';
 
 
 

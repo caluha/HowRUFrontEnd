@@ -1,8 +1,8 @@
 import React from 'react';
-import edit_01 from './images/edit_01.png';
-import answered_01 from './images/answered_01.png';
-import arrow from './images/arrow.png';
-import unanswered_01 from './images/unanswered_01.png';
+import edit_01 from '../../images/edit_01.png';
+import answered_01 from '../../images/answered_01.png';
+import arrow from '../../images/arrow.png';
+import unanswered_01 from '../../images/unanswered_01.png';
 import {NavLink} from "react-router-dom";
 
 
