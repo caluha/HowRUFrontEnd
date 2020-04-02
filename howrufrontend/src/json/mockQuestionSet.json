@@ -1,0 +1,219 @@
+
+[
+    {
+        "id": 1,
+        "name": "Migraine test",
+        "creator": "Adam",
+        "created": "2020-03-31T13:21:12.733785",
+        "questions": [
+            {
+                "id": 1,
+                "question": "Your age?",
+                "type": "TEXT",
+                "responses": [
+                    {
+                        "id": 8,
+                        "value": "",
+                        "min": "",
+                        "max": "",
+                        "min_description": "",
+                        "max_description": "",
+                        "option": ""
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "question": "How are you feeling?",
+                "type": "RANGE",
+                "responses": [
+                    {
+                        "id": 7,
+                        "value": "",
+                        "min": 0,
+                        "max": 100,
+                        "min_description": "Bad",
+                        "max_description": "Good",
+                        "option": ""
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "question": "Check all that apply",
+                "type": "CHECKBOX",
+                "responses": [
+                    {
+                        "id": 1,
+                        "value": null,
+                        "min": null,
+                        "max": null,
+                        "min_description": null,
+                        "max_description": null,
+                        "option": "Bad"
+                    },
+                    {
+                        "id": 2,
+                        "value": null,
+                        "min": null,
+                        "max": null,
+                        "min_description": null,
+                        "max_description": null,
+                        "option": "Normal"
+                    },
+                    {
+                        "id": 3,
+                        "value": null,
+                        "min": null,
+                        "max": null,
+                        "min_description": null,
+                        "max_description": null,
+                        "option": "Good"
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "question": "Pick one",
+                "type": "RADIO",
+                "responses": [
+                    {
+                        "id": 4,
+                        "value": null,
+                        "min": null,
+                        "max": null,
+                        "min_description": null,
+                        "max_description": null,
+                        "option": "Bad"
+                    },
+                    {
+                        "id": 5,
+                        "value": null,
+                        "min": null,
+                        "max": null,
+                        "min_description": null,
+                        "max_description": null,
+                        "option": "Normal"
+                    },
+                    {
+                        "id": 6,
+                        "value": null,
+                        "min": null,
+                        "max": null,
+                        "min_description": null,
+                        "max_description": null,
+                        "option": "Good"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "name": "Feelz test",
+        "creator": "Bengt",
+        "created": "2020-03-31T13:21:12.733785",
+        "questions": [
+            {
+                "id": 5,
+                "question": "Your age?",
+                "type": "TEXT",
+                "responses": [
+                    {
+                        "id": 9,
+                        "value": "",
+                        "min": "",
+                        "max": "",
+                        "min_description": "",
+                        "max_description": "",
+                        "option": ""
+                    }
+                ]
+            },
+            {
+                "id": 6,
+                "question": "How are you feeling?",
+                "type": "RANGE",
+                "responses": [
+                    {
+                        "id": 10,
+                        "value": "",
+                        "min": 0,
+                        "max": 100,
+                        "min_description": "Bad",
+                        "max_description": "Good",
+                        "option": ""
+                    }
+                ]
+            },
+            {
+                "id": 7,
+                "question": "Check all that apply",
+                "type": "CHECKBOX",
+                "responses": [
+                    {
+                        "id": 11,
+                        "value": null,
+                        "min": null,
+                        "max": null,
+                        "min_description": null,
+                        "max_description": null,
+                        "option": "Bad"
+                    },
+                    {
+                        "id": 12,
+                        "value": null,
+                        "min": null,
+                        "max": null,
+                        "min_description": null,
+                        "max_description": null,
+                        "option": "Normal"
+                    },
+                    {
+                        "id": 13,
+                        "value": null,
+                        "min": null,
+                        "max": null,
+                        "min_description": null,
+                        "max_description": null,
+                        "option": "Good"
+                    }
+                ]
+            },
+            {
+                "id": 8,
+                "question": "Pick one",
+                "type": "RADIO",
+                "responses": [
+                    {
+                        "id": 14,
+                        "value": null,
+                        "min": null,
+                        "max": null,
+                        "min_description": null,
+                        "max_description": null,
+                        "option": "Bad"
+                    },
+                    {
+                        "id": 15,
+                        "value": null,
+                        "min": null,
+                        "max": null,
+                        "min_description": null,
+                        "max_description": null,
+                        "option": "Normal"
+                    },
+                    {
+                        "id": 16,
+                        "value": null,
+                        "min": null,
+                        "max": null,
+                        "min_description": null,
+                        "max_description": null,
+                        "option": "Good"
+                    }
+                ]
+            }
+        ]
+    }
+]
