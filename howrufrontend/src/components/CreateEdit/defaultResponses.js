@@ -19,7 +19,7 @@ export default {
         "min_description": "null",
         "max_description": "null"
     },
-    defaultRadioResponse3 : {
+    RadioResponse3 : {
         "type": "RADIO",
         "value": "100",
         "option": "Great",
