@@ -16,7 +16,7 @@ import mockQuestionSet from '../../json/mockQuestionSet.json';
 import QuestionSetButton from './QuestionSetButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CreateQuestionSet from '../CreateEdit/CreateQuestionSet';
-import LoginPage from '../../LoginPage'
+import LoginPage from '../Login/LoginPage'
 import RegistratePage from '../../Registrate/RegistratePage';
 
 
@@ -73,7 +73,7 @@ class Base extends React.Component {
                             <Route exact path="/login">
                                <LoginPage handleLogin={this.handleLogin} />
                             </Route>
-                            <Route exact path="/register">
+                            <Route exact path="/registrate">
                                <RegistratePage />
                             </Route>
                             {routeFactory(this.state.questionSet)}

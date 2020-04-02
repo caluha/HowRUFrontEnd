@@ -31,16 +31,21 @@ class QuestionList extends React.Component {
 
     render(){
         let qForm = <CreateQuestionForm saveQuestion={this.addQuestion} />;
+
+        let questionElements = [];
+        for(const el of this.props.questions ){
+            questionElements.push(
+                <li>
+                    {el.question}
+                </li>
+            )
+        }
+
         return (
             <div>
                 <h2>Question list works!</h2>
                 <ul>
-                    <li>
-                        Question 1
-                    </li>
-                    <li>
-                        Question 2
-                    </li>
+                    {questionElements}
                 </ul>
                 <button onClick={this.showQuestionForm}>Add question</button>
 
