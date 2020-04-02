@@ -14,6 +14,8 @@ import Navbar from './components/Navbar';
 import mockQuestionSet from './mockQuestionSet';
 import QuestionSetButton from './QuestionSetButton';
 
+import CreateQuestionSet from './components/CreateEdit/CreateQuestionSet';
+
 
 
 
@@ -32,6 +34,9 @@ class Base extends React.Component {
                                 <div>
                                     {questionSetFactory()}
                                 </div>
+                            </Route>
+                            <Route exact path="/create">
+                               <CreateQuestionSet />
                             </Route>
                             {routeFactory()}
                         </Switch>
