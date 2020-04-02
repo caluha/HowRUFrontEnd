@@ -10,13 +10,13 @@ import {
 } from "react-router-dom";
 import '../LoginPage.css';
 import Base from '../components/Base/BaseComponent';
-import RegisterPage from './RegisterPage';
+import RegistratePage from './RegistratePage';
 
 
 
-export default class Register extends Component {
+export default class Registrate extends Component {
     constructor(props) {
-        super(props);
+        super(props); 
 
         this.state = {
             email:"",

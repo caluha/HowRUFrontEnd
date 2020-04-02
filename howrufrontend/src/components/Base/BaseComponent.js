@@ -17,7 +17,7 @@ import QuestionSetButton from './QuestionSetButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CreateQuestionSet from '../CreateEdit/CreateQuestionSet';
 import LoginPage from '../../LoginPage'
-import RegisterPage from '../../Register/RegisterPage';
+import RegistratePage from '../../Registrate/RegistratePage';
 
 
 
@@ -74,7 +74,7 @@ class Base extends React.Component {
                                <LoginPage handleLogin={this.handleLogin} />
                             </Route>
                             <Route exact path="/register">
-                               <RegisterPage />
+                               <RegistratePage />
                             </Route>
                             {routeFactory(this.state.questionSet)}
                         </Switch>
