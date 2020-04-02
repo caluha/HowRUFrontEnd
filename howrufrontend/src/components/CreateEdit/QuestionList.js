@@ -13,49 +13,38 @@ class QuestionList extends React.Component {
 
         this.state = {
             showingNewQuestionForm: false,
-            createNewQuestionForm: null,
         }
     }
 
     showQuestionForm(){
-        if(!this.state.createNewQuestionComponent){
-            console.log("Try to show component")
-            this.setState({
-                showingNewQuestionForm: true,
-                createNewQuestionForm: <CreateQuestionForm saveQuestion={this.addQuestion} /> } )
-        }
+            this.setState(prev =>( { showingNewQuestionForm: !prev.showingNewQuestionForm } ))
     }
 
     closeQuestionForm(){
-        if(this.state.createNewQuestionComponent){
-            this.setState({
-                showingNewQuestionForm: false,
-                createNewQuestionForm:null });
-        }
+        this.setState({ showingNewQuestionForm: false });
     }
 
     addQuestion(question){
-        
         this.props.saveQuestion(question);
         this.closeQuestionForm();
-    
     }
 
     render(){
+        let qForm = <CreateQuestionForm saveQuestion={this.addQuestion} />;
         return (
             <div>
                 <h2>Question list works!</h2>
                 <ul>
                     <li>
-                        Question1
+                        Question 1
                     </li>
                     <li>
-                        Question2
+                        Question 2
                     </li>
                 </ul>
                 <button onClick={this.showQuestionForm}>Add question</button>
 
-                { this.state.showingNewQuestionForm  && this.state.createNewQuestionForm  }
+                { this.state.showingNewQuestionForm  && qForm  }
             </div>
         )
     }

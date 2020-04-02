@@ -5,18 +5,19 @@ import {
     Route,
     Link,
     useRouteMatch,
-    useParams
+    useParams,
+    useHistory
 } from "react-router-dom";
 import QuestionSet from '../QuestionSet/QuestionSet';
 import coffee2 from '../../images/coffee2.jpg';
 import { NavLink } from "react-router-dom";
-import Navbar from '../Navbar';
+import Navbar from './Navbar';
 import mockQuestionSet from '../../json/mockQuestionSet.json';
 import QuestionSetButton from './QuestionSetButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import CreateQuestionSet from '../CreateEdit/CreateQuestionSet';
 import LoginPage from '../../LoginPage'
+import RegisterPage from '../../Register/RegisterPage';
 
 
 
@@ -26,8 +27,10 @@ class Base extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            loginData: {},
             questionSet: []
         }
+        this.handleLogin = this.handleLogin.bind(this);
     }
 
     getAllQuestionSets = () => {
@@ -44,8 +47,14 @@ class Base extends React.Component {
         this.getAllQuestionSets();
     }
 
+    handleLogin(data) {
+        this.setState({loginData:data})
+    }
 
     render() {
+       
+
+
         return (
             <div style={{ height: "100%" }}>
                 <div className="mainpage">
@@ -62,7 +71,10 @@ class Base extends React.Component {
                                <CreateQuestionSet />
                             </Route>
                             <Route exact path="/login">
-                               <LoginPage />
+                               <LoginPage handleLogin={this.handleLogin} />
+                            </Route>
+                            <Route exact path="/register">
+                               <RegisterPage />
                             </Route>
                             {routeFactory(this.state.questionSet)}
                         </Switch>

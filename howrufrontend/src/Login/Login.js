@@ -3,12 +3,14 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
+    Redirect,
     Link,
     useRouteMatch,
     useParams
 } from "react-router-dom";
 import '../LoginPage.css';
 import Base from '../components/Base/BaseComponent';
+import LoginPage from '../LoginPage';
 
 
 export default class Login extends Component {
@@ -41,27 +43,25 @@ export default class Login extends Component {
                 username: username,
                 password: password
             }),
-            redirect: "follow"
         };
         return await fetch(url, requestOptions)
             .then(response => response.json())
             .then(result => {
-                // console.log(result);
-                this.loggedUser = result;
-
-                return this.loggedUser;
+                this.loggedUser = result; 
+                console.log("login",result);
+                if (result.loggedIn === "true") {
+                    this.props.handleSuccessfulAuth(result)
+                }
+               // return this.loggedUser;
+               
             })
+         
             .catch(error => console.log("error", error));
+            
     }
 
     handleSubmit(event) {
-        this.login(this.state.username, this.state.password);
-        // console.log("login", this.state.username)
-
-        //        { withCredentials: true }
-
-        // console.log("form submitted");
-
+        this.login(this.state.username, this.state.password);        
         event.preventDefault();
     }
 
@@ -77,12 +77,10 @@ export default class Login extends Component {
                                     <input type="text" name="username" placeholder="User Name" value={this.state.username} onChange={this.handleChange} required />
                                     <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required />
                                 </div>
-                                <button type="submit" class="btn btn-lgin btn-lg btn-block text-uppercase" type="submit">Log in</button>
+                                <button type="submit" class="btn btn-lgin btn-lg btn-block text-uppercase" type="submit"> Log in</button>
                             </form>
-                        </Route>
-                        <Route exact path="/base">
-                            <Base />
-                        </Route>
+                           
+                        </Route>                        
                     </Switch>
                 </Router>
             </div>
