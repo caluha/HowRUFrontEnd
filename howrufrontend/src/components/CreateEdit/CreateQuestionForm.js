@@ -3,7 +3,7 @@ import React from 'react';
 import defaultResponses from './defaultResponses';
 import CreateRangeResponse from './CreateRangeResponse';
 import CreateTextResponse from './CreateTextResponse';
-import CreateRadioResponses from './CreateRadioResponses'; 
+import CreateRadioCheckboxResponses from './CreateRadioCheckboxResponses'; 
 
 class CreateQuestionForm extends React.Component{
 
@@ -69,14 +69,12 @@ class CreateQuestionForm extends React.Component{
     render(){
         let rangeResp = <CreateRangeResponse response = {this.state.responses[0]} />;
         let textResp = <CreateTextResponse response = {this.state.responses[0]} />;
-
-        let radioResp = <CreateRadioResponses responses = {this.state.responses} />;
-
+        let radioCheckboxResp = <CreateRadioCheckboxResponses responses = {this.state.responses} />;
 
 
         return(
-            <h2> 
-                
+            <div>
+          
                 <input type="text" onChange={this.updateQuestionText} value={this.state.question}
                  placeholder="Question"></input>
                 
@@ -91,10 +89,10 @@ class CreateQuestionForm extends React.Component{
 
                 {this.state.type === "RANGE" ? rangeResp :
                     this.state.type === "TEXT" ? textResp : 
-                    this.state.type === "RADIO" ? radioResp : <p>Not implemented yet</p> }
+                    this.state.type === "RADIO" || this.state.type === "CHECKBOX"  ? radioCheckboxResp : <p>Loading</p> }
                 
                 <button onClick={() => this.props.saveQuestion(this.state.question)} className="btn btn-primary">Save</button>
-            </h2>
+            </div>
         )
     }
 }
