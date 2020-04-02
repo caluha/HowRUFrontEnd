@@ -67,7 +67,7 @@ class Base extends React.Component {
                                     {questionSetFactory(this.state.questionSet)}
                                 </div>
                             </Route>
-                            <Route exact path="/create">
+                            <Route exact path="/new">
                                <CreateQuestionSet />
                             </Route>
                             <Route exact path="/login">
