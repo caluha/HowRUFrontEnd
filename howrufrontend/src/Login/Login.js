@@ -6,7 +6,7 @@ export default class Login extends Component {
         super(props);
 
         this.state = {
-            userName: "",
+            username: "",
             password: ""
         }
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -19,36 +19,41 @@ export default class Login extends Component {
         })
     }
 
-    handleSubmit(event) {
-        // const { userName, password } =this.state;
+    async login(username, password) {
+        let url = "http://localhost:8080/login";
+        var myHeaders = new Headers();
+        myHeaders.append("Authorization", "Basic " + Buffer.from(username + ":" + password).toString('base64'));
+        myHeaders.append('Content-Type', 'application/json');
+        var requestOptions = {
+            method: "POST",
+            headers: myHeaders,
+            body: JSON.stringify({
+                username: username,
+                password: password
+            }),
+            redirect: "follow"
+        };
+        return await fetch(url, requestOptions)
+            .then(r => console.log(r))
+            .then(response => response.json())
+            .then(result => {
+                // console.log(result);
+                this.loggedUser = result;
+                this.loggedUser.password = password;
+                return this.loggedUser;
+            })
+            .catch(error => console.log("error", error));
+    }
 
-        // //calling api
-        //     .post(
-        //         "http://localhost:3000/loggedin",
-        //         {
-        //             user: {
-        //                 userName: userName,
-        //                 password: password
-        //             }
-        //         },
+    handleSubmit(event) {
+        this.login(this.state.userName, this.state.password);
+        console.log("login", this.state.userName)
+
         //         { withCredentials: true }
-        //     )
-        // .then(response => {
-        //     if(response.data.logged_in) {
-        //         this.props.handleSuccsesfulAuth(response.data);
-        //     }
-        // })
-        // .catch(error => {
-        //     console.log("Registration error", error);
-        // })
+
         console.log("form submitted"); //post to api post(url) sends the array as json, don't forget ", withCredential: true"
         event.preventDefault();
     }
-
-    // handleSuccesfulAuth(data) {
-    //     this.props.handleLogin(data);
-    //     this.props.history.push("/");
-    // }
 
 
     render() {
@@ -56,10 +61,10 @@ export default class Login extends Component {
             <div>
                 <form onSubmit={this.handleSubmit} >
                     <div class="form-label-group">
-                        <input type="text" name="userName" placeholder="User Name" value={this.state.userName} onChange={this.handleChange} required />
+                        <input type="text" name="username" placeholder="User Name" value={this.state.username} onChange={this.handleChange} required />
                         <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required />
                     </div>
-                    <button type="submit" class="btn btn-lgin btn-lg btn-block text-uppercase" type="submit">Login</button>
+                    <button type="submit" class="btn btn-lgin btn-lg btn-block text-uppercase" type="submit">Log in</button>
                 </form>
             </div>
         );
