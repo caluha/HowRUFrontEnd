@@ -38,8 +38,8 @@ class LoginPage extends React.Component {
 
                             <Login handleSuccessfulAuth={this.handleSuccessfulAuth}/>
                             
-                            <button class="btn btn-lg btn-new btn-block text-uppercase" type="submit"> NEW USER</button>
-                            
+                            <Link to="/registrate" class="btn btn-lg btn-new btn-block text-uppercase"> NEW USER</Link>
+                           
                         </div>
                     </div>
                 </div>

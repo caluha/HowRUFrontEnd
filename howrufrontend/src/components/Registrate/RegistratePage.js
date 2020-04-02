@@ -20,7 +20,8 @@ class RegistratePage extends React.Component {
     }
 
     handleSuccessfulAuth(data) {
-        this.props.handleLogin(data);
+        console.log("does not compute")
+        this.props.enadbled(data);
         this.setState({handleSuccessful:true})
     }
 
