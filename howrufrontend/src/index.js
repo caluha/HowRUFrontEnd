@@ -5,6 +5,6 @@ import * as serviceWorker from './serviceWorker';
 import Base from '../src/components/Base/BaseComponent';
 import LoginPage from './LoginPage';
 
-ReactDOM.render(<Base/>, document.getElementById('root'));
+ReactDOM.render(<LoginPage/>, document.getElementById('root'));
 
 serviceWorker.unregister();

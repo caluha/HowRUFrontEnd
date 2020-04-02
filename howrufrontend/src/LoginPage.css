@@ -48,26 +48,14 @@ html {
   
   .form-label-group input {
     height: auto;
+    width: 100%;
     border-radius: 2px;
+    margin-bottom: 10px;
   }
   
   .form-label-group>input,
   .form-label-group>label {
     padding: var(--input-padding-y) var(--input-padding-x);
-  }
-  
-  .form-label-group>label {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100%;
-    margin-bottom: 0;
-    /* Override default `<label>` margin */
-    line-height: 1.5;
-    color: #495057;
-    border: 1px solid transparent;
-    transition: all .1s ease-in-out;
   }
   
   .btn-lgin {
