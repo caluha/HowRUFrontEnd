@@ -5,6 +5,7 @@ export default class Register extends Component {
         super(props);
 
         this.state = {
+            email:"",
             userName: "",
             password: "",
             password_confirmation: ""
@@ -20,13 +21,14 @@ export default class Register extends Component {
     }
 
     handleSubmit(event) {
-        // const { userName, password, password_confirmation } =this.state;
+        // const { email, userName, password, password_confirmation } =this.state;
 
         // //calling api
         //     .post(
-        //         "http://localhost:3000/registration",
+        //         "http://localhost:8080/create",
         //         {
         //             user: {
+        //                 email: email,    
         //                 userName: userName,
         //                 password: password,
         //                 password_confirmation: password_confirmation
@@ -51,26 +53,11 @@ export default class Register extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <input type="text" 
-                    name="userName" 
-                    placeholder="User Name" 
-                    value={this.state.userName} 
-                    onChange={this.handleChange} 
-                    required />
 
-                    <input type="password" 
-                    name="password" 
-                    placeholder="Password" 
-                    value={this.state.password} 
-                    onChange={this.handleChange} 
-                    required />
-
-                    <input type="password" 
-                    name="password_conformation" 
-                    placeholder="Password conformation" 
-                    value={this.state.password_confirmation} 
-                    onChange={this.handleChange} 
-                    required />
+                    <input type="email" name="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} required />
+                    <input type="text" name="userName" placeholder="User Name" value={this.state.userName} onChange={this.handleChange} required />
+                    <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required />
+                    <input type="password" name="password_conformation" placeholder="Password conformation" value={this.state.password_confirmation} onChange={this.handleChange} required />
 
                     <button type="submit">Register</button>
 
