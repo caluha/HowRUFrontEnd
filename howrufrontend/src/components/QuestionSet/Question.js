@@ -160,38 +160,20 @@ class Question extends React.Component {
   }
 
   render() {
-
-    if (this.props.lastQuestion) {
-      return (
-        <div>
-           <form > 
-            <div className="question">{this.props.question}</div>
-            <div id="responsecontainer" className="response">
-              {this.addResponses()}
-            </div>
-          </form>
-          <div className="prev-next_button">
-            <button onClick={this.previous}>Previous</button>
-            <button onClick={this.next}>Submit</button>
+    return (
+      <div>
+         <form > 
+          <div className="question">{this.props.question}</div>
+          <div id="responsecontainer" className="response">
+            {this.addResponses()}
           </div>
+        </form>
+        <div className="prev-next_button">
+          <button onClick={this.previous}>Previous</button>
+          <button onClick={this.next}>{this.props.lastQuestion ? "Submit" : "Next"}</button>
         </div>
-      );
-    } else {
-      return (
-        <div>
-           <form > 
-            <div className="question">{this.props.question}</div>
-            <div id="responsecontainer" className="response">
-              {this.addResponses()}
-            </div>
-          </form>
-          <div className="prev-next_button">
-            <button onClick={this.previous}>Previous</button>
-            <button onClick={this.next}>Next</button>
-          </div>
-        </div>
-      );
-    }
+      </div>
+    );
   }
 }
 
