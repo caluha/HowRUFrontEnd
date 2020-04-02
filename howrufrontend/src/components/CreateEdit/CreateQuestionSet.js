@@ -1,6 +1,6 @@
 import React from 'react';
 
-import QuestionList from '.QuestionList'; 
+import QuestionList from './QuestionList'; 
 
 class CreateQuestionSet extends React.Component{
 
