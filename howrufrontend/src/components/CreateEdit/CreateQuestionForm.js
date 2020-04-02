@@ -2,7 +2,8 @@ import React from 'react';
 
 import defaultResponses from './defaultResponses';
 import CreateRangeResponse from './CreateRangeResponse';
-
+import CreateTextResponse from './CreateTextResponse';
+import CreateRadioResponses from './CreateRadioResponses'; 
 
 class CreateQuestionForm extends React.Component{
 
@@ -23,7 +24,36 @@ class CreateQuestionForm extends React.Component{
     }
 
     updateType(event){
+
         this.setState({type : event.target.value});
+        switch(event.target.value){
+            case "RANGE": 
+                this.setState({responses: [defaultResponses.RangeResponse]});
+            break;
+            case "TEXT": 
+                this.setState({responses: [defaultResponses.TextResponse]});
+            break;
+            case "RADIO": 
+                this.setState({responses: [
+                    defaultResponses.RadioResponse1,
+                    defaultResponses.RadioResponse2,
+                    defaultResponses.RadioResponse3]});
+            break;
+            case "CHECKBOX": 
+            this.setState({responses: [
+                defaultResponses.CheckboxResponse1,
+                defaultResponses.CheckboxResponse2,
+                defaultResponses.CheckboxResponse3]});
+            break;
+
+            default:
+                this.setState({
+                    type:"RANGE",
+                    responses: [defaultResponses.RangeResponse]});
+            
+        }
+
+        
         event.preventDefault(); 
     }
 
@@ -37,15 +67,20 @@ class CreateQuestionForm extends React.Component{
     }
 
     render(){
-        let rangeResp = <CreateRangeResponse />;
+        let rangeResp = <CreateRangeResponse response = {this.state.responses[0]} />;
+        let textResp = <CreateTextResponse response = {this.state.responses[0]} />;
+
+        let radioResp = <CreateRadioResponses responses = {this.state.responses} />;
+
+
 
         return(
             <h2> 
-                { this.state.question === "" ? "Question goes here" : this.state.question }
+                
                 <input type="text" onChange={this.updateQuestionText} value={this.state.question}
                  placeholder="Question"></input>
                 
-                <label for="questionType">Type</label>
+                <label htmlFor="questionType">Type</label>
                 <select name="questionType" value={this.state.type} onChange={this.updateType}>
                     <option value="RANGE">Range</option>
                     <option value="TEXT">Text</option>
@@ -54,7 +89,9 @@ class CreateQuestionForm extends React.Component{
 
                 </select>
 
-                {this.state.type === "RANGE" ? rangeResp : <p>Not implemented yet</p>}
+                {this.state.type === "RANGE" ? rangeResp :
+                    this.state.type === "TEXT" ? textResp : 
+                    this.state.type === "RADIO" ? radioResp : <p>Not implemented yet</p> }
                 
                 <button onClick={() => this.props.saveQuestion(this.state.question)} className="btn btn-primary">Save</button>
             </h2>
