@@ -19,10 +19,10 @@ class CreateQuestionSet extends React.Component{
     render(){
         return (
             <div>
-                <h1>Create new question set</h1>
+                <h1>New question set</h1>
                 <input placeholder="Title"></input>
 
-                <QuestionList saveQuestion={this.addQuestion} />
+                <QuestionList questions={this.state.questions} saveQuestion={this.addQuestion} />
             </div>
         );
     }

@@ -8,9 +8,9 @@ import {
     useRouteMatch,
     useParams
 } from "react-router-dom";
-import '../LoginPage.css';
-import Base from '../components/Base/BaseComponent';
-import LoginPage from '../LoginPage';
+import './LoginPage.css';
+import Base from '../Base/BaseComponent';
+import LoginPage from './LoginPage';
 
 
 export default class Login extends Component {

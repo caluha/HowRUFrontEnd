@@ -1,7 +1,7 @@
 import React from 'react';
 import './LoginPage.css';
-import Register from './Register/Register';
-import Login from './Login/Login.js';
+import Register from '../../Register/Register';
+import Login from './Login.js';
 import {
     BrowserRouter as Router,
     Switch,
@@ -16,17 +16,17 @@ import {
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state= {handleSuccessful : false}
+        this.state= {loggedIn : false}
         this.handleSuccessfulAuth =this.handleSuccessfulAuth.bind(this)
     }
 
     handleSuccessfulAuth(data) {
         this.props.handleLogin(data);
-        this.setState({handleSuccessful:true})
+        this.setState({loggedIn : true})
     }
 
     render() {
-        if(this.state.handleSuccessful) {
+        if(this.state.loggedIn) {
             return <Redirect to = "/base" />
         }
         return (
