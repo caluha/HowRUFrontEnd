@@ -1,5 +1,5 @@
 import React from 'react';
-import { RangeSlider } from 'react-bootstrap/Form';
+// import { RangeSlider } from 'react-bootstrap/Form';
 
 
 class Response extends React.Component {
@@ -14,7 +14,7 @@ class Response extends React.Component {
                             <div className="row">
                                 <div className="col-2"></div>
                                 <div className="col-8">
-                                <RangeSlider/>
+                                {/* <RangeSlider/> */}
                                 <input class="form-control-range" type="range" id={this.props.responseData.id} 
                                     defaultValue={this.props.defaultValue[0].value} 
                                     min={this.props.responseData.min} 
