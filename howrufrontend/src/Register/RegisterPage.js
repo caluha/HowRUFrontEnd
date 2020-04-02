@@ -1,7 +1,6 @@
 import React from 'react';
-import './LoginPage.css';
-import Register from './Register/Register';
-import Login from './Login/Login.js';
+import Register from './Register';
+import '../LoginPage.css';
 import {
     BrowserRouter as Router,
     Switch,
@@ -36,10 +35,8 @@ class RegisterPage extends React.Component {
                         <div className="card-body">
                             <h3 className="card-title text-center">HowRU</h3>
 
-                            <Login handleSuccessfulAuth={this.handleSuccessfulAuth}/>
-                            
-                            <button class="btn btn-lg btn-new btn-block text-uppercase" type="submit"> NEW USER</button>
-                            
+                            <Register handleSuccessfulAuth={this.handleSuccessfulAuth}/>
+                                                        
                         </div>
                     </div>
                 </div>
