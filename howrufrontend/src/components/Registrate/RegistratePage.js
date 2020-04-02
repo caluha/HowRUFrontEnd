@@ -26,7 +26,7 @@ class RegistratePage extends React.Component {
 
     render() {
         if(this.state.handleSuccessful) {
-            return <Redirect to = "/base" />
+            return <Redirect to = "/login" />
         }
         return (
             <div className="container">

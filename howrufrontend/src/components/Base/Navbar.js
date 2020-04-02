@@ -12,15 +12,11 @@ export default function navbar() {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
-          <Nav.Link href="/">Features</Nav.Link>
-          <Nav.Link href="#pricing">Pricing</Nav.Link>
-          <Nav.Link href="#deets">More deets</Nav.Link>
-          <Nav.Link href="/">Features</Nav.Link>
-          <Nav.Link href="/">Features</Nav.Link>
-          <Nav.Link href="/">Features</Nav.Link>
-          <Nav.Link eventKey={2} href="#memes">
-            Dank memes
-          </Nav.Link>
+          <Nav.Link href="/base">Home</Nav.Link>
+          <Nav.Link href="create">Create new Tracker</Nav.Link>
+          <Nav.Link href="/base">Under construction</Nav.Link>
+          <Nav.Link href="https://9gag.com/animals">Dank memes</Nav.Link>
+          <Nav.Link href="/login">Log Out</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

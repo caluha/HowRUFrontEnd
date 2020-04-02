@@ -34,8 +34,9 @@ export default class Registrate extends Component {
         })
     }
 
-    async login(email, username, password) {
-        let url = "http://localhost:8080/create";
+    async registrate(email, username, password) {
+        console.log("before url")
+        let url = "http://localhost:8080/user";
         var myHeaders = new Headers();
         // myHeaders.append("Authorization", "Basic " + Buffer.from(username + ":" + password).toString('base64'));
         myHeaders.append('Content-Type', 'application/json');
@@ -65,8 +66,8 @@ export default class Registrate extends Component {
     }
 
 
-    handleSubmit(event) {
-     
+    handleSubmit(event) { 
+        this.registrate(this.state.username, this.state.password,this.state.email); 
         console.log("form submitted"); 
         event.preventDefault();
     }
