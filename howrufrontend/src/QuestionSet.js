@@ -31,7 +31,6 @@ class QuestionSet extends React.Component {
     }
 
     handleAnswer = (id, nextAnswer) => {
-        console.log(this.state.questionSet);
         this.setState((previousState) => {
             let ns = previousState;
             ns.answers[id] = nextAnswer;
