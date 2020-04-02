@@ -1,7 +1,8 @@
 import React from 'react';
+// import { RangeSlider } from 'react-bootstrap/Form';
+
 
 class Response extends React.Component {
-
     addInput() {
         switch (this.props.type) {
             case "TEXT":
@@ -9,11 +10,31 @@ class Response extends React.Component {
                             defaultValue={this.props.defaultValue[0].text}
                             onChange={this.props.updateAnswer}/>;
             case "RANGE":
-                return <input type="range" id={this.props.responseData.id} 
-                                defaultValue={this.props.defaultValue[0].value} 
-                                min={this.props.responseData.min} 
-                                max={this.props.responseData.max} 
-                                onChange={this.props.updateAnswer}/>
+                return <React.Fragment>
+                            <div className="row">
+                                <div className="col-2"></div>
+                                <div className="col-8">
+                                {/* <RangeSlider/> */}
+                                <input class="form-control-range" type="range" id={this.props.responseData.id} 
+                                    defaultValue={this.props.defaultValue[0].value} 
+                                    min={this.props.responseData.min} 
+                                    max={this.props.responseData.max} 
+                                    onChange={this.props.updateAnswer}/>
+                                </div>
+                                <div className="col-2">
+                                    <span id="sliderDisplayValue">{this.props.defaultValue[0].value}</span>
+                                </div>
+                            </div>
+                            <div className="row sliderLabels">
+                                <div className="col">
+                                    <span>{this.props.responseData.min_description}</span>
+                                </div>
+                                <div className="col">
+                                    <span>{this.props.responseData.max_description}</span>
+                                </div>
+                            </div>
+                        </React.Fragment> 
+
             case "RADIO":
                     return <React.Fragment>
                                 <input type="radio" id={this.props.responseData.id} 
@@ -21,7 +42,10 @@ class Response extends React.Component {
                                     this.props.defaultValue[0].optionId == this.props.responseData.id : false }
                                 name={"select"} 
                                 onChange={this.props.updateAnswer}/>
-                                {this.props.responseData.option}    
+                                <div>
+                                    {this.props.responseData.option}        
+                                </div>
+                                  
                             </React.Fragment> 
                 
             case "CHECKBOX":

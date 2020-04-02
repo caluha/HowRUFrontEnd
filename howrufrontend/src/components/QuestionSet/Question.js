@@ -155,6 +155,10 @@ class Question extends React.Component {
 
   };
 
+  diplaySliderValue = (event) => {
+    return event.target.value;
+  }
+
   render() {
 
     if (this.props.lastQuestion) {
