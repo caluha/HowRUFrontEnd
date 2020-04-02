@@ -34,6 +34,7 @@ export default class Login extends Component {
             redirect: "follow"
         };
         return await fetch(url, requestOptions)
+            .then(r => console.log(r))
             .then(response => response.json())
             .then(result => {
                 // console.log(result);
