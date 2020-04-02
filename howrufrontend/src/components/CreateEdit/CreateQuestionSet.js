@@ -30,9 +30,9 @@ class CreateQuestionSet extends React.Component{
 
 
     addQuestion(question){
-        let newQuestions = this.state.questions;
-        newQuestions.push(question);
-        this.setState({questions:newQuestions});
+
+        this.setState(   { questions: [...this.state.questions, question]}  );
+
     }
 
 
