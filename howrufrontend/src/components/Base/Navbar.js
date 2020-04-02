@@ -6,7 +6,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 export default function navbar() {
   return (
     <Navbar  collapseOnSelect expand="x1" bg="dark" variant="dark">
-      <Navbar.Brand href="/">
+      <Navbar.Brand href="/base">
         HowRU
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />

@@ -11,7 +11,7 @@ import {
 import QuestionSet from '../QuestionSet/QuestionSet';
 import coffee2 from '../../images/coffee2.jpg';
 import { NavLink } from "react-router-dom";
-import Navbar from '../Navbar';
+import Navbar from './Navbar';
 import mockQuestionSet from '../../json/mockQuestionSet.json';
 import QuestionSetButton from './QuestionSetButton';
 import 'bootstrap/dist/css/bootstrap.min.css';

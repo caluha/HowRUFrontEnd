@@ -19,12 +19,32 @@
     width: 100%;
   }
 
+  .responseverticalcenter {
+    padding-top: 50px;
+  }
+
+  .responseverticalcenter2 {
+    padding-top: 20px;
+  }
+
+  .radioandcheckboxbuttons {
+    padding-top: 0px;
+  }
+
   .sliderDisplayValue {
-    align-self: auto;
+    margin-right: 40px;
   }
 
   .sliderLabels {
     font-size: 0.7em;
+  }
+
+  .leftSliderLabel{
+    padding-right: 25px;
+  }
+
+  .rightSliderLabel{
+    padding-left: 25px;
   }
   
 .box_question {
@@ -43,8 +63,4 @@
   position: fixed;
   bottom:50px;
   left:5px;
-}
-
-.form-control-range{
-  width: 80px;
 }
