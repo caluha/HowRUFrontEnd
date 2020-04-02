@@ -50,7 +50,7 @@ class Base extends React.Component {
                     <Router>
                         <Navbar />
                         <Switch>
-                            <Route exact path="/">
+                            <Route exact path="/base">
                                 <img src={coffee2} style={{ width: "360px" }} />
                                 <div>
                                     {questionSetFactory(this.state.questionSet)}

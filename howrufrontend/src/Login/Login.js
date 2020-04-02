@@ -45,10 +45,10 @@ export default class Login extends Component {
         event.preventDefault();
     }
 
-    handleSuccesfulAuth(data) {
-        this.props.handleLogin(data);
-        this.props.history.push("/");
-    }
+    // handleSuccesfulAuth(data) {
+    //     this.props.handleLogin(data);
+    //     this.props.history.push("/");
+    // }
 
 
     render() {
