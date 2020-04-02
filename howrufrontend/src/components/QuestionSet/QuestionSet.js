@@ -1,6 +1,5 @@
 import React from 'react';
 import Question from './Question';
-import Questions from '../../json/questionsTest.json';
 import APIConnection from '../../testclasses/APIConnection';
 
 
@@ -14,20 +13,13 @@ class QuestionSet extends React.Component {
         this.decOne = this.decOne.bind(this);
     
         this.state = {
-            Questions,
+            Questions: this.props.questionSet.questions,
             questionCounter: 0,
             answers: {},
             questionStates: {},
         };
 
         this.storeQuestionState = this.storeQuestionState.bind(this);
-    }
-
-    componentDidMount() {
-        this.getAllQuestionSets();
-        // console.log(this.state.questionSet);
-        // this.questionComponents = questionComponents;
-        // this.setState({questionComponents: questionComponents});
     }
 
     handleAnswer = (id, nextAnswer) => {
@@ -40,7 +32,7 @@ class QuestionSet extends React.Component {
     }
 
     addOne = () => {
-        if (!(this.state.questionCounter + 1 === this.state.Questions.questions.length)) {
+        if (!(this.state.questionCounter + 1 === this.state.Questions.length)) {
             this.setState((previousState) => ({ questionCounter: previousState.questionCounter + 1 }));
         }
     }
@@ -59,22 +51,11 @@ class QuestionSet extends React.Component {
         } )
     }
 
-    getAllQuestionSets = () => {
-        let url = "http://localhost:8080/questionset";
-        fetch(url)
-            .then(result => result.json() )
-            .then(result => {
-                this.setState({questionSet: result})
-                // console.log(result)
-            })
-    }
-
-   
     render() {
 
         let questionComponents = [];
-        // console.log(Questions.questions);
-        for (const e of Questions.questions) {
+        console.log(this.state.Questions);
+        for (const e of this.state.Questions) {
 
             
             questionComponents.push(<Question 
