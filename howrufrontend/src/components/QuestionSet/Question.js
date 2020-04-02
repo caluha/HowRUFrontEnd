@@ -143,10 +143,7 @@ class Question extends React.Component {
   }
 
   previous = () => {
-    this.props.handleAnswer(this.props.id, this.state.responses);
     this.props.previous();
-    
-
     this.props.storeState(this.props.id, this.state);
   };
 
@@ -158,21 +155,43 @@ class Question extends React.Component {
 
   };
 
+  diplaySliderValue = (event) => {
+    return event.target.value;
+  }
+
   render() {
-    return (
-      <div>
-         <form > 
-          <div className="question">{this.props.question}</div>
-          <div id="responsecontainer" className="response">
-            {this.addResponses()}
+
+    if (this.props.lastQuestion) {
+      return (
+        <div>
+           <form > 
+            <div className="question">{this.props.question}</div>
+            <div id="responsecontainer" className="response">
+              {this.addResponses()}
+            </div>
+          </form>
+          <div className="prev-next_button">
+            <button onClick={this.previous}>Previous</button>
+            <button onClick={this.next}>Submit</button>
           </div>
-        </form>
-        <div className="prev-next_button">
-          <button onClick={this.previous}>Previous</button>
-          <button onClick={this.next}>Next</button>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div>
+           <form > 
+            <div className="question">{this.props.question}</div>
+            <div id="responsecontainer" className="response">
+              {this.addResponses()}
+            </div>
+          </form>
+          <div className="prev-next_button">
+            <button onClick={this.previous}>Previous</button>
+            <button onClick={this.next}>Next</button>
+          </div>
+        </div>
+      );
+    }
   }
 }
 
