@@ -19,6 +19,7 @@ class QuestionSet extends React.Component {
             questionCounter: 0,
             answers: {},
             questionStates: {},
+            submitted: false,
         };
 
         this.storeQuestionState = this.storeQuestionState.bind(this);
@@ -43,6 +44,8 @@ class QuestionSet extends React.Component {
         }, () => {
             this.submitData();
         })
+
+        this.setState({submitted: true});
         // console.log(this.state.answers);
     }
 
@@ -98,10 +101,16 @@ class QuestionSet extends React.Component {
 
             questionComponents.push(<Question
                 // initialState={this.state.answers[e.id] ? this.state.answers[e.id] : undefined }
-                key={e.id} id={e.id} lastQuestion={e.id === this.state.lastQuestion ? true: false} question={e.question} type={e.type}
-                responses={e.responses} handleAnswer={e.id === this.state.lastQuestion ? this.submitAnswer : this.handleAnswer}
-                next={this.addOne} previous={this.decOne}
-
+                key={e.id} 
+                id={e.id} 
+                lastQuestion={e.id === this.state.lastQuestion ? true: false} 
+                question={e.question} 
+                type={e.type}
+                responses={e.responses} 
+                handleAnswer={e.id === this.state.lastQuestion ? this.submitAnswer : this.handleAnswer}
+                next={this.addOne} 
+                previous={this.decOne}
+                submitted={this.state.submitted}
                 storeState={this.storeQuestionState}
                 initialState={this.state.questionStates[e.id] ? this.state.questionStates[e.id] : undefined}
             />)
