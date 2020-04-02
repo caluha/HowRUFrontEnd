@@ -8,8 +8,8 @@ import {
     useRouteMatch,
     useParams
 } from "react-router-dom";
-import '../components/Login/LoginPage.css';
-import Base from '../components/Base/BaseComponent';
+import '../Login/LoginPage.css'
+import Base from '../Base/BaseComponent';
 import RegistratePage from './RegistratePage';
 
 

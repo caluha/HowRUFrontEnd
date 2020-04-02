@@ -1,6 +1,6 @@
 import React from 'react';
 import Registrate from './Registrate';
-import '../components/Login/LoginPage.css';
+import '../Login/LoginPage.css'
 import {
     BrowserRouter as Router,
     Switch,

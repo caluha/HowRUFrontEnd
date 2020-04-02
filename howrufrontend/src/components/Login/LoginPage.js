@@ -1,6 +1,6 @@
 import React from 'react';
 import './LoginPage.css';
-import Registrate from '../../Registrate/Registrate';
+import Registrate from '../Registrate/Registrate';
 import Login from './Login.js';
 import {
     BrowserRouter as Router,

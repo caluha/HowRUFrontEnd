@@ -17,7 +17,7 @@ import QuestionSetButton from './QuestionSetButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CreateQuestionSet from '../CreateEdit/CreateQuestionSet';
 import LoginPage from '../Login/LoginPage'
-import RegistratePage from '../../Registrate/RegistratePage';
+import RegistratePage from '../Registrate/RegistratePage';
 
 
 
