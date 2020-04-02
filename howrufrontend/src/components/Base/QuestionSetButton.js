@@ -18,7 +18,7 @@ class QuestionSetButton extends React.Component {
                 <NavLink exact to="/"><a className="pen"><img src={edit_01} style={{height:"25px"}} /></a></NavLink>
                 <div>{this.props.name}</div>
                 <div >
-                    <NavLink exact to="/new"><button className="floating-menu-icon">New Tracker +</button></NavLink>
+                    <NavLink exact to="/create"><button className="floating-menu-icon">New Tracker +</button></NavLink>
                 </div>
             </div>
             )
