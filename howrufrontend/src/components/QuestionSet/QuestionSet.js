@@ -54,32 +54,6 @@ class QuestionSet extends React.Component {
                     });
             }
         }
-
-
-        // for (const i in this.state.answers) {
-        //     console.log(this.state.answers[i]);
-        //         fetch(url,{ 
-        //             method: 'post',
-        //             headers: {'Content-Type': 'application/json',
-        //           'transfer-encoding':'chunked' },
-        //             body: JSON.stringify(this.state.answers[i]) , 
-        //           })
-        // }
-        // fetch(url, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({
-        //         firstParam: 'yourValue',
-        //         secondParam: 'yourOtherValue',
-        //     })
-        // })
-
-
-
-        //send(tjofräs).to(TheBackend).plsWork();
     }
 
     addOne = () => {

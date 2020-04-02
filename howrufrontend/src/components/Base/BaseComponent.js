@@ -13,6 +13,7 @@ import { NavLink } from "react-router-dom";
 import Navbar from '../Navbar';
 import mockQuestionSet from '../../json/mockQuestionSet.json';
 import QuestionSetButton from './QuestionSetButton';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 import CreateQuestionSet from '../CreateEdit/CreateQuestionSet';
 

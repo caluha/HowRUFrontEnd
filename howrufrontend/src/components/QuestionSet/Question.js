@@ -158,6 +158,10 @@ class Question extends React.Component {
 
   };
 
+  diplaySliderValue = (event) => {
+    return event.target.value;
+  }
+
   render() {
     return (
       <div>
