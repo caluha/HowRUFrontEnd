@@ -67,7 +67,6 @@ html {
     line-height: 1.5;
     color: #495057;
     border: 1px solid transparent;
-    border-radius: .25rem;
     transition: all .1s ease-in-out;
   }
   
@@ -103,7 +102,9 @@ html {
     color: #777;
   }
   
+  
   .btn-lgin {
+      color: white;
       background: #ccdfbb;
   }
 

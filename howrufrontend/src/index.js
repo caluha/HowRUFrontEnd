@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import Base from './BaseComponent';
-import Login from './Login';
+import LoginPage from './LoginPage';
 
-ReactDOM.render(<Base/>, document.getElementById('root'));
+ReactDOM.render(<LoginPage/>, document.getElementById('root'));
 
 serviceWorker.unregister();
