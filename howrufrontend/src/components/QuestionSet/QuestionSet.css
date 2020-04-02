@@ -30,3 +30,9 @@
     bottom:50px;
     right:5px;
   }
+
+.submitButton {
+  position: fixed;
+  bottom:50px;
+  left:5px;
+}

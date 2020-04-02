@@ -23,6 +23,7 @@ class QuestionSet extends React.Component {
     }
 
     handleAnswer = (id, nextAnswer) => {
+
         this.setState((previousState) => {
             let ns = previousState;
             ns.answers[id] = nextAnswer;
@@ -31,8 +32,19 @@ class QuestionSet extends React.Component {
         // console.log(this.state.answers);
     }
 
+    submitData() {
+        let url = "http://localhost:8080/response"
+        let tjofräs = this.state.answers;
+
+        for (const e in this.state.answers) {
+            console.log(this.state.answers[e]);
+        }
+
+        //send(tjofräs).to(TheBackend).plsWork();
+    }
+
     addOne = () => {
-        if (!(this.state.questionCounter + 1 === this.state.Questions.length)) {
+        if (!(this.state.questionCounter + 1 === this.state.Questions.length+1)) {
             this.setState((previousState) => ({ questionCounter: previousState.questionCounter + 1 }));
         }
     }
@@ -68,15 +80,26 @@ class QuestionSet extends React.Component {
                         initialState = {this.state.questionStates[e.id] ? this.state.questionStates[e.id] : undefined }
                         />)
         }
-        
-        return (
-            <div>
-                <div className="box_question">
-                    {questionComponents[this.state.questionCounter]}
-                    {/* {this.state.questionComponents ? this.state.questionComponents[this.state.questionCounter] : <h2>Loading...</h2>} */}
+        if (this.state.questionCounter === this.state.Questions.length) {
+            return (
+                //Det här ska istället returnera en ny komponent som innehåller Submit-knappen med tillhörande
+                //funktionalitet.
+                <div>
+                    <div className="box_question">
+                        <button className="submitButton" onClick={this.submitData()}>SUBMIT</button>
+                    </div>
                 </div>
-            </div>
-        )
+            )
+        } else {
+            return (
+                <div>
+                    <div className="box_question">
+                        {questionComponents[this.state.questionCounter]}
+                        {/* {this.state.questionComponents ? this.state.questionComponents[this.state.questionCounter] : <h2>Loading...</h2>} */}
+                    </div>
+                </div>
+            )
+        }
     }
 }
 
