@@ -60,6 +60,7 @@ class Question extends React.Component {
 
     return this.props.responses.map(e => (
       <Response
+        key={e.id}
         type={this.props.type}
         responseData={e}
         defaultValue={this.state.responses}

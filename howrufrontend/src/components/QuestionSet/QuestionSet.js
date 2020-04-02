@@ -1,7 +1,7 @@
 import React from 'react';
 import Question from './Question';
-import Questions from './questionsTest.json';
-import APIConnection from './APIConnection';
+import Questions from '../../json/questionsTest.json';
+import APIConnection from '../../testclasses/APIConnection';
 
 
 
