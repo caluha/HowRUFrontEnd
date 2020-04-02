@@ -11,9 +11,11 @@ class QuestionSet extends React.Component {
         this.handleAnswer = this.handleAnswer.bind(this);
         this.addOne = this.addOne.bind(this);
         this.decOne = this.decOne.bind(this);
+        this.submitAnswer = this.submitAnswer.bind(this);
 
         this.state = {
             Questions: this.props.questionSet.questions,
+            lastQuestion: this.props.questionSet.questions[this.props.questionSet.questions.length-1].id,
             questionCounter: 0,
             answers: {},
             questionStates: {},
@@ -28,6 +30,18 @@ class QuestionSet extends React.Component {
             let ns = previousState;
             ns.answers[id] = nextAnswer;
             return ns;
+        })
+        // console.log(this.state.answers);
+    }
+
+    submitAnswer = (id, nextAnswer) => {
+
+        this.setState((previousState) => {
+            let ns = previousState;
+            ns.answers[id] = nextAnswer;
+            return ns;
+        }, () => {
+            this.submitData();
         })
         // console.log(this.state.answers);
     }
@@ -54,36 +68,10 @@ class QuestionSet extends React.Component {
                     });
             }
         }
-
-
-        // for (const i in this.state.answers) {
-        //     console.log(this.state.answers[i]);
-        //         fetch(url,{ 
-        //             method: 'post',
-        //             headers: {'Content-Type': 'application/json',
-        //           'transfer-encoding':'chunked' },
-        //             body: JSON.stringify(this.state.answers[i]) , 
-        //           })
-        // }
-        // fetch(url, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Accept': 'application/json',
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify({
-        //         firstParam: 'yourValue',
-        //         secondParam: 'yourOtherValue',
-        //     })
-        // })
-
-
-
-        //send(tjofräs).to(TheBackend).plsWork();
     }
 
     addOne = () => {
-        if (!(this.state.questionCounter + 1 === this.state.Questions.length + 1)) {
+        if (!(this.state.questionCounter + 1 === this.state.Questions.length)) {
             this.setState((previousState) => ({ questionCounter: previousState.questionCounter + 1 }));
         }
     }
@@ -108,24 +96,24 @@ class QuestionSet extends React.Component {
         console.log(this.state.Questions);
         for (const e of this.state.Questions) {
 
-
             questionComponents.push(<Question
                 // initialState={this.state.answers[e.id] ? this.state.answers[e.id] : undefined }
-                key={e.id} id={e.id} question={e.question} type={e.type}
-                responses={e.responses} handleAnswer={this.handleAnswer}
+                key={e.id} id={e.id} lastQuestion={e.id === this.state.lastQuestion ? true: false} question={e.question} type={e.type}
+                responses={e.responses} handleAnswer={e.id === this.state.lastQuestion ? this.submitAnswer : this.handleAnswer}
                 next={this.addOne} previous={this.decOne}
 
                 storeState={this.storeQuestionState}
                 initialState={this.state.questionStates[e.id] ? this.state.questionStates[e.id] : undefined}
             />)
         }
-        if (this.state.questionCounter === this.state.Questions.length) {
+        if (this.state.questionCounter === this.state.Questions.length-1) {
             return (
                 //Det här ska istället returnera en ny komponent som innehåller Submit-knappen med tillhörande
                 //funktionalitet.
                 <div>
                     <div className="box_question">
-                        <button className="submitButton" onClick={this.submitData}>SUBMIT</button>
+                        {questionComponents[this.state.questionCounter]}
+                        {/* {this.state.questionComponents ? this.state.questionComponents[this.state.questionCounter] : <h2>Loading...</h2>} */}
                     </div>
                 </div>
             )
