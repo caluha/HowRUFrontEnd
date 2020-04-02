@@ -22,7 +22,7 @@ class CreateQuestionSet extends React.Component{
                 <h1>Create new question set</h1>
                 <input placeholder="Title"></input>
 
-                <QuestionList />
+                <QuestionList saveQuestion={this.addQuestion} />
             </div>
         );
     }
