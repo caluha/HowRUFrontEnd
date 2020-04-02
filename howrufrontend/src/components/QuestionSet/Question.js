@@ -1,6 +1,7 @@
 import React from "react";
 import Response from "./Response";
 import "./QuestionSet.css";
+import { Redirect } from "react-router-dom";
 
 class Question extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class Question extends React.Component {
       this.state = props.initialState;
 
     } else {
-        
+
       switch (this.props.type) {
         case "TEXT":
           this.state = {
@@ -92,7 +93,7 @@ class Question extends React.Component {
               optionId: targetId,
               username: "Adam",
               text: null,
-              value:targetValue
+              value: targetValue
             }
           ]
         });
@@ -101,7 +102,7 @@ class Question extends React.Component {
         this.setState({
           responses: [
             {
-              optionId:targetId,
+              optionId: targetId,
               username: "Adam",
               text: null,
               value: null
@@ -110,22 +111,23 @@ class Question extends React.Component {
         });
         break;
       case "CHECKBOX":
-        let i = this.state.responses.findIndex( t => t.optionId == targetId);
-        if(i===-1){//if the response is not already in the list, i.e. not selected, then add it
-            let newResp =
-                [...this.state.responses, {
-                    optionId: targetId,
-                    username: "Adam",
-                    text: null,
-                    value: null }] 
-            this.setState({responses:newResp});
+        let i = this.state.responses.findIndex(t => t.optionId == targetId);
+        if (i === -1) {//if the response is not already in the list, i.e. not selected, then add it
+          let newResp =
+            [...this.state.responses, {
+              optionId: targetId,
+              username: "Adam",
+              text: null,
+              value: null
+            }]
+          this.setState({ responses: newResp });
         } else { //else, if it is there, then remove it from the list, de-selecting it. 
-            let newResp = this.state.responses;
-            newResp.splice(i,1);
-            this.setState({responses:newResp});
+          let newResp = this.state.responses;
+          newResp.splice(i, 1);
+          this.setState({ responses: newResp });
 
         }
-        
+
         break;
       default:
         break;
@@ -160,20 +162,30 @@ class Question extends React.Component {
   }
 
   render() {
-    return (
-      <div>
-         <form > 
-          <div className="question">{this.props.question}</div>
-          <div id="responsecontainer" className="response">
-            {this.addResponses()}
+
+    if (this.props.submitted) {
+
+      return (
+        <Redirect to="/base" />
+      )
+
+    } else {
+      
+      return (
+        <div>
+          <form >
+            <div className="question">{this.props.question}</div>
+            <div id="responsecontainer" className="response">
+              {this.addResponses()}
+            </div>
+          </form>
+          <div className="prev-next_button">
+            <button onClick={this.previous}>Previous</button>
+            <button onClick={this.next}>{this.props.lastQuestion ? "Submit" : "Next"}</button>
           </div>
-        </form>
-        <div className="prev-next_button">
-          <button onClick={this.previous}>Previous</button>
-          <button onClick={this.next}>{this.props.lastQuestion ? "Submit" : "Next"}</button>
         </div>
-      </div>
-    );
+      );
+    }
   }
 }
 
