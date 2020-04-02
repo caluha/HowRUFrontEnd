@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useRouteMatch,
+    useParams
+} from "react-router-dom";
 import '../LoginPage.css';
+import Base from '../components/Base/BaseComponent';
+
 
 export default class Login extends Component {
     constructor(props) {
@@ -36,8 +46,9 @@ export default class Login extends Component {
         return await fetch(url, requestOptions)
             .then(response => response.json())
             .then(result => {
-                console.log(result);
+                // console.log(result);
                 this.loggedUser = result;
+
                 return this.loggedUser;
             })
             .catch(error => console.log("error", error));
@@ -45,11 +56,12 @@ export default class Login extends Component {
 
     handleSubmit(event) {
         this.login(this.state.username, this.state.password);
-        console.log("login", this.state.username)
+        // console.log("login", this.state.username)
 
         //        { withCredentials: true }
 
-        console.log("form submitted");
+        // console.log("form submitted");
+
         event.preventDefault();
     }
 
@@ -57,13 +69,22 @@ export default class Login extends Component {
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit} >
-                    <div class="form-label-group">
-                        <input type="text" name="username" placeholder="User Name" value={this.state.username} onChange={this.handleChange} required />
-                        <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required />
-                    </div>
-                    <button type="submit" class="btn btn-lgin btn-lg btn-block text-uppercase" type="submit">Log in</button>
-                </form>
+                <Router>
+                    <Switch>
+                        <Route exact path="/login">
+                            <form onSubmit={this.handleSubmit} >
+                                <div class="form-label-group">
+                                    <input type="text" name="username" placeholder="User Name" value={this.state.username} onChange={this.handleChange} required />
+                                    <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required />
+                                </div>
+                                <button type="submit" class="btn btn-lgin btn-lg btn-block text-uppercase" type="submit">Log in</button>
+                            </form>
+                        </Route>
+                        <Route exact path="/base">
+                            <Base />
+                        </Route>
+                    </Switch>
+                </Router>
             </div>
         );
     }
