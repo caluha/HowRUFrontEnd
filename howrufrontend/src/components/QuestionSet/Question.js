@@ -111,7 +111,7 @@ class Question extends React.Component {
         });
         break;
       case "CHECKBOX":
-        let i = this.state.responses.findIndex(t => t.optionId == targetId);
+        let i = this.state.responses.findIndex(t => t.optionId === targetId);
         if (i === -1) {//if the response is not already in the list, i.e. not selected, then add it
           let newResp =
             [...this.state.responses, {
