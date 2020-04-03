@@ -1,0 +1,127 @@
+
+.questionSetCreateContainer{
+    background-color: white;
+    padding:0px;
+}
+
+.trackerNameHeader{
+    padding:13px;
+    
+    border-bottom: 1px solid rgb(184, 184, 184);
+}
+
+.questionListContainer{
+    margin:0px;
+    padding:0px;
+    
+    
+}
+
+
+.trackerNameLabel{
+    text-align: center;
+    font-size:11px;
+    font-weight: bold;
+    margin-top:14px;
+}
+
+.trackerNameInput{
+    text-align: left;
+    border:1px solid rgb(184, 184, 184);
+    background-color: rgb(224, 223, 221);
+    border-radius:3px;
+    font-size:12px;
+    margin-top:12px;
+    padding-left:5px;
+}
+
+ul.questionList {
+    padding:0;
+    list-style-type: none;
+}
+
+li.questionListItem{
+    line-height: 0.75;
+    padding-top:15px;
+    padding-left:0px;
+    margin-bottom: 0px;
+}
+li:not(:first-child).questionListItem{
+    border-top: 1px solid rgb(184, 184, 184);
+}
+
+.questionListRow{
+    padding-left:15px;
+    padding-bottom:15px;
+}
+
+.questionDisp{
+    font-size:15px;   
+}
+
+.typeDisp { 
+    font-size: 8px;
+    
+}
+
+.editButton{
+    background-color: white;
+    margin-right: 10px;
+    color:white;
+    border:0;
+    height: 25px;
+    width: 25px;
+    padding:0px;
+    display:inline-block;
+
+}
+.button-col{
+    white-space: nowrap;
+    padding-left:0px;
+    
+}
+
+.buttonImage{
+    width: 25px;
+    
+}
+
+
+
+.addQuestionButton{
+    float: right;
+    background-color: rgb(52, 185, 52);
+    border-radius:5px;
+    border:1px solid lightgray;
+    margin-right:15px;
+}
+
+.questionFormModalBackground{
+   
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); 
+
+}
+
+.questionFormModal{
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    height: 90%;
+    overflow: auto;
+
+}
+
+.questionArea{
+    margin-bottom:15px;
+}
