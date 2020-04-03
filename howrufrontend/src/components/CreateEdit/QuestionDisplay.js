@@ -27,7 +27,7 @@ function QuestionDisplay (props){
                 <div className="col-3 button-col">
                     {/* <button type="button" className="editButton" onClick={showEdit} >E</button> */}
                     <button type="button" className="editButton"><img className={"buttonImage"} onClick={showEdit} src={edit_01} /></button>
-                    <button type="button" className="editButton" onClick={removeQuestion} ><img className={"buttonImage"} onClick={showEdit} src={remove_01}/></button>
+                    <button type="button" className="editButton"><img className={"buttonImage"} onClick={removeQuestion} src={remove_01}/></button>
 
                 </div>
                 
