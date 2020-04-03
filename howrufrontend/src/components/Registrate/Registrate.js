@@ -22,10 +22,12 @@ export default class Registrate extends Component {
             email: "",
             userName: "",
             password: "",
-            password_confirmation: ""
+            password_confirmation: "",
+            message: ""
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        
     }
 
     handleChange(event) {
@@ -64,19 +66,27 @@ export default class Registrate extends Component {
     }
 
 
+
+
     handleSubmit(event) {
 
         const { password, password_confirmation } = this.state;
 
         if (password !== password_confirmation) {
-            alert("Passwords don't match");
+    
+            // alert("Passwords don't match");
+
+            this.setState({message: "Passwords don't match"})
+
         } else {
             this.registrate(this.state.username, this.state.password, this.state.email);
-            console.log("form submitted");
             event.preventDefault();
         }
 
     }
+
+
+    
 
 
 
@@ -86,6 +96,8 @@ export default class Registrate extends Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <div class="form-label-group">
+
+                        <input type="text" value={this.state.message}/>
                         <input type="email" name="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} required />
                         <input type="text" name="username" placeholder="User Name" value={this.state.username} onChange={this.handleChange} required />
                         <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required />
