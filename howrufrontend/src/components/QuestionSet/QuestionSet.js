@@ -32,7 +32,6 @@ class QuestionSet extends React.Component {
             ns.answers[id] = nextAnswer;
             return ns;
         })
-        // console.log(this.state.answers);
     }
 
     submitAnswer = (id, nextAnswer) => {
@@ -46,7 +45,6 @@ class QuestionSet extends React.Component {
         })
 
         this.setState({submitted: true});
-        // console.log(this.state.answers);
     }
 
     submitData = () => {

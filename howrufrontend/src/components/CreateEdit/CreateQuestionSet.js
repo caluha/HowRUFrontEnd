@@ -2,6 +2,9 @@ import React from 'react';
 
 import QuestionList from './QuestionList'; 
 import './CreateEdit.css';
+import { Redirect } from 'react-router-dom';
+
+const maxQuestions = 8; 
 
 class CreateQuestionSet extends React.Component{
 
@@ -10,12 +13,15 @@ class CreateQuestionSet extends React.Component{
         this.addQuestion=this.addQuestion.bind(this); 
         this.removeQuestion=this.removeQuestion.bind(this); 
         this.handleChange = this.handleChange.bind(this);
+        this.submitToBackend=this.submitToBackend.bind(this);
 
         this.state={
             title:"",
             user:"Adam",
             questions: [], 
             nextQuestionId:0,
+            submitted:false,
+            errors: [],
         }
 
     }
@@ -41,6 +47,72 @@ class CreateQuestionSet extends React.Component{
         }
     }
 
+    submitQuestionSet = () => {
+        let errors = [];
+        if(this.state.title.trim()===""){
+            errors.push({error:"title", message:"Tracker must have a title!"});
+        }
+        if(this.state.questions.length<1){
+            errors.push({error:"questions", message:"Tracker must have at least one question!"});
+        }
+        if(this.state.questions.length>maxQuestions){
+            errors.push({error:"questions", message:"Tracker can't have more than " + maxQuestions + " questions!"});
+        }
+
+        if(errors.length>0){
+            this.setState({ errors: errors});
+        } else {
+            this.submitToBackend();
+
+
+            this.setState({submitted:true});
+        }
+
+
+    }
+
+
+
+    async submitToBackend(){
+
+        let questionSet = {
+            name:this.state.title,
+            creator:this.state.user,
+            questions:[]
+        }
+
+        let questions = [];
+        for(let q of this.state.questions){
+            let newQ = {
+                question: q.question,
+                type: q.type,
+                responses:q.responses
+            };
+            questions.push(newQ);
+        }
+        questionSet.questions=questions;
+          
+        const url = "http://localhost:8080/questionset";
+        let response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(questionSet),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Success:', data);
+            return data;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            return error;
+        });
+
+        return response;
+        
+    }
 
 
     handleChange(event){
@@ -49,6 +121,12 @@ class CreateQuestionSet extends React.Component{
     }
 
     render(){
+        
+        if(this.state.submitted){
+            return <Redirect to = "/base" />;
+        }
+
+
         return (
             <div className="questionSetCreateContainer">
                 <div className="trackerNameHeader">
@@ -65,7 +143,7 @@ class CreateQuestionSet extends React.Component{
                 </div>
                 <QuestionList questions={this.state.questions} 
                             nextId = {this.state.nextQuestionId}
-                            maxQuestions = {8}
+                            maxQuestions = {maxQuestions}
                             saveQuestion={this.addQuestion}
                             removeQuestion={this.removeQuestion} />
                 <div className="bottom-bar">
@@ -74,7 +152,9 @@ class CreateQuestionSet extends React.Component{
                         Total questions: {this.state.questions.length}
                     </span>
 
-                    <button className="saveQuestionSetButton" type="button">
+                    <button 
+                    onClick={this.submitQuestionSet}
+                    className="saveQuestionSetButton" type="button">
                         Save tracker
                     </button>
                 </div>
