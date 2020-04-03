@@ -44,7 +44,7 @@ class Response extends React.Component {
                             <div className="responseverticalcenter2">
                                 <input type="radio" id={this.props.responseData.id} 
                                 checked={ this.props.defaultValue.length>0 ? 
-                                    this.props.defaultValue[0].optionId == this.props.responseData.id : false }
+                                    this.props.defaultValue[0].optionId === this.props.responseData.id : false }
                                 name={"select"} 
                                 onChange={this.props.updateAnswer}/>
                                 {this.props.responseData.option}              
@@ -60,7 +60,7 @@ class Response extends React.Component {
                                     name={"sel"+this.props.responseData.id} 
                                     onChange={this.props.updateAnswer}
                                     checked={ this.props.defaultValue.length>0 ? 
-                                        this.props.defaultValue.reduce( (prev, current) => { return (current.optionId == this.props.responseData.id) || prev }, false )
+                                        this.props.defaultValue.reduce( (prev, current) => { return (current.optionId === this.props.responseData.id) || prev }, false )
                                         : false }
                                     />
                                     {this.props.responseData.option}
