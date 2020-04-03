@@ -15,6 +15,7 @@ export default class Registration extends Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        // this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
     }
 
     handleChange(event) {
@@ -24,7 +25,7 @@ export default class Registration extends Component {
     }
 
 
-    async registrate(username, password, email) {
+    async registration(username, password, email) {
         console.log("before url")
         let url = "http://localhost:8080/user";
         var myHeaders = new Headers();
@@ -43,8 +44,9 @@ export default class Registration extends Component {
             .then(result => {
                 this.loggedUser = result;
                 console.log("login", result);
-                if (result.loggedIn === "true") {
-                    this.props.handleSuccessfulAuth(result)
+                if (result.enabled) {
+                    console.log("login2", result)
+                    this.props.handleSuccessful(result)
                 }
             })
             .catch(error => console.log("error", error));
@@ -56,9 +58,9 @@ export default class Registration extends Component {
         const { password, password_confirmation } = this.state;
 
         if (password !== password_confirmation) {
-            alert("Passwords don't match");
+           
         } else {
-            this.registrate(this.state.username, this.state.password, this.state.email);
+            this.registration(this.state.username, this.state.password, this.state.email);
             console.log("form submitted");
             event.preventDefault();
         }
