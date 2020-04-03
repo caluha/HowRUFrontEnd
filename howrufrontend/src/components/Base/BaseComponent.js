@@ -19,9 +19,6 @@ import CreateQuestionSet from '../CreateEdit/CreateQuestionSet';
 import LoginPage from '../Login/LoginPage'
 import RegistratePage from '../Registrate/RegistratePage';
 
-
-
-
 class Base extends React.Component {
 
     constructor(props) {
@@ -52,9 +49,7 @@ class Base extends React.Component {
     }
 
     render() {
-       
-
-
+        
         return (
             <div style={{ height: "100%" }}>
                 <div className="mainpage">
