@@ -1,18 +1,8 @@
 import React from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useRouteMatch,
-    useParams,
-    useHistory
-} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import QuestionSet from '../QuestionSet/QuestionSet';
 import coffee2 from '../../images/coffee2.jpg';
-import { NavLink } from "react-router-dom";
 import Navbar from './Navbar';
-import mockQuestionSet from '../../json/mockQuestionSet.json';
 import QuestionSetButton from './QuestionSetButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CreateQuestionSet from '../CreateEdit/CreateQuestionSet';
@@ -49,7 +39,6 @@ class Base extends React.Component {
             .then(result => result.json() )
             .then(result => {
                 this.setState({questionSet: result})
-                // console.log(result)
             })
     }
 

@@ -1,15 +1,7 @@
 import React from 'react';
 import Registration from './Registration';
 import '../Login/LoginPage.css'
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Redirect,
-    Link,
-    useRouteMatch,
-    useParams
-} from "react-router-dom";
+import { BrowserRouter as Redirect} from "react-router-dom";
 
 
 class RegistrationPage extends React.Component {
