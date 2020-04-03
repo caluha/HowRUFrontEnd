@@ -28,7 +28,7 @@ class ChartsPage extends React.Component {
           pointHoverBorderWidth: 1,
           pointRadius: 1,
           pointHitRadius: 1,
-          data: [65, 59, 80, 81, 56, 55, 40, 200]
+          data: [65, 59, 80, 81, 56, 55, 40, 85, 40, 80, 40, 80]
         },
         // {
         //   label: "My Second dataset",
@@ -57,9 +57,10 @@ class ChartsPage extends React.Component {
 
   render() {
     return (
+
         <MDBContainer>
             <h3 className="mt-5">Line chart</h3>
-            <Line data={this.state.dataLine} options={{ responsive: true}} />
+            <Line data={this.state.dataLine} options={{ responsive: true}, { maintainAspectRatio: false}}  />
         </MDBContainer>
     );
   }
