@@ -21,7 +21,7 @@ class QuestionSetButton extends React.Component {
                     <NavLink exact to="/create"><button className="floating-menu-icon">New Tracker +</button></NavLink>
                 </div>
             </div>
-            )
+            ); 
     }
 }
 
