@@ -11,7 +11,7 @@ class CreateTextResponse extends React.Component {
     }
 
     handleFormChange(event){
-        this.setState({[event.target.id] : event.target.value })
+        this.setState({[event.target.id] : event.target.value },  () => this.props.saveResponse([this.state]));
         event.preventDefault(); 
     }
 
@@ -21,12 +21,14 @@ class CreateTextResponse extends React.Component {
 
         return (
             <div>
-                <form onChange={this.handleFormChange}>
-                    <label htmlFor="text">Default text</label>
-                    <input type="text" id="text" name="text" value={this.state.text} onChange={this.handleFormChange} />
-                </form>
-
-                
+                <div className="row">
+                    <div className="col">
+                        <label htmlFor="text">Default text</label>
+                    </div>
+                    <div className="col">
+                        <input type="text" id="text" name="text" value={this.state.text} onChange={this.handleFormChange} noValidate />
+                    </div>
+                </div>
             </div>
         )
     }

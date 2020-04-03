@@ -41,32 +41,73 @@ class CreateRadioCheckboxResponses extends React.Component {
         this.setState({responses:newResp});
     }
 
-    render(){
+    responseChanger = (el, type) => {
+        let ss = this.setState;
 
+
+        return ( event ) => {
+            if(type==="option"){
+                el.option=event.target.value;
+             } else {
+                 el.value=event.target.value;
+             }
+             console.log(event.target.value)
+             this.setState( {responses : this.state.responses}, this.props.saveResponse(this.state.responses));
+        }
+    }
+
+    makeResponseElements = () => {
         let responseListElements = [];
 
         for(const i in this.state.responses){
             let el = this.state.responses[i];
             responseListElements.push(
-                <li key={"el"+i}>
-                    <input type="text" key={"option"+i} id={"option"+i} value={el.option}></input>
-                    <input type="number" key={"value"+i} id={"value"+i} value={el.value}></input>
-                    <button onClick={(event) => { this.removeElement(i) }} className="btn btn-danger">X</button>
-                </li>
+                <tr key={"el"+i}>
+                    <td>
+                        <input type="text" key={"option"+i} id={"option"+i} 
+                        value={el.option}
+                        onChange={this.responseChanger(el,"option") }></input>
+                    </td>
+                    <td>
+                        <input type="number" key={"value"+i} id={"value"+i} 
+                        value={el.value}
+                        onChange={this.responseChanger(el,"value") }></input>
+                    </td>
+                    <td>
+                        <button type="button" onClick={(event) => { this.removeElement(i) }} className="btn btn-danger">X</button>
+                    </td>
+                </tr>
             );
-
         }
 
+        return responseListElements;
+    }
+
+    render(){
+
+ 
+        let responseElements = this.makeResponseElements(); 
         
 
         return (
             <div>
-                
-                <ul>
-                    {responseListElements}
-                </ul>
+                <table className="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">Option</th>
+                        <th scope="col">value</th>
+                        <th scope="col"></th>
 
-                <button onClick={this.addElement} className="btn btn-primary">Add new option</button>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {responseElements}
+                    </tbody>
+                </table>
+               
+
+                <button type="button" onClick={this.addElement}
+                 className="btn btn-primary m-3">Add new option</button>
 
                 
             </div>
