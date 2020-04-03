@@ -10,11 +10,11 @@ import {
 } from "react-router-dom";
 import '../Login/LoginPage.css'
 import Base from '../Base/BaseComponent';
-import RegistratePage from './RegistratePage';
+import RegistrationPage from './RegistrationPage';
 
 
 
-export default class Registrate extends Component {
+export default class Registration extends Component {
     constructor(props) {
         super(props);
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import Registrate from './Registrate';
+import Registration from './Registration';
 import '../Login/LoginPage.css'
 import {
     BrowserRouter as Router,
@@ -12,7 +12,7 @@ import {
 } from "react-router-dom";
 
 
-class RegistratePage extends React.Component {
+class RegistrationPage extends React.Component {
     constructor(props) {
         super(props);
         this.state= {handleSuccessful : false}
@@ -37,7 +37,7 @@ class RegistratePage extends React.Component {
                         <div className="card-body">
                             <h3 className="card-title text-center">HowRU</h3>
 
-                            <Registrate handleSuccessful={this.handleSuccessful}/>
+                            <Registration handleSuccessful={this.handleSuccessful}/>
                                                         
                         </div>
                     </div>
@@ -48,4 +48,4 @@ class RegistratePage extends React.Component {
 }
 
 
-export default RegistratePage;
+export default RegistrationPage;
