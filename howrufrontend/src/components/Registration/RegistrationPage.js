@@ -13,14 +13,13 @@ class RegistrationPage extends React.Component {
 
     handleSuccessful(data) {
         console.log("does not compute")
-        this.props.enadbled(data);
         this.setState({handleSuccessful:true})
     }
 
     render() {
         console.log("före redirect")
         if(this.state.handleSuccessful) {
-            return <Redirect to = "/login" />
+            return <Redirect to = "/" />
         }
         return (
             <div className="container">
