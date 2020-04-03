@@ -16,16 +16,17 @@ class RegistratePage extends React.Component {
     constructor(props) {
         super(props);
         this.state= {handleSuccessful : false}
-        this.handleSuccessfulAuth =this.handleSuccessfulAuth.bind(this)
+        this.handleSuccessful =this.handleSuccessful.bind(this)
     }
 
-    handleSuccessfulAuth(data) {
+    handleSuccessful(data) {
         console.log("does not compute")
         this.props.enadbled(data);
         this.setState({handleSuccessful:true})
     }
 
     render() {
+        console.log("före redirect")
         if(this.state.handleSuccessful) {
             return <Redirect to = "/login" />
         }
@@ -36,7 +37,7 @@ class RegistratePage extends React.Component {
                         <div className="card-body">
                             <h3 className="card-title text-center">HowRU</h3>
 
-                            <Registrate handleSuccessfulAuth={this.handleSuccessfulAuth}/>
+                            <Registrate handleSuccessful={this.handleSuccessful}/>
                                                         
                         </div>
                     </div>
