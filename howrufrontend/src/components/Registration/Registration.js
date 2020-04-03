@@ -16,11 +16,7 @@ export default class Registration extends Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
-<<<<<<< HEAD
         // this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
-=======
-        
->>>>>>> 4191536c8fbac86a680e10fcd822ee8929a12cee
     }
 
     handleChange(event) {
