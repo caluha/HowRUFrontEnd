@@ -59,7 +59,7 @@ class ChartsPage extends React.Component {
     return (
       <MDBContainer>
         <h3 className="mt-5">Line chart</h3>
-        <Line data={this.state.dataLine} options={{ responsive: true }, { maintainAspectRatio: false }} />
+        <Line data={this.state.dataLine} options={{ responsive: true, maintainAspectRatio: false }} />
         <Link to="/" class="btn btn-new btn-block text-uppercase"> Back To You</Link>
       </MDBContainer>
     );
