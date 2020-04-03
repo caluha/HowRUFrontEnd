@@ -166,7 +166,7 @@ class Question extends React.Component {
     if (this.props.submitted) {
 
       return (
-        <Redirect to="/base" />
+        <Redirect to="/" />
       )
 
     } else {

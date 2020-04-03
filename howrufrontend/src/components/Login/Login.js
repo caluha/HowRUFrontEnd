@@ -69,9 +69,9 @@ export default class Login extends Component {
     render() {
         return (
             <div>
-                <Router>
+                {/* <Router>
                     <Switch>
-                        <Route exact path="/login">
+                        <Route exact path="/login"> */}
                             <form onSubmit={this.handleSubmit} >
                                 <div class="form-label-group">
                                     <input type="text" name="username" placeholder="User Name" value={this.state.username} onChange={this.handleChange} required />
@@ -80,9 +80,9 @@ export default class Login extends Component {
                                 <button type="submit" class="btn btn-lgin btn-lg btn-block text-uppercase" type="submit"> Log in</button>
                             </form>
                            
-                        </Route>                        
+                        {/* </Route>                        
                     </Switch>
-                </Router>
+                </Router> */}
             </div>
         );
     }

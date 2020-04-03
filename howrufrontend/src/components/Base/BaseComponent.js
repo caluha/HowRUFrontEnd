@@ -25,7 +25,10 @@ class Base extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            loginData: {},
+            loginData: {
+                loggedIn:false,
+                user:""
+            },
             questionSet: []
         }
         this.handleLogin = this.handleLogin.bind(this);
@@ -51,13 +54,34 @@ class Base extends React.Component {
 
     render() {
         
+        if(!this.state.loginData.loggedIn){
+            console.log(this.state.loginData);
+            return(
+                <div style={{ height: "100%" }}>
+                    <div className="mainpage">
+                        <Router>
+                            <Switch>
+                                <Route exact path="/registrate">
+                                    <RegistratePage />
+                                </Route>
+
+                                <Route path="/">
+                                    <LoginPage handleLogin={this.handleLogin} />
+                                </Route>
+                            </Switch>
+                        </Router>
+                    </div>
+                </div>
+            );
+        }
+        
         return (
             <div style={{ height: "100%" }}>
                 <div className="mainpage">
                     <Router>
                         <Navbar />
                         <Switch>
-                            <Route exact path="/base">
+                            <Route exact path="/">
                                 <img src={coffee2} style={{ width: "360px" }} />
                                 <div>
                                     {questionSetFactory(this.state.questionSet)}
@@ -91,7 +115,10 @@ function questionSetFactory(questionSets) {
 }
 
 function routeFactory(questionSets) {
-    return questionSets.map((e) => <Route key={e.id} path={"/" + e.name}><QuestionSet id={e.id} questionSet={e}/></Route>)
+    return questionSets.map((e) => 
+        <Route key={e.id} path={"/" + e.name}>
+            <QuestionSet id={e.id} questionSet={e}/>
+        </Route>)
 }
 
 export default Base;

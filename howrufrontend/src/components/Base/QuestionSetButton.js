@@ -13,15 +13,15 @@ class QuestionSetButton extends React.Component {
     render() {
          return (
             <div className="box" id="lightred_box">
-                <NavLink exact to={"/" + this.props.name}><a className="pen"><img src={arrow} style={{height:"25px"}} /></a></NavLink>
-                <NavLink exact to="/unchecked"><a className="pen"><img src={unanswered_01} style={{height:"25px"}} /></a></NavLink>
-                <NavLink exact to="/chart"><a className="pen"><img src={edit_01} style={{height:"25px"}} /></a></NavLink>
+                <NavLink exact to={"/" + this.props.name} className="pen"><img src={arrow} style={{height:"25px"}} /></NavLink>
+                <NavLink exact to="/unchecked" className="pen"><img src={unanswered_01} style={{height:"25px"}} /></NavLink>
+                <NavLink exact to="/chart" className="pen"><img src={edit_01} style={{height:"25px"}} /></NavLink>
                 <div>{this.props.name}</div>
                 <div >
                     <NavLink exact to="/create"><button className="floating-menu-icon">New Tracker +</button></NavLink>
                 </div>
             </div>
-            )
+            ); 
     }
 }
 

@@ -27,7 +27,7 @@ class LoginPage extends React.Component {
 
     render() {
         if(this.state.loggedIn) {
-            return <Redirect to = "/base" />;
+            return <Redirect to = "/" />;
         }
         return (
             <div className="container">
@@ -38,7 +38,7 @@ class LoginPage extends React.Component {
 
                             <Login handleSuccessfulAuth={this.handleSuccessfulAuth}/>
                             
-                            <Link to="/registrate" class="btn btn-lg btn-new btn-block text-uppercase"> NEW USER</Link>
+                            <Link to="/registrate" className="btn btn-lg btn-new btn-block text-uppercase"> NEW USER</Link>
                            
                         </div>
                     </div>
