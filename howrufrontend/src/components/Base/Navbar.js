@@ -3,12 +3,13 @@ import {Nav, Navbar} from "react-bootstrap";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function navbar() {
+export default function navbar(props) {
   return (
     <Navbar  collapseOnSelect expand="x1" bg="dark" variant="dark">
       <Navbar.Brand href="/">
         HowRU
       </Navbar.Brand>
+      <span>{props.user}</span>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
@@ -16,7 +17,7 @@ export default function navbar() {
           <Nav.Link href="create">Create new Tracker</Nav.Link>
           <Nav.Link href="/">Under construction</Nav.Link>
           <Nav.Link href="https://9gag.com/animals">Dank memes</Nav.Link>
-          <Nav.Link href="/logout">Log Out</Nav.Link>
+          <Nav.Link onClick={props.logout}>Log Out</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

@@ -14,6 +14,9 @@ class Base extends React.Component {
 
     constructor(props) {
         super(props);
+
+        console.log("Constructor ran");
+
         let myStorage = window.localStorage;
         let loginData = {
             loggedIn:false,
@@ -60,9 +63,33 @@ class Base extends React.Component {
             this.setState({loginData:loginData}, this.getAllQuestionSets);
         }
         
-        
+        console.log("ComponentDidMount");
         // this.getAllQuestionSets();
     }
+    componentDidUpdate(prevProps, prevState) {
+        console.log("ComponentDidUpdate");
+
+        let myStorage=window.localStorage;
+        if(myStorage.getItem("loggedIn")==="true"){
+            if(myStorage.getItem("user") != this.state.loginData.user){
+                console.log("ComponentDidUpdate fetched data");
+
+                let loginData={
+                    loggedIn:true,
+                    user:myStorage.getItem("user"),
+                } 
+                this.setState({loginData:loginData}, this.getAllQuestionSets);
+            }
+            
+           
+        }
+        //Typical usage, don't forget to compare the props
+        if (this.state.loginData.user !== prevState.loginData.user) {
+            console.log("ComponentDidUpdate detected change of user");
+
+          this.getAllQuestionSets(); 
+        }
+       }
 
     handleLogin(data) {
 
@@ -72,6 +99,7 @@ class Base extends React.Component {
         myStorage.setItem("user", data.username);
         myStorage.setItem("loggedIn", data.loggedIn);
 
+        this.forceUpdate(); 
         //
     }
 
@@ -85,15 +113,13 @@ class Base extends React.Component {
                                 user:""},
                         questionSet:[]
                             } )
-
-        return <Redirect to="/"/>                   
+                  
     }
     
 
     render() {
         
         if(!this.state.loginData.loggedIn){
-            console.log(this.state.loginData);
             return(
                 <div style={{ height: "100%" }}>
                     <div className="mainpage">
@@ -117,7 +143,7 @@ class Base extends React.Component {
             <div style={{ height: "100%" }}>
                 <div className="mainpage">
                     <Router>
-                        <Navbar user={this.state.loginData.user} />
+                        <Navbar user={this.state.loginData.user} logout={this.logOut} />
                         <Switch>
                             <Route exact path="/">
                                 <img alt="Cup of coffee" src={coffee2} style={{ width: "360px" }} />
@@ -132,9 +158,9 @@ class Base extends React.Component {
                             <Route exact path='/chart'>
                                 <ChartsPage/>
                             </Route>
-                            <Route exact path='/logout'>
+                            {/* <Route exact path='/logout'>
                                 {this.logOut}
-                            </Route>
+                            </Route> */}
                             {routeFactory(this.state.questionSet, this.state.loginData.user)}
                         </Switch>
                     </Router>
@@ -155,7 +181,7 @@ function questionSetFactory(questionSets) {
 }
 
 function routeFactory(questionSets, user) {
-    console.log(user);
+    // console.log(user);
     if(questionSets.length>0){
         return questionSets.map((e) => 
             <Route key={e.id} path={"/" + e.name}>
