@@ -6,7 +6,8 @@ import {
     Link,
     useRouteMatch,
     useParams,
-    useHistory
+    useHistory,
+    Redirect
 } from "react-router-dom";
 import QuestionSet from '../QuestionSet/QuestionSet';
 import coffee2 from '../../images/coffee2.jpg';
@@ -83,6 +84,8 @@ class Base extends React.Component {
                                 loggedIn:false,
                                 user:""}
                             })
+
+        return <Redirect to="/"/>                   
     }
     
 
@@ -127,6 +130,9 @@ class Base extends React.Component {
                         
                             <Route exact path='/chart'>
                                 <ChartsPage/>
+                            </Route>
+                            <Route exact path='/logout'>
+                                {this.logOut}
                             </Route>
                             {routeFactory(this.state.questionSet)}
                         </Switch>

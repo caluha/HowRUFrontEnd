@@ -16,7 +16,7 @@ export default function navbar() {
           <Nav.Link href="create">Create new Tracker</Nav.Link>
           <Nav.Link href="/">Under construction</Nav.Link>
           <Nav.Link href="https://9gag.com/animals">Dank memes</Nav.Link>
-          <Nav.Link href="/login">Log Out</Nav.Link>
+          <Nav.Link href="/logout">Log Out</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
