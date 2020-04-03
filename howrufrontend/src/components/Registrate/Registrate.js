@@ -81,9 +81,9 @@ export default class Registrate extends Component {
     render() {
         return (
             <div>
-                <Router>
+                {/* <Router>
                     <Switch>
-                        <Route exact path="/registrate">
+                        <Route exact path="/registrate"> */}
                             <form onSubmit={this.handleSubmit}>
                                 <div class="form-label-group">
                                     <input type="email" name="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} required />
@@ -93,9 +93,9 @@ export default class Registrate extends Component {
                                 </div>
                                 <button type="submit" class="btn btn-lgin btn-lg btn-block text-uppercase" type="submit" onSubmit={this.passwordconformation()}>Submit</button>
                             </form>
-                        </Route>
+                        {/* </Route>
                     </Switch>
-                </Router>
+                </Router> */}
 
             </div >
         );
