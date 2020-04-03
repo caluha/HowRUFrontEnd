@@ -4,6 +4,7 @@ import defaultResponses from './defaultResponses';
 import CreateRangeResponse from './CreateRangeResponse';
 import CreateTextResponse from './CreateTextResponse';
 import CreateRadioCheckboxResponses from './CreateRadioCheckboxResponses'; 
+import remove_01 from '../../images/remove_01.png';
 
 class CreateQuestionForm extends React.Component{
 
@@ -97,6 +98,11 @@ class CreateQuestionForm extends React.Component{
         return(
             <div className="questionFormModalBackground">
                 <div className="questionFormModal">
+                    <div className="questionFormTopArea">
+                        <button style={{float:"right"}}
+                        type="button" className="editButton"><img className={"buttonImage"} onClick={this.props.closeForm} src={remove_01}/></button>
+                    </div>
+
                     <h4 className="questionFormHeadline">New Question</h4>
                     
                     <form onSubmit={this.handleSubmit} noValidate >

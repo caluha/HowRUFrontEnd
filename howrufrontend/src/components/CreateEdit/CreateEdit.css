@@ -122,6 +122,66 @@ li:not(:first-child).questionListItem{
 
 }
 
+.questionFormTopArea{
+    height: 25px;
+    margin:0px;
+}
+
 .questionArea{
     margin-bottom:15px;
+    border-radius:5px;
+    background-color: rgb(224, 223, 221);
+    padding:5px;
+}
+
+.questionFormHeadline{
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    padding:0px;
+}
+
+label {
+    font-size:14px;
+    font-weight: bold;
+}
+
+select{ 
+    border:1px solid rgb(184, 184, 184);
+    border-radius:5px;
+    background-color: rgb(224, 223, 221);
+    padding:5px;
+}
+
+input {
+    border:1px solid rgb(184, 184, 184);
+    border-radius:5px;
+    background-color: rgb(224, 223, 221);
+    padding:5px;
+}
+
+.saveQuestionSetButton{
+    margin:0px;
+    float: right;
+    background-color: green;
+    color:white;
+    border:0;
+    border-radius:5px;
+}
+
+.bottom-bar{
+    padding-top:12px;
+    background-color:#292b2c;
+    color:white;
+    height:50px;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+
+}
+
+.bottomBarText{
+    font-weight: bold;
+    font-size:12px;
+    margin-left:20px;
 }
