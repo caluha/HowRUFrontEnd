@@ -87,7 +87,7 @@ class Base extends React.Component {
                     <div className="mainpage">
                         <Router>
                             <Switch>
-                                <Route exact path="/registrate">
+                                <Route exact path="/registration">
                                     <RegistrationPage />
                                 </Route>
 
@@ -108,7 +108,7 @@ class Base extends React.Component {
                         <Navbar />
                         <Switch>
                             <Route exact path="/">
-                                <img src={coffee2} style={{ width: "360px" }} />
+                                <img alt="Cup of coffee" src={coffee2} style={{ width: "360px" }} />
                                 <div>
                                     {questionSetFactory(this.state.questionSet, this.state.loginData.user)}
                                 </div>

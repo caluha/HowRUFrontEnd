@@ -42,8 +42,6 @@ class CreateRadioCheckboxResponses extends React.Component {
     }
 
     responseChanger = (el, type) => {
-        let ss = this.setState;
-
         return ( event ) => {
             if(type==="option"){
                 el.option=event.target.value;
