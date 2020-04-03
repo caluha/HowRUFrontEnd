@@ -3,6 +3,7 @@ import React from 'react';
 import QuestionList from './QuestionList'; 
 import './CreateEdit.css';
 import { Redirect } from 'react-router-dom';
+import ErrorList from './ErrorList';
 
 const maxQuestions = 8; 
 
@@ -36,6 +37,14 @@ class CreateQuestionSet extends React.Component{
         } else {
             this.setState( prev => { return  { questions: [...prev.questions, question] , nextQuestionId: prev.nextQuestionId+1} } );
         }
+
+        let i = this.state.errors.findIndex(t => t.error==="noQuestions");
+        if(i!==-1){
+            let newErrors = this.state.errors;
+            newErrors.splice(i,1);
+            this.setState({errors:newErrors});
+        }
+        
     }
 
     removeQuestion(question){
@@ -53,17 +62,16 @@ class CreateQuestionSet extends React.Component{
             errors.push({error:"title", message:"Tracker must have a title!"});
         }
         if(this.state.questions.length<1){
-            errors.push({error:"questions", message:"Tracker must have at least one question!"});
+            errors.push({error:"noQuestions", message:"Tracker must have at least one question!"});
         }
         if(this.state.questions.length>maxQuestions){
-            errors.push({error:"questions", message:"Tracker can't have more than " + maxQuestions + " questions!"});
+            errors.push({error:"tooManyQuestions", message:"Tracker can't have more than " + maxQuestions + " questions!"});
         }
 
         if(errors.length>0){
             this.setState({ errors: errors});
         } else {
             this.submitToBackend();
-
 
             this.setState({submitted:true});
         }
@@ -118,12 +126,28 @@ class CreateQuestionSet extends React.Component{
     handleChange(event){
         this.setState({[event.target.name] : event.target.value});
         event.preventDefault(); 
+
+
+        if(event.target.name==="title" && event.target.value.trim()!==""){
+            let i = this.state.errors.findIndex(t => t.error==="title");
+            if(i!==-1){
+                let newErrors = this.state.errors;
+                newErrors.splice(i,1);
+                this.setState({errors:newErrors});
+            }
+        }
+
     }
 
     render(){
         
         if(this.state.submitted){
             return <Redirect to = "/" />;
+        }
+
+        let errorList = undefined;
+        if(this.state.errors.length>0){
+            errorList = <ErrorList errors={this.state.errors} />;
         }
 
 
@@ -146,6 +170,9 @@ class CreateQuestionSet extends React.Component{
                             maxQuestions = {maxQuestions}
                             saveQuestion={this.addQuestion}
                             removeQuestion={this.removeQuestion} />
+               
+               {errorList}
+
                 <div className="bottom-bar">
 
                     <span className="bottomBarText">
