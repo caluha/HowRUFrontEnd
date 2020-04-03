@@ -24,11 +24,20 @@ class Base extends React.Component {
 
     constructor(props) {
         super(props);
+        let myStorage = window.localStorage;
+        let loginData = {
+            loggedIn:false,
+            user:""
+        }
+        if(myStorage.getItem("loggedIn")==="true"){
+            loginData={
+                loggedIn:true,
+                user:myStorage.getItem("user"),
+            }
+        }
+
         this.state = {
-            loginData: {
-                loggedIn:false,
-                user:""
-            },
+            loginData:loginData ,
             questionSet: []
         }
         this.handleLogin = this.handleLogin.bind(this);
@@ -49,6 +58,12 @@ class Base extends React.Component {
     }
 
     handleLogin(data) {
+
+        let myStorage = window.localStorage;
+
+        myStorage.setItem("user",data.user);
+        myStorage.setItem("loggedIn", data.loggedIn);
+
         this.setState({loginData:data})
     }
 
@@ -90,12 +105,7 @@ class Base extends React.Component {
                             <Route exact path="/create">
                                <CreateQuestionSet />
                             </Route>
-                            <Route exact path="/login">
-                               <LoginPage handleLogin={this.handleLogin} />
-                            </Route>
-                            <Route exact path="/registrate">
-                               <RegistratePage />
-                            </Route>
+                        
                             <Route exact path='/chart'>
                                 <ChartsPage/>
                             </Route>
