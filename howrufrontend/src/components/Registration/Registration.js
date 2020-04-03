@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../Login/LoginPage.css'
+import { Redirect } from 'react-router-dom';
 
 
 export default class Registration extends Component {
@@ -61,6 +62,7 @@ export default class Registration extends Component {
             console.log("form submitted");
             event.preventDefault();
         }
+       
 
     }
 
