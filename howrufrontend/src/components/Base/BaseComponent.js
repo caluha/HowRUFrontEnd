@@ -87,7 +87,7 @@ class Base extends React.Component {
                     <div className="mainpage">
                         <Router>
                             <Switch>
-                                <Route exact path="/registrate">
+                                <Route exact path="/registration">
                                     <RegistrationPage />
                                 </Route>
 
