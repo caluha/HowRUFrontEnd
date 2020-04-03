@@ -22,7 +22,7 @@ export default class Registrate extends Component {
             email: "",
             userName: "",
             password: "",
-            
+            password_confirmation: ""
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -34,7 +34,10 @@ export default class Registrate extends Component {
         })
     }
 
+
+
     async registrate(username, password, email) {
+        console.log("before url")
         let url = "http://localhost:8080/user";
         var myHeaders = new Headers();
         // myHeaders.append("Authorization", "Basic " + Buffer.from(username + ":" + password).toString('base64'));
@@ -63,41 +66,36 @@ export default class Registrate extends Component {
 
     handleSubmit(event) {
 
-        this.registrate(this.state.username, this.state.password, this.state.email);
-        console.log("form submitted");
-        event.preventDefault();
+        const { password, password_confirmation } = this.state;
+
+        if (password !== password_confirmation) {
+            alert("Passwords don't match");
+        } else {
+            this.registrate(this.state.username, this.state.password, this.state.email);
+            console.log("form submitted");
+            event.preventDefault();
+        }
+
     }
 
-    passwordconformation() {
-        console.log("Its something")
-        // if(this.state.password.value=== this.state.password_confirmation.value) {
-        //     return true
-        // } else {
-        //     return "Passwords does not match"
-        // }
-    }
+
 
 
     render() {
         return (
             <div>
-                <Router>
-                    <Switch>
-                        <Route exact path="/registrate">
-                            <form onSubmit={this.handleSubmit}>
-                                <div class="form-label-group">
-                                    <input type="email" name="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} required />
-                                    <input type="text" name="username" placeholder="User Name" value={this.state.username} onChange={this.handleChange} required />
-                                    <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required />
-                                    <input type="password" name="password_confirmation" placeholder="Password confirmation" value={this.state.password_confirmation} onChange={this.handleChange} required />
-                                </div>
-                                <button type="submit" class="btn btn-lgin btn-lg btn-block text-uppercase" type="submit" onSubmit={this.passwordconformation()}>Submit</button>
-                            </form>
-                        </Route>
-                    </Switch>
-                </Router>
+                <form onSubmit={this.handleSubmit}>
+                    <div class="form-label-group">
+                        <input type="email" name="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} required />
+                        <input type="text" name="username" placeholder="User Name" value={this.state.username} onChange={this.handleChange} required />
+                        <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required />
+                        <input type="password" name="password_confirmation" placeholder="Password confirmation" value={this.state.password_confirmation} onChange={this.handleChange} required />
+                    </div>
+                    <button type="submit" class="btn btn-lgin btn-lg btn-block text-uppercase" type="submit">Submit</button>
 
-            </div >
+                </form>
+
+            </div>
         );
     }
 }
