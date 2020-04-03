@@ -1,23 +1,13 @@
 import React from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link,
-    useRouteMatch,
-    useParams,
-    useHistory
-} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route,Redirect } from "react-router-dom";
 import QuestionSet from '../QuestionSet/QuestionSet';
 import coffee2 from '../../images/coffee2.jpg';
-import { NavLink } from "react-router-dom";
 import Navbar from './Navbar';
-import mockQuestionSet from '../../json/mockQuestionSet.json';
 import QuestionSetButton from './QuestionSetButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CreateQuestionSet from '../CreateEdit/CreateQuestionSet';
 import LoginPage from '../Login/LoginPage'
-import RegistratePage from '../Registrate/RegistratePage';
+import RegistrationPage from '../Registration/RegistrationPage';
 import ChartsPage from '../presentation/graphTest';
 
 class Base extends React.Component {
@@ -44,28 +34,61 @@ class Base extends React.Component {
     }
 
     getAllQuestionSets = () => {
-        let url = "http://localhost:8080/questionset";
-        fetch(url)
-            .then(result => result.json() )
-            .then(result => {
-                this.setState({questionSet: result})
-                // console.log(result)
-            })
+
+        if(this.state.loginData.loggedIn){
+            console.log(this.state.loginData)
+            let url = "http://localhost:8080/questionset/user/"+this.state.loginData.user;
+            console.log(url);
+            fetch(url)
+                .then(result => result.json() )
+                .then(result => {
+                    this.setState({questionSet: result})
+
+                    console.log(result)
+                })
+        }
     }
 
     componentDidMount() {
-        this.getAllQuestionSets();
+        let myStorage = window.localStorage;
+
+        if(myStorage.getItem("loggedIn")==="true"){
+            let loginData={
+                loggedIn:true,
+                user:myStorage.getItem("user"),
+            }
+            this.setState({loginData:loginData}, this.getAllQuestionSets);
+        }
+        
+        
+        // this.getAllQuestionSets();
     }
 
     handleLogin(data) {
 
+        console.log(data); 
         let myStorage = window.localStorage;
 
-        myStorage.setItem("user",data.user);
+        myStorage.setItem("user", data.username);
         myStorage.setItem("loggedIn", data.loggedIn);
 
-        this.setState({loginData:data})
+        //
     }
+
+    logOut = () => {
+        let myStorage = window.localStorage;
+        myStorage.setItem("user","");
+        myStorage.setItem("loggedIn", "false");
+
+        this.setState({loginData:{
+                                loggedIn:false,
+                                user:""},
+                        questionSet:[]
+                            } )
+
+        return <Redirect to="/"/>                   
+    }
+    
 
     render() {
         
@@ -76,8 +99,8 @@ class Base extends React.Component {
                     <div className="mainpage">
                         <Router>
                             <Switch>
-                                <Route exact path="/registrate">
-                                    <RegistratePage />
+                                <Route exact path="/registration">
+                                    <RegistrationPage />
                                 </Route>
 
                                 <Route path="/">
@@ -94,12 +117,12 @@ class Base extends React.Component {
             <div style={{ height: "100%" }}>
                 <div className="mainpage">
                     <Router>
-                        <Navbar />
+                        <Navbar user={this.state.loginData.user} />
                         <Switch>
                             <Route exact path="/">
-                                <img src={coffee2} style={{ width: "360px" }} />
+                                <img alt="Cup of coffee" src={coffee2} style={{ width: "360px" }} />
                                 <div>
-                                    {questionSetFactory(this.state.questionSet)}
+                                    {questionSetFactory(this.state.questionSet, this.state.loginData.user)}
                                 </div>
                             </Route>
                             <Route exact path="/create">
@@ -109,7 +132,10 @@ class Base extends React.Component {
                             <Route exact path='/chart'>
                                 <ChartsPage/>
                             </Route>
-                            {routeFactory(this.state.questionSet)}
+                            <Route exact path='/logout'>
+                                {this.logOut}
+                            </Route>
+                            {routeFactory(this.state.questionSet, this.state.loginData.user)}
                         </Switch>
                     </Router>
                    
@@ -121,14 +147,23 @@ class Base extends React.Component {
 }
 
 function questionSetFactory(questionSets) {
-    return questionSets.map((e) => <QuestionSetButton key={e.id} id={e.id} name={e.name} />)
+    if(questionSets.length>0){
+        return questionSets.map((e) => <QuestionSetButton key={e.id} id={e.id} name={e.name} />)
+    } else {
+        return <p>Create some question sets?</p>
+    }
 }
 
-function routeFactory(questionSets) {
-    return questionSets.map((e) => 
-        <Route key={e.id} path={"/" + e.name}>
-            <QuestionSet id={e.id} questionSet={e}/>
-        </Route>)
+function routeFactory(questionSets, user) {
+    console.log(user);
+    if(questionSets.length>0){
+        return questionSets.map((e) => 
+            <Route key={e.id} path={"/" + e.name}>
+                <QuestionSet id={e.id} questionSet={e} user={user}/>
+            </Route>)
+    } else {
+        return null;
+    }
 }
 
 export default Base;

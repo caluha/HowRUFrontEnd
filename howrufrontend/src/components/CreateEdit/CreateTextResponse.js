@@ -5,9 +5,7 @@ class CreateTextResponse extends React.Component {
     constructor(props){
         super(props);
         this.handleFormChange=this.handleFormChange.bind(this);
-
         this.state = this.props.response;
-
     }
 
     handleFormChange(event){
@@ -16,9 +14,6 @@ class CreateTextResponse extends React.Component {
     }
 
     render(){
-
-        
-
         return (
             <div>
                 <div className="row">
@@ -32,7 +27,6 @@ class CreateTextResponse extends React.Component {
             </div>
         )
     }
-
 }
 
 export default CreateTextResponse; 

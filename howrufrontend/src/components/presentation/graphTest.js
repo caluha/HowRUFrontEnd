@@ -1,13 +1,13 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 import { MDBContainer } from "mdbreact";
-import { Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './graph.css';
 
 class ChartsPage extends React.Component {
   state = {
     dataLine: {
-      labels: ["1", "2", "3", "4", "5", "6", "7","8","9","10","11","12","13","14","15"],
+      labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"],
       datasets: [
         {
           label: "My First dataset",
@@ -49,7 +49,7 @@ class ChartsPage extends React.Component {
           pointHoverBorderWidth: 1,
           pointRadius: 1,
           pointHitRadius: 1,
-          data: [28, 48, 40, 19, 86, 27, 90,47,58,43,25,85]
+          data: [28, 48, 40, 19, 86, 27, 90, 47, 58, 43, 25, 85]
         }
       ]
     }
@@ -57,13 +57,11 @@ class ChartsPage extends React.Component {
 
   render() {
     return (
-
-        <MDBContainer>
-            <h3 className="mt-5">Line chart</h3>
-            <Line data={this.state.dataLine} options={{ responsive: true}, { maintainAspectRatio: false}}  />
-            
-            <Link to="/base" class="btn btn-new btn-block text-uppercase"> Back To You</Link>
-        </MDBContainer>
+      <MDBContainer>
+        <h3 className="mt-5">Line chart</h3>
+        <Line data={this.state.dataLine} options={{ responsive: true, maintainAspectRatio: false }} />
+        <Link to="/" class="btn btn-new btn-block text-uppercase"> Back To You</Link>
+      </MDBContainer>
     );
   }
 }

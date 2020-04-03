@@ -1,20 +1,9 @@
 import React, { Component } from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Redirect,
-    Link,
-    useRouteMatch,
-    useParams
-} from "react-router-dom";
 import '../Login/LoginPage.css'
-import Base from '../Base/BaseComponent';
-import RegistratePage from './RegistratePage';
+import { Redirect } from 'react-router-dom';
 
 
-
-export default class Registrate extends Component {
+export default class Registration extends Component {
     constructor(props) {
         super(props);
 
@@ -37,12 +26,10 @@ export default class Registrate extends Component {
     }
 
 
-
     async registrate(username, password, email) {
         console.log("before url")
         let url = "http://localhost:8080/user";
         var myHeaders = new Headers();
-        // myHeaders.append("Authorization", "Basic " + Buffer.from(username + ":" + password).toString('base64'));
         myHeaders.append('Content-Type', 'application/json');
         var requestOptions = {
             method: "POST",
@@ -82,6 +69,7 @@ export default class Registrate extends Component {
             this.registrate(this.state.username, this.state.password, this.state.email);
             event.preventDefault();
         }
+       
 
     }
 
@@ -96,14 +84,12 @@ export default class Registrate extends Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <div class="form-label-group">
-
-                        <input type="text" value={this.state.message}/>
                         <input type="email" name="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} required />
                         <input type="text" name="username" placeholder="User Name" value={this.state.username} onChange={this.handleChange} required />
                         <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required />
                         <input type="password" name="password_confirmation" placeholder="Password confirmation" value={this.state.password_confirmation} onChange={this.handleChange} required />
                     </div>
-                    <button type="submit" class="btn btn-lgin btn-lg btn-block text-uppercase" type="submit">Submit</button>
+                    <button type="submit" className="btn btn-lgin btn-lg btn-block text-uppercase">Submit</button>
 
                 </form>
 

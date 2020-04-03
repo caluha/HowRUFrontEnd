@@ -42,9 +42,6 @@ class CreateRadioCheckboxResponses extends React.Component {
     }
 
     responseChanger = (el, type) => {
-        let ss = this.setState;
-
-
         return ( event ) => {
             if(type==="option"){
                 el.option=event.target.value;
@@ -79,16 +76,13 @@ class CreateRadioCheckboxResponses extends React.Component {
                 </tr>
             );
         }
-
         return responseListElements;
     }
 
     render(){
 
- 
         let responseElements = this.makeResponseElements(); 
         
-
         return (
             <div>
                 <table className="table">
@@ -97,23 +91,17 @@ class CreateRadioCheckboxResponses extends React.Component {
                         <th scope="col">Option</th>
                         <th scope="col">value</th>
                         <th scope="col"></th>
-
                         </tr>
                     </thead>
                     <tbody>
                         {responseElements}
                     </tbody>
                 </table>
-               
-
                 <button type="button" onClick={this.addElement}
-                 className="btn btn-primary m-3">Add new option</button>
-
-                
+                 className="btn btn-primary m-3">Add new option</button>    
             </div>
         )
     }
-
 }
 
 export default CreateRadioCheckboxResponses; 

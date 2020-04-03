@@ -1,5 +1,4 @@
 import React from 'react';
-
 import defaultResponses from './defaultResponses';
 import CreateRangeResponse from './CreateRangeResponse';
 import CreateTextResponse from './CreateTextResponse';
@@ -100,7 +99,7 @@ class CreateQuestionForm extends React.Component{
                 <div className="questionFormModal">
                     <div className="questionFormTopArea">
                         <button style={{float:"right"}}
-                        type="button" className="editButton"><img className={"buttonImage"} onClick={this.props.closeForm} src={remove_01}/></button>
+                        type="button" className="editButton"><img alt="Edit" className={"buttonImage"} onClick={this.props.closeForm} src={remove_01}/></button>
                     </div>
 
                     <h4 className="questionFormHeadline">New Question</h4>

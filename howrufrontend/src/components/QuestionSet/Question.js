@@ -20,7 +20,7 @@ class Question extends React.Component {
             responses: [
               {
                 optionId: this.props.responses[0].id,
-                username: "Adam",
+                username: this.props.user,
                 text: "",
                 value: null
               }
@@ -32,7 +32,7 @@ class Question extends React.Component {
             responses: [
               {
                 optionId: this.props.responses[0].id,
-                username: "Adam",
+                username: this.props.user,
                 text: null,
                 value:
                   (this.props.responses[0].min + this.props.responses[0].max) /
@@ -79,7 +79,7 @@ class Question extends React.Component {
           responses: [
             {
               optionId: targetId,
-              username: "Adam",
+              username: this.props.user,
               text: targetValue,
               value: null
             }
@@ -91,7 +91,7 @@ class Question extends React.Component {
           responses: [
             {
               optionId: targetId,
-              username: "Adam",
+              username: this.props.user,
               text: null,
               value: targetValue
             }
@@ -103,7 +103,7 @@ class Question extends React.Component {
           responses: [
             {
               optionId: targetId,
-              username: "Adam",
+              username: this.props.user,
               text: null,
               value: null
             }
@@ -111,12 +111,12 @@ class Question extends React.Component {
         });
         break;
       case "CHECKBOX":
-        let i = this.state.responses.findIndex(t => t.optionId == targetId);
+        let i = this.state.responses.findIndex(t => t.optionId === targetId);
         if (i === -1) {//if the response is not already in the list, i.e. not selected, then add it
           let newResp =
             [...this.state.responses, {
               optionId: targetId,
-              username: "Adam",
+              username: this.props.user,
               text: null,
               value: null
             }]
@@ -170,7 +170,7 @@ class Question extends React.Component {
       )
 
     } else {
-      
+
       return (
         <div>
           <form >
