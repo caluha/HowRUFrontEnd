@@ -52,11 +52,11 @@ export default class Login extends Component {
         return (
             <div>
                 <form onSubmit={this.handleSubmit} >
-                    <div classNamer="form-label-group">
+                    <div className="form-label-group">
                         <input type="text" name="username" placeholder="User Name" value={this.state.username} onChange={this.handleChange} required />
                         <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required />
                     </div>
-                    <button type="submit" class="btn btn-lgin btn-lg btn-block text-uppercase" type="submit"> Log in</button>
+                    <button type="submit" className="btn btn-lgin btn-lg btn-block text-uppercase" type="submit"> Log in</button>
                 </form>
             </div>
         );
