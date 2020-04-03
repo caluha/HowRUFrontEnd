@@ -31,8 +31,6 @@ function QuestionDisplay (props){
 
                 </div>
                 
-
-
             </div>
         </li>);
 }

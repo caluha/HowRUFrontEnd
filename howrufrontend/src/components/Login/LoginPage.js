@@ -27,7 +27,7 @@ class LoginPage extends React.Component {
 
     render() {
         if(this.state.loggedIn) {
-            return <Redirect to = "/base" />
+            return <Redirect to = "/base" />;
         }
         return (
             <div className="container">

@@ -12,6 +12,7 @@ class QuestionList extends React.Component {
 
         this.addQuestion=this.addQuestion.bind(this);
         this.showQuestionForm=this.showQuestionForm.bind(this);
+        this.closeQuestionForm = this.closeQuestionForm.bind(this);
 
         this.state = {
             showingNewQuestionForm: false,
@@ -48,14 +49,18 @@ class QuestionList extends React.Component {
         this.props.removeQuestion(question);
     }
 
+
+
     render(){
         let qForm = <CreateQuestionForm questionId={this.props.nextId} 
-                                        saveQuestion={this.addQuestion} />;
+                                        saveQuestion={this.addQuestion}
+                                        closeForm={this.closeQuestionForm} />;
         let editQuestionForm = null;
         if(this.state.showEditQuestion){
             editQuestionForm =  <CreateQuestionForm questionId={this.state.editQuestion.id}  
                                                     question={this.state.editQuestion} 
-                                                    saveQuestion={this.addQuestion} />
+                                                    saveQuestion={this.addQuestion}
+                                                    closeForm={this.closeQuestionForm} />
         }
         let questionElements = [];
         

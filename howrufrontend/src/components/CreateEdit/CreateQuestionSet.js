@@ -57,7 +57,7 @@ class CreateQuestionSet extends React.Component{
                             <p className="trackerNameLabel">Tracker name</p>
                         </div>
                         <div className="col-8">
-                            <input className="input-group trackerNameInput" name="title" placeholder="New question set" 
+                            <input className="input-group trackerNameInput" name="title" placeholder="New tracker" 
                                 onChange={this.handleChange}
                                 value={this.state.title}></input>
                         </div>
@@ -68,6 +68,17 @@ class CreateQuestionSet extends React.Component{
                             maxQuestions = {8}
                             saveQuestion={this.addQuestion}
                             removeQuestion={this.removeQuestion} />
+                <div className="bottom-bar">
+
+                    <span className="bottomBarText">
+                        Total questions: {this.state.questions.length}
+                    </span>
+
+                    <button className="saveQuestionSetButton" type="button">
+                        Save tracker
+                    </button>
+                </div>
+            
             </div>
         );
     }
