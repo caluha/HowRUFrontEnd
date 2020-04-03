@@ -92,7 +92,6 @@ export default class Registrate extends Component {
                                     <input type="password" name="password_confirmation" placeholder="Password confirmation" value={this.state.password_confirmation} onChange={this.handleChange} required />
                                 </div>
                                 <button type="submit" class="btn btn-lgin btn-lg btn-block text-uppercase" type="submit" onSubmit={this.passwordconformation()}>Submit</button>
-
                             </form>
                         </Route>
                     </Switch>

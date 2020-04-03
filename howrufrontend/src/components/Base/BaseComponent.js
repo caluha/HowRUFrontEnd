@@ -18,9 +18,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import CreateQuestionSet from '../CreateEdit/CreateQuestionSet';
 import LoginPage from '../Login/LoginPage'
 import RegistratePage from '../Registrate/RegistratePage';
-
-
-
+import ChartsPage from '../presentation/graphTest';
 
 class Base extends React.Component {
 
@@ -52,9 +50,7 @@ class Base extends React.Component {
     }
 
     render() {
-       
-
-
+        
         return (
             <div style={{ height: "100%" }}>
                 <div className="mainpage">
@@ -75,6 +71,9 @@ class Base extends React.Component {
                             </Route>
                             <Route exact path="/registrate">
                                <RegistratePage />
+                            </Route>
+                            <Route exact path='/chart'>
+                                <ChartsPage/>
                             </Route>
                             {routeFactory(this.state.questionSet)}
                         </Switch>
