@@ -1,6 +1,7 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 import { MDBContainer } from "mdbreact";
+import { Router, Switch, Route } from "react-router-dom";
 
 class ChartsPage extends React.Component {
   state = {
@@ -55,10 +56,10 @@ class ChartsPage extends React.Component {
 
   render() {
     return (
-      <MDBContainer>
-        <h3 className="mt-5">Line chart</h3>
-        <Line data={this.state.dataLine} options={{ responsive: true }} />
-      </MDBContainer>
+        <MDBContainer>
+            <h3 className="mt-5">Line chart</h3>
+            <Line data={this.state.dataLine} options={{ responsive: true }} />
+        </MDBContainer>
     );
   }
 }
