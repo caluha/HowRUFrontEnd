@@ -17,7 +17,7 @@ import QuestionSetButton from './QuestionSetButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CreateQuestionSet from '../CreateEdit/CreateQuestionSet';
 import LoginPage from '../Login/LoginPage'
-import RegistratePage from '../Registrate/RegistratePage';
+import RegistrationPage from '../Registration/RegistrationPage';
 import ChartsPage from '../presentation/graphTest';
 
 class Base extends React.Component {
@@ -96,7 +96,7 @@ class Base extends React.Component {
                         <Router>
                             <Switch>
                                 <Route exact path="/registrate">
-                                    <RegistratePage />
+                                    <RegistrationPage />
                                 </Route>
 
                                 <Route path="/">
