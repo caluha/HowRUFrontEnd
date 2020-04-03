@@ -56,7 +56,7 @@ export default class Login extends Component {
                         <input type="text" name="username" placeholder="User Name" value={this.state.username} onChange={this.handleChange} required />
                         <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required />
                     </div>
-                    <button type="submit" className="btn btn-lgin btn-lg btn-block text-uppercase" type="submit"> Log in</button>
+                    <button type="submit" className="btn btn-lgin btn-lg btn-block text-uppercase">Log in</button>
                 </form>
             </div>
         );
