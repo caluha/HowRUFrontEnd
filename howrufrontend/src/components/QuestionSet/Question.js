@@ -20,7 +20,7 @@ class Question extends React.Component {
             responses: [
               {
                 optionId: this.props.responses[0].id,
-                username: "Adam",
+                username: this.props.user,
                 text: "",
                 value: null
               }
@@ -32,7 +32,7 @@ class Question extends React.Component {
             responses: [
               {
                 optionId: this.props.responses[0].id,
-                username: "Adam",
+                username: this.props.user,
                 text: null,
                 value:
                   (this.props.responses[0].min + this.props.responses[0].max) /
@@ -79,7 +79,7 @@ class Question extends React.Component {
           responses: [
             {
               optionId: targetId,
-              username: "Adam",
+              username: this.props.user,
               text: targetValue,
               value: null
             }
@@ -91,7 +91,7 @@ class Question extends React.Component {
           responses: [
             {
               optionId: targetId,
-              username: "Adam",
+              username: this.props.user,
               text: null,
               value: targetValue
             }
@@ -103,7 +103,7 @@ class Question extends React.Component {
           responses: [
             {
               optionId: targetId,
-              username: "Adam",
+              username: this.props.user,
               text: null,
               value: null
             }
@@ -116,7 +116,7 @@ class Question extends React.Component {
           let newResp =
             [...this.state.responses, {
               optionId: targetId,
-              username: "Adam",
+              username: this.props.user,
               text: null,
               value: null
             }]

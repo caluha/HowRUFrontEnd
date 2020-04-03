@@ -98,6 +98,7 @@ class QuestionSet extends React.Component {
                 // initialState={this.state.answers[e.id] ? this.state.answers[e.id] : undefined }
                 key={e.id}
                 id={e.id}
+                user={this.props.user}
                 lastQuestion={e.id === this.state.lastQuestion ? true : false}
                 question={e.question}
                 type={e.type}
