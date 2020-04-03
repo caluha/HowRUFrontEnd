@@ -110,7 +110,7 @@ class Base extends React.Component {
                             <Route exact path="/">
                                 <img alt="Cup of coffee" src={coffee2} style={{ width: "360px" }} />
                                 <div>
-                                    {questionSetFactory(this.state.questionSet)}
+                                    {questionSetFactory(this.state.questionSet, this.state.loginData.user)}
                                 </div>
                             </Route>
                             <Route exact path="/create">
@@ -123,7 +123,7 @@ class Base extends React.Component {
                             <Route exact path='/logout'>
                                 {this.logOut}
                             </Route>
-                            {routeFactory(this.state.questionSet)}
+                            {routeFactory(this.state.questionSet, this.state.loginData.user)}
                         </Switch>
                     </Router>
                    
@@ -142,11 +142,12 @@ function questionSetFactory(questionSets) {
     }
 }
 
-function routeFactory(questionSets) {
+function routeFactory(questionSets, user) {
+    console.log(user);
     if(questionSets.length>0){
         return questionSets.map((e) => 
             <Route key={e.id} path={"/" + e.name}>
-                <QuestionSet id={e.id} questionSet={e}/>
+                <QuestionSet id={e.id} questionSet={e} user={user}/>
             </Route>)
     } else {
         return null;
