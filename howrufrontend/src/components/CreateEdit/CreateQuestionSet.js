@@ -123,7 +123,7 @@ class CreateQuestionSet extends React.Component{
     render(){
         
         if(this.state.submitted){
-            return <Redirect to = "/base" />;
+            return <Redirect to = "/" />;
         }
 
 
