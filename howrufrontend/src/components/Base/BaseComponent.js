@@ -50,7 +50,18 @@ class Base extends React.Component {
     }
 
     componentDidMount() {
-        this.getAllQuestionSets();
+        let myStorage = window.localStorage;
+
+        if(myStorage.getItem("loggedIn")==="true"){
+            let loginData={
+                loggedIn:true,
+                user:myStorage.getItem("user"),
+            }
+            this.setState({loginData:loginData}, this.getAllQuestionSets);
+        }
+        
+        
+        // this.getAllQuestionSets();
     }
 
     handleLogin(data) {
@@ -61,7 +72,7 @@ class Base extends React.Component {
         myStorage.setItem("user", data.username);
         myStorage.setItem("loggedIn", data.loggedIn);
 
-        this.setState({loginData:data})
+        //
     }
 
     logOut = () => {
@@ -71,8 +82,9 @@ class Base extends React.Component {
 
         this.setState({loginData:{
                                 loggedIn:false,
-                                user:""}
-                            })
+                                user:""},
+                        questionSet:[]
+                            } )
 
         return <Redirect to="/"/>                   
     }
@@ -105,7 +117,7 @@ class Base extends React.Component {
             <div style={{ height: "100%" }}>
                 <div className="mainpage">
                     <Router>
-                        <Navbar />
+                        <Navbar user={this.state.loginData.user} />
                         <Switch>
                             <Route exact path="/">
                                 <img alt="Cup of coffee" src={coffee2} style={{ width: "360px" }} />
