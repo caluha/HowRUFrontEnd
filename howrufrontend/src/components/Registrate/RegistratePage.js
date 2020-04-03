@@ -1,6 +1,6 @@
 import React from 'react';
-import Register from './Register';
-import '../components/Login/LoginPage.css';
+import Registrate from './Registrate';
+import '../Login/LoginPage.css'
 import {
     BrowserRouter as Router,
     Switch,
@@ -12,7 +12,7 @@ import {
 } from "react-router-dom";
 
 
-class RegisterPage extends React.Component {
+class RegistratePage extends React.Component {
     constructor(props) {
         super(props);
         this.state= {handleSuccessful : false}
@@ -20,13 +20,14 @@ class RegisterPage extends React.Component {
     }
 
     handleSuccessfulAuth(data) {
-        this.props.handleLogin(data);
+        console.log("does not compute")
+        this.props.enadbled(data);
         this.setState({handleSuccessful:true})
     }
 
     render() {
         if(this.state.handleSuccessful) {
-            return <Redirect to = "/base" />
+            return <Redirect to = "/login" />
         }
         return (
             <div className="container">
@@ -35,7 +36,7 @@ class RegisterPage extends React.Component {
                         <div className="card-body">
                             <h3 className="card-title text-center">HowRU</h3>
 
-                            <Register handleSuccessfulAuth={this.handleSuccessfulAuth}/>
+                            <Registrate handleSuccessfulAuth={this.handleSuccessfulAuth}/>
                                                         
                         </div>
                     </div>
@@ -46,4 +47,4 @@ class RegisterPage extends React.Component {
 }
 
 
-export default RegisterPage;
+export default RegistratePage;

@@ -1,6 +1,6 @@
 import React from 'react';
 import './LoginPage.css';
-import Register from '../../Register/Register';
+import Registrate from '../Registrate/Registrate';
 import Login from './Login.js';
 import {
     BrowserRouter as Router,
@@ -38,8 +38,8 @@ class LoginPage extends React.Component {
 
                             <Login handleSuccessfulAuth={this.handleSuccessfulAuth}/>
                             
-                            <button class="btn btn-lg btn-new btn-block text-uppercase" type="submit"> NEW USER</button>
-                            
+                            <Link to="/registrate" class="btn btn-lg btn-new btn-block text-uppercase"> NEW USER</Link>
+                           
                         </div>
                     </div>
                 </div>
