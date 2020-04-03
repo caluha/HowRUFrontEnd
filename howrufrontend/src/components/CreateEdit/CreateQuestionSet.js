@@ -1,5 +1,4 @@
 import React from 'react';
-
 import QuestionList from './QuestionList'; 
 import './CreateEdit.css';
 import { Redirect } from 'react-router-dom';

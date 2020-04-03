@@ -1,17 +1,5 @@
 import React, { Component } from 'react';
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Redirect,
-    Link,
-    useRouteMatch,
-    useParams
-} from "react-router-dom";
 import '../Login/LoginPage.css'
-import Base from '../Base/BaseComponent';
-import RegistrationPage from './RegistrationPage';
-
 
 
 export default class Registration extends Component {
@@ -35,12 +23,10 @@ export default class Registration extends Component {
     }
 
 
-
     async registrate(username, password, email) {
         console.log("before url")
         let url = "http://localhost:8080/user";
         var myHeaders = new Headers();
-        // myHeaders.append("Authorization", "Basic " + Buffer.from(username + ":" + password).toString('base64'));
         myHeaders.append('Content-Type', 'application/json');
         var requestOptions = {
             method: "POST",
@@ -78,14 +64,11 @@ export default class Registration extends Component {
 
     }
 
-
-
-
     render() {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <div class="form-label-group">
+                    <div className="form-label-group">
                         <input type="email" name="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} required />
                         <input type="text" name="username" placeholder="User Name" value={this.state.username} onChange={this.handleChange} required />
                         <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required />

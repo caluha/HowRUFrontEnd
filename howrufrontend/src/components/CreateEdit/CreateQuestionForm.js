@@ -1,5 +1,4 @@
 import React from 'react';
-
 import defaultResponses from './defaultResponses';
 import CreateRangeResponse from './CreateRangeResponse';
 import CreateTextResponse from './CreateTextResponse';

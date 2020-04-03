@@ -1,8 +1,5 @@
 import React from 'react';
 import Question from './Question';
-import APIConnection from '../../testclasses/APIConnection';
-
-
 
 class QuestionSet extends React.Component {
 
@@ -15,7 +12,7 @@ class QuestionSet extends React.Component {
 
         this.state = {
             Questions: this.props.questionSet.questions,
-            lastQuestion: this.props.questionSet.questions[this.props.questionSet.questions.length-1].id,
+            lastQuestion: this.props.questionSet.questions[this.props.questionSet.questions.length - 1].id,
             questionCounter: 0,
             answers: {},
             questionStates: {},
@@ -44,7 +41,7 @@ class QuestionSet extends React.Component {
             this.submitData();
         })
 
-        this.setState({submitted: true});
+        this.setState({ submitted: true });
     }
 
     submitData = () => {
@@ -99,21 +96,21 @@ class QuestionSet extends React.Component {
 
             questionComponents.push(<Question
                 // initialState={this.state.answers[e.id] ? this.state.answers[e.id] : undefined }
-                key={e.id} 
-                id={e.id} 
-                lastQuestion={e.id === this.state.lastQuestion ? true: false} 
-                question={e.question} 
+                key={e.id}
+                id={e.id}
+                lastQuestion={e.id === this.state.lastQuestion ? true : false}
+                question={e.question}
                 type={e.type}
-                responses={e.responses} 
+                responses={e.responses}
                 handleAnswer={e.id === this.state.lastQuestion ? this.submitAnswer : this.handleAnswer}
-                next={this.addOne} 
+                next={this.addOne}
                 previous={this.decOne}
                 submitted={this.state.submitted}
                 storeState={this.storeQuestionState}
                 initialState={this.state.questionStates[e.id] ? this.state.questionStates[e.id] : undefined}
             />)
         }
-        if (this.state.questionCounter === this.state.Questions.length-1) {
+        if (this.state.questionCounter === this.state.Questions.length - 1) {
             return (
                 //Det här ska istället returnera en ny komponent som innehåller Submit-knappen med tillhörande
                 //funktionalitet.
