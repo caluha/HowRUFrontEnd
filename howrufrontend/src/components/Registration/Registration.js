@@ -16,11 +16,7 @@ export default class Registration extends Component {
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
-<<<<<<< HEAD
         // this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this);
-=======
-        
->>>>>>> 4191536c8fbac86a680e10fcd822ee8929a12cee
     }
 
     handleChange(event) {
@@ -56,10 +52,7 @@ export default class Registration extends Component {
             })
             .catch(error => console.log("error", error));
     }
-
-
-
-
+    
     handleSubmit(event) {
 
         const { password, password_confirmation } = this.state;
@@ -71,21 +64,12 @@ export default class Registration extends Component {
             console.log("form submitted");
             event.preventDefault();
         }
-       
-
     }
-
-
-    
-
-
-
-
     render() {
         return (
             <div>
                 <form onSubmit={this.handleSubmit}>
-                    <div class="form-label-group">
+                    <div className="form-label-group">
                         <input type="email" name="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} required />
                         <input type="text" name="username" placeholder="User Name" value={this.state.username} onChange={this.handleChange} required />
                         <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required />
