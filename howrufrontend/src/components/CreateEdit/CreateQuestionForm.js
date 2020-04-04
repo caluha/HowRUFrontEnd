@@ -1,4 +1,6 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
+
 import defaultResponses from './defaultResponses';
 import CreateRangeResponse from './CreateRangeResponse';
 import CreateTextResponse from './CreateTextResponse';
@@ -131,7 +133,7 @@ class CreateQuestionForm extends React.Component{
                             this.state.question.type === "TEXT" ? textResp : 
                             this.state.question.type === "RADIO" || this.state.question.type === "CHECKBOX"  ? radioCheckboxResp : <p>Loading</p> }
                         
-                        <button className="btn btn-primary">Save</button>
+                        <Button className="btn btn-primary">Save</Button>
                     </form>
                 </div>
             

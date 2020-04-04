@@ -1,4 +1,6 @@
 import React from 'react'
+import Input from 'react-bootstrap/Button';
+
 
 class CreateRangeResponse extends React.Component {
 
@@ -25,7 +27,7 @@ class CreateRangeResponse extends React.Component {
                     </div>
 
                     <div className="col">
-                        <input type="number" id="min" name="min" value={this.state.min}
+                        <Input type="number" id="min" name="min" value={this.state.min}
                             onChange={this.handleFormChange} />
                     </div>
                 </div>
@@ -35,7 +37,7 @@ class CreateRangeResponse extends React.Component {
                         <label htmlFor="max">Max</label>
                     </div>
                     <div className="col">
-                        <input type="number" id="max" name="max" value={this.state.max}
+                        <Input type="number" id="max" name="max" value={this.state.max}
                             onChange={this.handleFormChange} />
                     </div>
                 </div>
@@ -45,7 +47,7 @@ class CreateRangeResponse extends React.Component {
                         <label htmlFor="min_descriptionn">Min description</label>
                     </div>
                     <div className="col">
-                        <input type="text" id="min_description" name="min_description"
+                        <Input type="text" id="min_description" name="min_description"
                             onChange={this.handleFormChange} value={this.state.min_description} />
                     </div>
                 </div>
@@ -55,7 +57,7 @@ class CreateRangeResponse extends React.Component {
                         <label htmlFor="max_description">Max description</label>
                     </div>
                     <div className="col">
-                        <input type="text" id="max_description" name="max_description"
+                        <Input type="text" id="max_description" name="max_description"
                             onChange={this.handleFormChange} value={this.state.max_description} />
                     </div>
                 </div>

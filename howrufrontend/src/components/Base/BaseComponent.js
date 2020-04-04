@@ -52,9 +52,8 @@ class Base extends React.Component {
         }
     }
 
-    componentDidMount() {
+    componentDidMount(){
         let myStorage = window.localStorage;
-
         if(myStorage.getItem("loggedIn")==="true"){
             let loginData={
                 loggedIn:true,
@@ -62,34 +61,20 @@ class Base extends React.Component {
             }
             this.setState({loginData:loginData}, this.getAllQuestionSets);
         }
-        
-        console.log("ComponentDidMount");
-        // this.getAllQuestionSets();
     }
-    componentDidUpdate(prevProps, prevState) {
-        console.log("ComponentDidUpdate");
 
+    componentDidUpdate(prevProps, prevState) {
         let myStorage=window.localStorage;
         if(myStorage.getItem("loggedIn")==="true"){
             if(myStorage.getItem("user") != this.state.loginData.user){
-                console.log("ComponentDidUpdate fetched data");
-
                 let loginData={
                     loggedIn:true,
                     user:myStorage.getItem("user"),
                 } 
                 this.setState({loginData:loginData}, this.getAllQuestionSets);
             }
-            
-           
         }
-        //Typical usage, don't forget to compare the props
-        if (this.state.loginData.user !== prevState.loginData.user) {
-            console.log("ComponentDidUpdate detected change of user");
-
-          this.getAllQuestionSets(); 
-        }
-       }
+    }
 
     handleLogin(data) {
 
