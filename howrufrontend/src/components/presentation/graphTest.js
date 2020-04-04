@@ -100,7 +100,7 @@ class ChartsPage extends React.Component {
   }
 
   renderQuestionSelect = () => {
-    return this.props.location.state.questions.map((e) => <GraphQuestionSelect selectQuestion={this.selectQuestion} questionId={e.id} question={e.question}/>);
+    return this.props.location.state.questions.map((e) => <GraphQuestionSelect selectQuestion={this.selectQuestion} key={e.id} questionId={e.id} question={e.question}/>);
   }
    
   returnMonth(monthNumber) {
