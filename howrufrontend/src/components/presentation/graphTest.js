@@ -52,8 +52,35 @@ class ChartsPage extends React.Component {
           data: [28, 48, 40, 19, 86, 27, 90, 47, 58, 43, 25, 85]
         }
       ]
-    }
+      
+    },
+    responseValues: [{
+      responseId: "",
+      date: "",
+      value: ""
+    }]
   };
+
+  getAllResponses () {
+    /*Use the this.props.location.state and loop through all the question Id's
+    and make a fetch for each one of them, and store all those responses in the state.
+    After that, make one dataset for each responseId, containing one response per day */
+
+    let url = "http://localhost:8080/response/question/";
+
+    for (const e of this.props.location.state.questions) {
+      fetch(url + e.id)
+        .then(result => result.json())
+        .then(result => {
+          console.log(result);
+        })
+    }
+  }
+
+  componentDidMount() {
+    // console.log("Charts did mount");
+    // console.log(this.props.location.state);
+  }
 
   render() {
     return (

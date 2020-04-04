@@ -155,8 +155,7 @@ class Base extends React.Component {
                                <CreateQuestionSet />
                             </Route>
                         
-                            <Route exact path='/chart'>
-                                <ChartsPage/>
+                            <Route path="/chart" component={ChartsPage}>
                             </Route>
                             {/* <Route exact path='/logout'>
                                 {this.logOut}
@@ -174,7 +173,7 @@ class Base extends React.Component {
 
 function questionSetFactory(questionSets) {
     if(questionSets.length>0){
-        return questionSets.map((e) => <QuestionSetButton key={e.id} id={e.id} name={e.name} />)
+        return questionSets.map((e) => <QuestionSetButton questions={e.questions} key={e.id} id={e.id} name={e.name} />)
     } else {
         return <p>Create some question sets?</p>
     }
