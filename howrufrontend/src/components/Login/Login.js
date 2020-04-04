@@ -7,7 +7,8 @@ export default class Login extends Component {
 
         this.state = {
             username: "",
-            password: ""
+            password: "",
+            errorMessage:""
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -38,6 +39,8 @@ export default class Login extends Component {
                 console.log("login", result);
                 if (result.loggedIn === "true") {
                     this.props.handleSuccessfulAuth(result)
+                }else {
+                    this.setState({message: "Wrong Username or Password"})
                 }
             })
             .catch(error => console.log("error", error));
@@ -55,6 +58,7 @@ export default class Login extends Component {
                     <div className="form-label-group">
                         <input type="text" name="username" placeholder="User Name" value={this.state.username} onChange={this.handleChange} required />
                         <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required />
+                        <div><h5 className="error">{this.state.message}</h5></div>
                     </div>
                     <button type="submit" className="btn btn-lgin btn-lg btn-block text-uppercase">Log in</button>
                 </form>
