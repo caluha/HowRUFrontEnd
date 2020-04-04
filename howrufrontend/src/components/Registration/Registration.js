@@ -58,7 +58,6 @@ export default class Registration extends Component {
             event.preventDefault();
         }
     }
-
     render() {
         return (
             <div>
