@@ -17,7 +17,7 @@ class CreateQuestionSet extends React.Component{
 
         this.state={
             title:"",
-            user:"Adam",
+            user:this.props.user,
             questions: [], 
             nextQuestionId:0,
             submitted:false,
