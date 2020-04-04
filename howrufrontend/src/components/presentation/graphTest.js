@@ -78,8 +78,7 @@ class ChartsPage extends React.Component {
   }
 
   componentDidMount() {
-    // console.log("Charts did mount");
-    // console.log(this.props.location.state);
+    this.getAllResponses();
   }
 
   render() {
