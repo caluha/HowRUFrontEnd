@@ -14,9 +14,7 @@ class QuestionSetButton extends React.Component {
                 <NavLink exact to="/unchecked" className="pen"><img alt="Unanswered" src={unanswered_01} style={{ height: "25px" }} /></NavLink>
                 <NavLink to={{pathname: "/chart", state: {questions: this.props.questions}}} className="pen"><img alt="Data" src={chart} style={{ height: "25px" }} /></NavLink>
                 <div>{this.props.name}</div>
-                <div>
-                    <NavLink exact to="/create"><button className="floating-menu-icon">New Tracker +</button></NavLink>
-                </div>
+             
             </div>
         );
     }
