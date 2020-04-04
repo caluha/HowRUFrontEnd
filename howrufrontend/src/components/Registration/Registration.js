@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import '../Login/LoginPage.css'
 
 
+
 export default class Registration extends Component {
     constructor(props) {
         super(props);
@@ -48,14 +49,17 @@ export default class Registration extends Component {
             })
             .catch(error => console.log("error", error));
     }
+    
          
     handleSubmit(event) {
         const { password, password_confirmation } = this.state;
         if (password !== password_confirmation) {
-               alert("nope, not matching passwords")
+            //    alert("Password does not match")
+               this.setState({message: "Password does not match"})
         } else {
             this.registration(this.state.username, this.state.password, this.state.email);
             event.preventDefault();
+        
         }
     }
     render() {
@@ -63,6 +67,7 @@ export default class Registration extends Component {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-label-group">
+                        <div><h5 className="error">{this.state.message}</h5></div>
                         <input type="email" name="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} required />
                         <input type="text" name="username" placeholder="User Name" value={this.state.username} onChange={this.handleChange} required />
                         <input type="password" name="password" placeholder="Password" value={this.state.password} onChange={this.handleChange} required />
