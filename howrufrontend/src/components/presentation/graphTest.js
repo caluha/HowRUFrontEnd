@@ -9,9 +9,10 @@ class ChartsPage extends React.Component {
 
   constructor(props) {
     super(props);
-
+    this.selectQuestion = this.selectQuestion.bind(this);
     this.state = {
-      currentlyDisplayedData: {},
+      currentQuestion: -1,
+      currentlyDisplayedData: this.getAllResponses(),
       dataLine: this.getAllResponses(),
     }
   }
@@ -24,6 +25,7 @@ class ChartsPage extends React.Component {
     let url = "http://localhost:8080/response/question/";
 
     let dataLine = {
+      question: [],
       labels: [],
       datasets: []
     }
@@ -31,6 +33,7 @@ class ChartsPage extends React.Component {
     let labelsSet = false;
 
     for (const e of this.props.location.state.questions) {
+      dataLine.question.push(e.id);
       let dataSet = {
           label: e.question,
           fill: true,
@@ -69,7 +72,8 @@ class ChartsPage extends React.Component {
 
           for (const i in result) {
             if (dataLine.labels.length < result.length) {
-              dataLine.labels.push(result[i].responseTime);
+              let label = new Date(result[i].responseTime);
+              dataLine.labels.push(`${label.getDate()} ${this.returnMonth(label.getMonth())}`);
             }
           }
         })
@@ -78,17 +82,68 @@ class ChartsPage extends React.Component {
     return dataLine;
   }
 
+  selectQuestion = (event) => {
+    // this.setState({currentQuestion: event.target.id});
+
+    let currentQuestion = event.target.id;
+    console.log("Current question: " + currentQuestion)
+    for (const index in this.state.dataLine.question) {
+      console.log("DONKEY");
+      if (this.state.dataLine.question[index] == currentQuestion){
+        console.log("I REACHED THIS POINT");
+        let label = this.state.dataLine.labels;
+        let dataSet = this.state.dataLine.datasets[index];
+        this.setState({currentlyDisplayedData: { label, dataSet }});
+        console.log(this.state.currentlyDisplayedData);
+      }
+    }
+  }
+
   renderQuestionSelect = () => {
-    return this.props.location.state.questions.map((e) => <GraphQuestionSelect />);
+    return this.props.location.state.questions.map((e) => <GraphQuestionSelect selectQuestion={this.selectQuestion} questionId={e.id} question={e.question}/>);
+  }
+   
+  returnMonth(monthNumber) {
+    switch (monthNumber) {
+      case 0:
+        return "Jan";
+      case 1:
+        return "Feb";
+      case 2: 
+        return "Mar";
+      case 3:
+        return "Apr";
+      case 4:
+        return "May";
+      case 5:
+        return "Jun";
+      case 6:
+        return "Jul";
+      case 7:
+        return "Aug";
+      case 8:
+        return "Sep";
+      case 9:
+        return "Oct";
+      case 10:
+        return "Nov";
+      case 11:
+        return "Dec";
+    }
   }
 
   render() {
     return (
-      <MDBContainer>
-        <h3 className="mt-5">{this.props.location.state.name}</h3>
-        <Line data={this.state.dataLine} options={{ responsive: true, maintainAspectRatio: true }} />
-        <Link to="/" className="btn btn-new btn-block text-uppercase"> Back To You</Link>
-      </MDBContainer>
+      <React.Fragment>
+        <MDBContainer>
+          <h3 className="mt-5">{this.props.location.state.name}</h3>
+          <Line data={this.state.currentlyDisplayedData} options={{ responsive: true, maintainAspectRatio: true }} />
+          <Link to="/" className="btn btn-new btn-block text-uppercase"> Back To You</Link>
+        </MDBContainer>
+        <React.Fragment>
+          {this.renderQuestionSelect()}
+        </React.Fragment>
+      </React.Fragment>
     );
   }
 }
