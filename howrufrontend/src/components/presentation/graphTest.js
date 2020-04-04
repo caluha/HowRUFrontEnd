@@ -9,23 +9,10 @@ class ChartsPage extends React.Component {
   constructor(props) {
     super(props);
 
-
     this.state = {
-      dataLine: {
-        labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"],
-        datasets: [],
-      },
-    };
+      dataLine: this.getAllResponses(),
+    }
   }
-
-  componentDidMount() {
-    this.setState((prev) => {
-      let newState = prev;
-      newState.dataLine.datasets = this.getAllResponses();
-      return newState;
-    })
-  }
-
 
   getAllResponses () {
     /*Use the this.props.location.state and loop through all the question Id's
@@ -34,7 +21,12 @@ class ChartsPage extends React.Component {
 
     let url = "http://localhost:8080/response/question/";
 
-    let dataSetArray = [];
+    let dataLine = {
+      labels: [],
+      datasets: []
+    }
+
+    let labelsSet = false;
 
     for (const e of this.props.location.state.questions) {
       let dataSet = {
@@ -70,12 +62,18 @@ class ChartsPage extends React.Component {
               default:
                 dataSet.data.push(result[i].value)
                 break;
+            } 
+          }
+
+          for (const i in result) {
+            if (dataLine.labels.length < result.length) {
+              dataLine.labels.push(result[i].responseTime);
             }
-          }          
+          }
         })
-      dataSetArray.push(dataSet);
+      dataLine.datasets.push(dataSet);
     }
-    return dataSetArray;
+    return dataLine;
   }
 
   render() {
