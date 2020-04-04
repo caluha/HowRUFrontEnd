@@ -20,7 +20,6 @@ class RegistrationPage extends React.Component {
         if(this.state.handleSuccessful) {
             console.log("före redirect")
             return <Redirect to = "/" />
-            
         }
         return (
             <div className="container">
