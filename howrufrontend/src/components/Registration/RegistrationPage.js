@@ -12,14 +12,15 @@ class RegistrationPage extends React.Component {
     }
 
     handleSuccessful(data) {
-        console.log("does not compute")
         this.setState({handleSuccessful:true})
     }
 
     render() {
-        console.log("före redirect")
+        console.log("före handleSuccsesful")
         if(this.state.handleSuccessful) {
+            console.log("före redirect")
             return <Redirect to = "/" />
+            
         }
         return (
             <div className="container">
@@ -27,9 +28,7 @@ class RegistrationPage extends React.Component {
                     <div className="card card-signin my-5">
                         <div className="card-body">
                             <h3 className="card-title text-center">HowRU</h3>
-
-                            <Registration handleSuccessful={this.handleSuccessful}/>
-                                                        
+                            <Registration handleSuccessful={this.handleSuccessful}/>                      
                         </div>
                     </div>
                 </div>

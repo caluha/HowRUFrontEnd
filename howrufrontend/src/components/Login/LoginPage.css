@@ -68,6 +68,10 @@ html {
     color: white;
     background-color: #f37a79;
   }
+
+  .error {
+    color: violet;
+  }
   
 
   /* Fallback for Edge
