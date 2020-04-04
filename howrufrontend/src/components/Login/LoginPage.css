@@ -70,7 +70,8 @@ html {
   }
 
   .error {
-    color: red;
+    color: #f37a79;
+    font-weight: 700;
   }
   
 

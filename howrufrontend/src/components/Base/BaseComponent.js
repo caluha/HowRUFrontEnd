@@ -131,7 +131,7 @@ class Base extends React.Component {
                                     <RegistrationPage />
                                 </Route>
 
-                                <Route path="/">
+                                <Route exact path="/">
                                     <LoginPage handleLogin={this.handleLogin} />
                                 </Route>
                             </Switch>
