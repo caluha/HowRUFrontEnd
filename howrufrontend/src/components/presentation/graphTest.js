@@ -71,8 +71,9 @@ class ChartsPage extends React.Component {
     for (const e of this.props.location.state.questions) {
       fetch(url + e.id)
         .then(result => result.json())
-        .then(result => {
+        .then(result => { 
           console.log(result);
+          
         })
     }
   }
