@@ -9,21 +9,19 @@ class ChartsPage extends React.Component {
   constructor(props) {
     super(props);
 
+
     this.state = {
       dataLine: {
         labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"],
-        datasets: this.allDataSets,
+        datasets: [],
       },
     };
-
   }
 
   componentDidMount() {
-    const datasets = this.getAllResponses();
-
     this.setState((prev) => {
       let newState = prev;
-      newState.dataLine.datasets = datasets;
+      newState.dataLine.datasets = this.getAllResponses();
       return newState;
     })
   }
@@ -69,7 +67,7 @@ class ChartsPage extends React.Component {
               case "TEXT":
                 dataSet.data.push(result[i].text)
                 break;
-              case "RANGE":
+              default:
                 dataSet.data.push(result[i].value)
                 break;
             }

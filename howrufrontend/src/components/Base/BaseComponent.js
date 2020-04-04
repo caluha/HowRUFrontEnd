@@ -152,7 +152,7 @@ class Base extends React.Component {
                                 <div>
                                     {questionSetFactory(this.state.questionSet, this.state.loginData.user)}
                                     <div>
-                                        <Link exact to="/create"><button className="floating-menu-icon">New Tracker +</button></Link>
+                                        <Link to="/create"><button className="floating-menu-icon">New Tracker +</button></Link>
                                     </div>
                                 </div>
                             </Route>
