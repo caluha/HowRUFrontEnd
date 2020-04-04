@@ -157,7 +157,7 @@ class Base extends React.Component {
                                 </div>
                             </Route>
                             <Route exact path="/create">
-                                <CreateQuestionSet />
+                                <CreateQuestionSet user={this.state.loginData.user}/>
                             </Route>
                             <Route path="/chart" component={ChartsPage}>
                             </Route>
