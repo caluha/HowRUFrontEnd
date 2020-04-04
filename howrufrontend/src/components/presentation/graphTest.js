@@ -3,6 +3,7 @@ import { Line } from "react-chartjs-2";
 import { MDBContainer } from "mdbreact";
 import { Link } from "react-router-dom";
 import './graph.css';
+import GraphQuestionSelect from './GraphQuestionSelect';
 
 class ChartsPage extends React.Component {
 
@@ -10,6 +11,7 @@ class ChartsPage extends React.Component {
     super(props);
 
     this.state = {
+      currentlyDisplayedData: {},
       dataLine: this.getAllResponses(),
     }
   }
@@ -74,6 +76,10 @@ class ChartsPage extends React.Component {
       dataLine.datasets.push(dataSet);
     }
     return dataLine;
+  }
+
+  renderQuestionSelect = () => {
+    return this.props.location.state.questions.map((e) => <GraphQuestionSelect />);
   }
 
   render() {
