@@ -1,15 +1,14 @@
 import React from "react";
 import {Nav, Navbar} from "react-bootstrap";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function navbar(props) {
   return (
     <Navbar  collapseOnSelect expand="x1" bg="dark" variant="dark">
       <Navbar.Brand href="/">
-        HowRU
+        <h5 style={{color:'white'}}>HowRU {props.user} </h5>
       </Navbar.Brand>
-      <span>{props.user}</span>
+     
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
