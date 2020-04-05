@@ -6,7 +6,7 @@ import remove_01 from '../../images/remove_01.png';
 const typeDict = {RANGE:"Slider", 
             TEXT: "Text",
             RADIO: "Choose one",
-            CHECKBOXES: "Choose many" }
+            CHECKBOX: "Choose many" }
 
 function QuestionDisplay (props){
 

@@ -189,8 +189,8 @@ class CreateQuestionForm extends React.Component {
                       as="select"
                       name="type"
                       className="input-group"
-                      value={this.state.question.type}
-                      onChange={this.updateType}
+                      value={values.type}
+                      onChange={(event) => { handleChange(event); this.updateType(event); }}
                     >
                       <option value="RANGE">Range</option>
                       <option value="TEXT">Text</option>
