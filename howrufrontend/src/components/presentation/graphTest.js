@@ -190,7 +190,6 @@ class ChartsPage extends React.Component {
         <MDBContainer>
           <Line data={this.state.dataLine} options={{ responsive: true, maintainAspectRatio: true }} />
         </MDBContainer>
-        <Link to="/" className="btn btn-new btn-block text-uppercase"> Back To You</Link>
         <React.Fragment>
           {this.renderQuestionSelect()}
         </React.Fragment>
