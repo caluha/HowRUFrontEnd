@@ -3,6 +3,8 @@ html {
   height: 100%;
   background: rgb(124, 124, 124);
   display: flex;
+  --input-padding-x: 1.5rem;
+  --input-padding-y: .75rem;
 }
 
 body {

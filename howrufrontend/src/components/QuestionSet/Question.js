@@ -2,6 +2,7 @@ import React from "react";
 import Response from "./Response";
 import "./QuestionSet.css";
 import { Redirect } from "react-router-dom";
+import '../../index.css'
 
 class Question extends React.Component {
   constructor(props) {
@@ -174,14 +175,16 @@ class Question extends React.Component {
       return (
         <div>
           <form >
-            <div className="question">{this.props.question}</div>
+            <div className="question" >{this.props.question}</div>
             <div id="responsecontainer" className="response">
               {this.addResponses()}
             </div>
           </form>
-          <div className="prev-next_button">
-            <button onClick={this.previous}>Previous</button>
-            <button onClick={this.next}>{this.props.lastQuestion ? "Submit" : "Next"}</button>
+          <div className="bottom-bar">
+          <div className="prev-next_button"  >
+            <button onClick={this.previous} className="prev ">Previous</button>
+            <button onClick={this.next} className="next_submit">{this.props.lastQuestion ? "Submit" : "Next"}</button>
+          </div>
           </div>
         </div>
       );
