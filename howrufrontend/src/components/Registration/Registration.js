@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../Login/LoginPage.css'
+import { Redirect } from 'react-router-dom';
 
 
 
@@ -57,7 +58,6 @@ export default class Registration extends Component {
                event.preventDefault();
               
         } else {
-        
             this.registration(this.state.username, this.state.password, this.state.email);
             event.preventDefault();
         }
