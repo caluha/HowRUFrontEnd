@@ -233,7 +233,7 @@ class ChartsPage extends React.Component {
           {this.renderQuestionSelect()}
         </React.Fragment>
         <div className="bottom-bar">
-          <Link to="/" className="backButton" type="button">Back To You</Link>
+          <Link to="/" className="backButton" type="button">Back</Link>
         </div>
       </React.Fragment>
     );
