@@ -48,7 +48,7 @@ export default class Registration extends Component {
                     this.props.handleSuccessful(result)
                 }
             })
-            .catch(error => console.log("error", error));
+            .catch(error => console.log("error", error), this.setState({message: "Username or email aready exist"}));
     }
     
          
