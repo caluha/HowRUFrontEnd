@@ -108,19 +108,39 @@ class ChartsPage extends React.Component {
       fetch(url + e.id)
         .then(result => result.json())
         .then(result => {
+          console.log(result);
+
+          let responseTime = "";
+          let value = 0;
+
           for (const i in result) {
             switch (result[i].type) {
               case "TEXT":
                 dataSet.data.push(result[i].text)
                 break;
+              case "CHECKBOX":
+                if (responseTime === "") {
+                  responseTime = result[i].responseTime;
+                  value = result[i].value;
+                } else if (responseTime === result[i].responseTime) {
+                  value += result[i].value;
+                } else {
+                  responseTime = result[i].responseTime;
+                  dataSet.data.push(value);
+                  value = result[i].value;
+                }
+                break;           
               default:
                 dataSet.data.push(result[i].value)
                 break;
             }
           }
+          
+          let usedResponsetimes = [];
 
           for (const i in result) {
-            if (newDataLine.labels.length < result.length) {
+            if (!usedResponsetimes.includes(result[i].responseTime)) {
+              usedResponsetimes.push(result[i].responseTime);
               let label = new Date(result[i].responseTime);
               newDataLine.labels.push(`${label.getDate()} ${this.returnMonth(label.getMonth())}`);
             }
