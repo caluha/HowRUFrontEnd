@@ -8,7 +8,7 @@
     margin-bottom: 2rem;
     font-weight: 600;
     font-size: 35px;
-    color: #f37a79;
+    color: #343a40;
   }
   .form-label-group {
     position: relative;
@@ -29,19 +29,18 @@
   
   .btn-lgin {
       color: white;
-      background: #ccdfbb;
+      background: #00963D;
       margin-bottom: 10px;
   }
 
   .btn-new {
     color: white;
-    background-color: #f37a79;
+    background-color: #343a40;
   }
 
   .error {
     color: #ff0000;
     font-weight: 500;
-    border: red;
   }
   
 

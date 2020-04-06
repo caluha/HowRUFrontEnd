@@ -14,8 +14,7 @@ export default function navbar(props) {
         <Nav className="mr-auto">
           <Nav.Link href="/">Home</Nav.Link>
           <Nav.Link href="create">Create new Tracker</Nav.Link>
-          <Nav.Link href="/">Under construction</Nav.Link>
-          <Nav.Link href="https://9gag.com/animals">Dank memes</Nav.Link>
+          <Nav.Link href="/chart">Graphs</Nav.Link>
           <Nav.Link onClick={props.logout}>Log Out</Nav.Link>
         </Nav>
       </Navbar.Collapse>

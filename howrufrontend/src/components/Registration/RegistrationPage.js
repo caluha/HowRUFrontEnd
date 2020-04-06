@@ -27,7 +27,9 @@ class RegistrationPage extends React.Component {
                     <div className="card-body">
                         <Link to="/"><h3 className="card-title text-center" style={{color:"black"}}> HowRU</h3></Link>
                         <Registration handleSuccessful={this.handleSuccessful} />
-                    </div>
+                   
+                    <Link to="/" className="btn btn-lg btn-new btn-block text-uppercase"> Cancel </Link>
+                     </div>
                     <div className="bottom-bar" />
                 </div>
             )
