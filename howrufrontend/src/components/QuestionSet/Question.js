@@ -182,8 +182,11 @@ class Question extends React.Component {
           </form>
           <div className="bottom-bar">
           <div className="prev-next_button"  >
-            <button onClick={this.previous} className="prev ">Previous</button>
-            <button onClick={this.next} className="next_submit">{this.props.lastQuestion ? "Submit" : "Next"}</button>
+            {!this.props.firstQuestion ? <button onClick={this.previous} className="prev ">Previous</button> : ""}
+            {!this.props.lastQuestion ? 
+              <button onClick={this.next} className="next">Next</button> 
+              : 
+              <button onClick={this.next} className="submit">Submit</button>}
           </div>
           </div>
         </div>

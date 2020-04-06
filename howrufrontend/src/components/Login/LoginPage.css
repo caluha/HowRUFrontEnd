@@ -42,6 +42,19 @@
     color: #ff0000;
     font-weight: 500;
   }
+
+  .top-bar {
+    display: flex;
+    vertical-align: middle;
+    height: 61.2px;
+    background-color: #343a40;
+  }
+
+  .img_top {
+    margin-top: 13px;
+    margin-left: 16px;
+    margin-bottom: 13px;
+  }
   
 
   /* Fallback for Edge
