@@ -16,12 +16,9 @@ class RegistrationPage extends React.Component {
     handleSuccessful(data) {
         this.setState({ handleSuccessful: true })
     }
-
+   
     render() {
-        console.log(this.state.handleSuccessful);
-
         if (this.state.handleSuccessful) {
-            
             return <Redirect to="/" />;
         } else {
             return (

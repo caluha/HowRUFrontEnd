@@ -19,7 +19,11 @@ class LoginPage extends React.Component {
     }
 
     render() {
+        // if(this.state.loggedIn) {
+        //     return <Redirect to = "/login" />;
+        // }
         return (
+
             <div className="mainpage" >
                 <Navbar />
                 <div className="card-body" >
