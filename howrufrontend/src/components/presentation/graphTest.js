@@ -19,7 +19,9 @@ class ChartsPage extends React.Component {
         datasets: []
       },
       showAllResponses:true,
-      isFetching: true
+      isFetching: true,
+      questionType: "",
+      tableData: []
     }
   }
 
@@ -33,6 +35,8 @@ class ChartsPage extends React.Component {
     After that, make one dataset for each responseId, containing one response per day */
 
     let url = "http://localhost:8080/response/question/";
+
+    let newTextData = [];
 
     let newDataLine = {
       question: [],
@@ -77,7 +81,7 @@ class ChartsPage extends React.Component {
             
             switch (result[i].type) {
               case "TEXT":
-                dataSet.data.push(result[i].text)
+                newTextData.push({date: parseDate([result[i].responseTime]), text: [result[i].text] })
                 break;
               case "CHECKBOX":
                 if (i == result.length-1) {
@@ -109,9 +113,15 @@ class ChartsPage extends React.Component {
       newDataLine.datasets.push(dataSet);
     }
     // console.log(newDataLine);
-    this.setState({ allResponses: newDataLine, isFetching: false });
+    this.setState({ allResponses: newDataLine, isFetching: false, tableData: newTextData });
 
     let usedLabels = [];
+
+    function parseDate(responseTime) {
+        let monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        let label = new Date(responseTime);
+        return `${label.getDate()} ${monthArray[label.getMonth()]}`;
+    }
 
     function addLabel(responseTime) {
       if (!usedLabels.includes(responseTime)) {
@@ -129,8 +139,6 @@ class ChartsPage extends React.Component {
     console.log("Current question: " + curQuestion)
     for (const index in this.state.allResponses.question) {
       if (this.state.allResponses.question[index] == curQuestion) {
-        console.log(this.state.allResponses.question[index])
-
         let label = this.state.allResponses.labels;
         let newData = this.state.allResponses.datasets[index].data;
         let newDataLine = {
@@ -162,10 +170,47 @@ class ChartsPage extends React.Component {
         }
 
 
-        this.setState({ dataLine: newDataLine, showAllResponses:false },
-          () => { console.log(this.state.dataLine) }
+        this.setState({ dataLine: newDataLine, showAllResponses:false, questionType: this.props.location.state.questions[index].type},
+          () => { console.log(this.state.questionType) }
         );
       }
+    }
+  }
+
+  renderGraphComponent() {
+
+    function renderTextTable(input) {
+      return input.map((e) => 
+        <React.Fragment>
+          <tr>
+              <td>{e.date}</td>
+              <td>{e.text}</td>
+          </tr>
+        </React.Fragment>
+      );
+    }
+
+    switch (this.state.questionType) {
+      case "TEXT":
+        console.log(this.state.tableData);
+        return (
+          <table>
+            <col width="50" />
+            <col width="150" />
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Response</th>
+              </tr>
+            </thead>
+            <tbody>
+              {renderTextTable(this.state.tableData)}
+            </tbody>
+          </table>
+        )
+      default:
+        return <Line data={this.state.showAllResponses ? this.state.allResponses : this.state.dataLine} options={{ responsive: true, maintainAspectRatio: true }} />
+
     }
   }
 
@@ -181,7 +226,7 @@ class ChartsPage extends React.Component {
       <React.Fragment>
         <h3 className="mt-5">{this.props.location.state.name}</h3>
         <MDBContainer>
-          <Line data={this.state.showAllResponses ? this.state.allResponses : this.state.dataLine} options={{ responsive: true, maintainAspectRatio: true }} />
+          {this.renderGraphComponent()}
         </MDBContainer>
         <React.Fragment>
           {this.renderQuestionSelect()}
