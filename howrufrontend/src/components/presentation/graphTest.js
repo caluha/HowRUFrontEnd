@@ -133,15 +133,45 @@ class ChartsPage extends React.Component {
   }
 
   selectQuestion = (event) => {
+    let curQuestion = event.target.id; 
     this.setState({ currentQuestion: event.target.id });
-    console.log("Current question: " + this.state.currentQuestion)
+    console.log("Current question: " + curQuestion)
     for (const index in this.state.allResponses.question) {
-      console.log("DONKEY");
-      if (this.state.allResponses.question[index] == this.state.currentQuestion) {
-        console.log("I REACHED THIS POINT");
+      // console.log("DONKEY");
+      if (this.state.allResponses.question[index] == curQuestion) {
+        // console.log("I REACHED THIS POINT");
+        
         let label = this.state.allResponses.labels;
-        let dataSet = this.state.allResponses.datasets[index];
-        this.setState({ dataLine: { labels: label, dataSets: [dataSet] } },
+        let newData = this.state.allResponses.datasets[index].data;
+        let newDataLine = {
+          labels: label,
+          datasets: [
+            {
+              label: "fwefwef",
+              fill: true,
+              lineTension: 0.3,
+              backgroundColor: "rgba(225, 204,230, .3)",
+              borderColor: "rgb(205, 130, 158)",
+              borderCapStyle: "butt",
+              borderDash: [],
+              borderDashOffset: 0.0,
+              borderJoinStyle: "miter",
+              pointBorderColor: "rgb(205, 130,1 58)",
+              pointBackgroundColor: "rgb(255, 255, 255)",
+              pointBorderWidth: 10,
+              pointHoverRadius: 5,
+              pointHoverBackgroundColor: "rgb(0, 0, 0)",
+              pointHoverBorderColor: "rgba(220, 220, 220,1)",
+              pointHoverBorderWidth: 2,
+              pointRadius: 1,
+              pointHitRadius: 10,
+              data: newData
+            },
+            
+          ] }
+
+
+        this.setState({ dataLine: newDataLine },
           () => { console.log(this.state.dataLine) }
         );
       }
@@ -151,7 +181,10 @@ class ChartsPage extends React.Component {
 
 
   renderQuestionSelect = () => {
-    return this.props.location.state.questions.map((e) => <GraphQuestionSelect selectQuestion={this.selectQuestion} key={e.id} questionId={e.id} question={e.question} />);
+    return this.props.location.state.questions.map((e) => 
+    <GraphQuestionSelect selectQuestion={this.selectQuestion} 
+      key={e.id} questionId={e.id} 
+      question={e.question} />);
   }
 
   returnMonth(monthNumber) {
