@@ -2,3 +2,15 @@
     background: white;
     text-align: center;
 }
+
+.backButton {
+    margin-left: auto;
+    margin-right: 5px;
+    padding: 5px;
+    min-width: 85px;
+    width: auto;
+    color:black;
+    border-radius: 5px;
+    background-color: #ccdfbb;
+}
+
