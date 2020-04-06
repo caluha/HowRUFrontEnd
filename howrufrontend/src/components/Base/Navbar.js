@@ -14,7 +14,7 @@ export default function navbar(props) {
         <Nav className="mr-auto">
           <Nav.Link href="/">My Trackers</Nav.Link>
           <Nav.Link href="create">Create new Tracker</Nav.Link>
-          <Nav.Link onClick={props.logout}>Log Out</Nav.Link>
+          <Nav.Link onClick={props.logout} href="/">Log Out</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

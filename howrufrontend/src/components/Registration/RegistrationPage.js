@@ -27,7 +27,7 @@ class RegistrationPage extends React.Component {
                         <img alt="logo" src={howru_logo} className="img_top" style={{ width: "120px" }} />
                     </div>
                     <div className="card-body">
-                        <Link to="/"><h3 className="card-title text-center" style={{ color: "black" }}> HowRU</h3></Link>
+                       <h3 className="card-title text-center" style={{ color: "black" }}>Create Account</h3>
                         <Registration handleSuccessful={this.handleSuccessful} />
 
                         <Link to="/" className="btn btn-lg btn-new btn-block text-uppercase"> Cancel </Link>

@@ -154,7 +154,6 @@ class Base extends React.Component {
 
                 </div>
             </div>
-
         );
     }
 }
