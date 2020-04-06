@@ -72,6 +72,23 @@ li:not(:first-child).questionListItem{
     display:inline-block;
 
 }
+
+.removeOptionButton{
+    background-color: white;
+
+    border:0;
+    height: 25px;
+    width: 25px;
+    padding:0px;
+    margin-right: 0px;
+}
+.optionRow{
+    margin-right:-22px;
+}
+.removeButtonCol{
+    padding:0;
+    width:30px;
+}
 .button-col{
     white-space: nowrap;
     padding-left:0px;

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Form, Row, Col } from "react-bootstrap";
 
 class CreateTextResponse extends React.Component {
 
@@ -13,17 +14,21 @@ class CreateTextResponse extends React.Component {
         event.preventDefault(); 
     }
 
+
+
     render(){
         return (
             <div>
-                <div className="row">
-                    <div className="col">
-                        <label htmlFor="text">Default text</label>
-                    </div>
-                    <div className="col">
-                        <input type="text" id="text" name="text" value={this.state.text} onChange={this.handleFormChange} noValidate />
-                    </div>
-                </div>
+                <Form.Group controlId="text">
+                    <Row>
+                        <Col>
+                            <Form.Label>Default text</Form.Label>
+                        </Col>
+                        <Col>
+                            <Form.Control  type="text" name="text" value={this.state.text} onChange={this.handleFormChange} noValidate />
+                        </Col>
+                    </Row>
+                </Form.Group>
             </div>
         )
     }
