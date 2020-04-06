@@ -1,5 +1,5 @@
 import React from "react";
-import { Line } from "react-chartjs-2";
+import { Line, Bar } from "react-chartjs-2";
 import { MDBContainer } from "mdbreact";
 import { Link } from "react-router-dom";
 import './graph.css';
@@ -181,7 +181,7 @@ class ChartsPage extends React.Component {
           labels: label,
           datasets: [
             {
-              label: "fwefwef",
+              label: this.state.allResponses.datasets[index].label,
               fill: true,
               lineTension: 0.3,
               backgroundColor: "rgba(225, 204,230, .3)",
