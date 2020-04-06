@@ -6,15 +6,21 @@ import './graph.css';
 import GraphQuestionSelect from './GraphQuestionSelect';
 
 class ChartsPage extends React.Component {
+  // intervalID = 10;
 
   constructor(props) {
     super(props);
     this.selectQuestion = this.selectQuestion.bind(this);
     this.state = {
       currentQuestion: -1,
-      currentlyDisplayedData: this.getAllResponses(),
-      dataLine: this.getAllResponses(),
+      allResponses: {},
+      dataLine: {},
+      isFetching: true
     }
+  }
+
+  componentDidMount() {
+    this.getAllResponses();
   }
 
   getAllResponses () {
@@ -24,16 +30,14 @@ class ChartsPage extends React.Component {
 
     let url = "http://localhost:8080/response/question/";
 
-    let dataLine = {
+    let newDataLine = {
       question: [],
       labels: [],
       datasets: []
     }
-
-    let labelsSet = false;
-
+    
     for (const e of this.props.location.state.questions) {
-      dataLine.question.push(e.id);
+      newDataLine.question.push(e.id);
       let dataSet = {
           label: e.question,
           fill: true,
@@ -58,7 +62,6 @@ class ChartsPage extends React.Component {
       fetch(url + e.id)
         .then(result => result.json())
         .then(result => { 
-          console.log(result);
           for (const i in result) {
             switch(result[i].type) {
               case "TEXT":
@@ -71,32 +74,38 @@ class ChartsPage extends React.Component {
           }
 
           for (const i in result) {
-            if (dataLine.labels.length < result.length) {
+            if (newDataLine.labels.length < result.length) {
               let label = new Date(result[i].responseTime);
-              dataLine.labels.push(`${label.getDate()} ${this.returnMonth(label.getMonth())}`);
+              newDataLine.labels.push(`${label.getDate()} ${this.returnMonth(label.getMonth())}`);
             }
           }
         })
-      dataLine.datasets.push(dataSet);
+        newDataLine.datasets.push(dataSet);
     }
-    return dataLine;
+    this.setState({allResponses: newDataLine, isFetching: false});
   }
 
   selectQuestion = (event) => {
     // this.setState({currentQuestion: event.target.id});
-
+    let label;
+    let dataSet;
     let currentQuestion = event.target.id;
-    console.log("Current question: " + currentQuestion)
-    for (const index in this.state.dataLine.question) {
-      console.log("DONKEY");
-      if (this.state.dataLine.question[index] == currentQuestion){
-        console.log("I REACHED THIS POINT");
-        let label = this.state.dataLine.labels;
-        let dataSet = this.state.dataLine.datasets[index];
-        this.setState({currentlyDisplayedData: { label, dataSet }});
-        console.log(this.state.currentlyDisplayedData);
+
+    this.setState((prev) => {
+      console.log("Current question: " + currentQuestion)
+      for (const index in this.state.allResponses.question) {
+        console.log("DONKEY");
+        if (this.state.allResponses.question[index] == currentQuestion){
+          console.log("I REACHED THIS POINT");
+          label = this.state.allResponses.labels;
+          dataSet = this.state.allResponses.datasets[index];
+          // this.setState({dataLine: { labels: label, dataSets: [dataSet] }});
+          console.log(this.state.dataLine);
+        }
       }
-    }
+    }, () => {
+      this.setState({dataLine: { labels: label, dataSets: [dataSet] }});
+    });
   }
 
   renderQuestionSelect = () => {
@@ -137,7 +146,8 @@ class ChartsPage extends React.Component {
       <React.Fragment>
         <MDBContainer>
           <h3 className="mt-5">{this.props.location.state.name}</h3>
-          <Line data={this.state.currentlyDisplayedData} options={{ responsive: true, maintainAspectRatio: true }} />
+          <Line data={this.state.dataLine} options={{ responsive: true, maintainAspectRatio: true }} />
+          <p>{this.state.isFetching ? "Fetching data..." : ""}</p>
           <Link to="/" className="btn btn-new btn-block text-uppercase"> Back To You</Link>
         </MDBContainer>
         <React.Fragment>
