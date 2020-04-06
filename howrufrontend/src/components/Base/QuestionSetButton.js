@@ -20,5 +20,4 @@ class QuestionSetButton extends React.Component {
     }
 }
 
-
 export default QuestionSetButton;

@@ -104,7 +104,7 @@ li:not(:first-child).questionListItem{
 
 .addQuestionButton{
     float: right;
-    background-color: rgb(52, 185, 52);
+    background-color: #ccdfbb;
     border-radius:5px;
     border:1px solid lightgray;
     margin-right:15px;
@@ -175,26 +175,26 @@ input {
 }
 
 .saveQuestionSetButton{
-    margin:0px;
-    float: right;
-    background-color: green;
-    color:white;
-    border:0;
-    border-radius:5px;
+    margin-left: auto;
+    margin-right: 5px;
+    padding: 5px;
+    width: auto;
+    border-radius: 5px;
+    background-color: #ccdfbb;
 }
 
 .bottom-bar{
-    padding-top:12px;
-    background-color:#292b2c;
-    color:white;
+    display:flex;
+    align-items:center;
+    background-color: #343a40;
     height:50px;
     position: absolute;
     bottom: 0px;
     width: 100%;
-
 }
 
-.bottomBarText{
+.bottomBarText{   
+    color:white;
     font-weight: bold;
     font-size:12px;
     margin-left:20px;

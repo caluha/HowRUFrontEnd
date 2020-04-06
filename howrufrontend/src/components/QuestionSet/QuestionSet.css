@@ -1,4 +1,5 @@
 .question {
+    border-left: 15px solid #ccdfbb;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -9,14 +10,21 @@
   }
   
 .response {
+    border-left: 15px solid #ccdfbb;
     display: inline-block;
     justify-content: center;
     align-items: center;
     background: rgb(250,250,250);
     margin-top: 5px;
-    height: 150px;
+    min-height: 150px;
+    height: auto;
     text-align: center;
     width: 100%;
+  }
+
+  .responseleft {
+    padding:15px;
+    text-align: left;
   }
 
   .responseverticalcenter {
@@ -50,17 +58,31 @@
 .box_question {
     background: rgb(190, 190, 190);
     margin-top: 1px;
-    padding: 5px;
+    
   }
 
 .prev-next_button {
-    position: fixed;
-    bottom:50px;
-    right:5px;
+  margin-left: auto;
+  padding: 5px;
   }
 
+.prev {
+margin-right: 5px;
+width: 85px;
+border-radius: 5px;
+background-color: #F7767A;
+}
+
+.next_submit {
+  width: 85px;
+  border-radius: 5px;
+  background-color: #ccdfbb;
+  
+}
+
+
 .submitButton {
-  position: fixed;
-  bottom:50px;
-  left:5px;
+  margin-left: auto;
+  padding-right: 5px;
+  
 }
