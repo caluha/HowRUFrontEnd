@@ -145,11 +145,13 @@ class ChartsPage extends React.Component {
           <h3 className="mt-5">{this.props.location.state.name}</h3>
           <Line data={this.state.dataLine} options={{ responsive: true, maintainAspectRatio: true }} />
           <p>{this.state.isFetching ? "Fetching data..." : ""}</p>
-          <Link to="/" className="btn btn-new btn-block text-uppercase"> Back To You</Link>
         </MDBContainer>
         <React.Fragment>
           {this.renderQuestionSelect()}
         </React.Fragment>
+        <div className="bottom-bar">
+          <Link to="/" className="backButton" type="button">Back To You</Link>
+        </div>
       </React.Fragment>
     );
   }
