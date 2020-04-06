@@ -26,11 +26,9 @@ export default class Registration extends Component {
 
 
     async registration(username, password, email) {
-        console.log("before url")
         let url = "http://localhost:8080/user";
         var myHeaders = new Headers();
         myHeaders.append('Content-Type', 'application/json');
-        console.log("loggar fel om användare redan finns")
         var requestOptions = {
             method: "POST",
             headers: myHeaders,
@@ -48,7 +46,7 @@ export default class Registration extends Component {
                     this.props.handleSuccessful(result)
                 }
             })
-            .catch(error => console.log("error", error), this.setState({message: "Username or email aready exist"}));
+            .catch(error => console.log("error", error), this.setState({message: "Username or email aready exist"}));                  
     }
     
          

@@ -1,7 +1,7 @@
 import React from 'react';
 import Registration from './Registration';
 import '../Login/LoginPage.css'
-import { BrowserRouter as Redirect } from "react-router-dom";
+import { BrowserRouter as Redirect, Link } from "react-router-dom";
 
 
 class RegistrationPage extends React.Component {
@@ -19,7 +19,6 @@ class RegistrationPage extends React.Component {
         console.log(this.state.handleSuccessful);
 
         if (this.state.handleSuccessful) {
-            console.log("före redirect")
             return <Redirect to="/" />;
         } else {
             return (
@@ -27,7 +26,7 @@ class RegistrationPage extends React.Component {
                     <div className="row">
                         <div className="card card-signin my-5">
                             <div className="card-body">
-                                <h3 className="card-title text-center">HowRU</h3>
+                            <Link to="/" className="card-title text-center"> HowRU</Link>
                                 <Registration handleSuccessful={this.handleSuccessful} />
                             </div>
                         </div>
