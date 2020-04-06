@@ -23,7 +23,7 @@ class ChartsPage extends React.Component {
     this.getAllResponses();
   }
 
-  getAllResponses () {
+  getAllResponses() {
     /*Use the this.props.location.state and loop through all the question Id's
     and make a fetch for each one of them, and store all those responses in the state.
     After that, make one dataset for each responseId, containing one response per day */
@@ -35,42 +35,42 @@ class ChartsPage extends React.Component {
       labels: [],
       datasets: []
     }
-    
+
     for (const e of this.props.location.state.questions) {
       newDataLine.question.push(e.id);
       let dataSet = {
-          label: e.question,
-          fill: true,
-          lineTension: 0.5,
-          backgroundColor: "rgba(225, 204,230, .3)",
-          borderColor: "rgb(205, 130, 158)",
-          borderCapStyle: "butt",
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: "miter",
-          pointBorderColor: "rgb(205, 130,1 58)",
-          pointBackgroundColor: "rgb(255, 255, 255)",
-          pointBorderWidth: 2,
-          pointHoverRadius: 3,
-          pointHoverBackgroundColor: "rgb(0, 0, 0)",
-          pointHoverBorderColor: "rgba(220, 220, 220,1)",
-          pointHoverBorderWidth: 1,
-          pointRadius: 1,
-          pointHitRadius: 1,
-          data: []
+        label: e.question,
+        fill: true,
+        lineTension: 0.5,
+        backgroundColor: "rgba(225, 204,230, .3)",
+        borderColor: "rgb(205, 130, 158)",
+        borderCapStyle: "butt",
+        borderDash: [],
+        borderDashOffset: 0.0,
+        borderJoinStyle: "miter",
+        pointBorderColor: "rgb(205, 130,1 58)",
+        pointBackgroundColor: "rgb(255, 255, 255)",
+        pointBorderWidth: 2,
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: "rgb(0, 0, 0)",
+        pointHoverBorderColor: "rgba(220, 220, 220,1)",
+        pointHoverBorderWidth: 1,
+        pointRadius: 1,
+        pointHitRadius: 1,
+        data: []
       }
       fetch(url + e.id)
         .then(result => result.json())
-        .then(result => { 
+        .then(result => {
           for (const i in result) {
-            switch(result[i].type) {
+            switch (result[i].type) {
               case "TEXT":
                 dataSet.data.push(result[i].text)
                 break;
               default:
                 dataSet.data.push(result[i].value)
                 break;
-            } 
+            }
           }
 
           for (const i in result) {
@@ -80,45 +80,42 @@ class ChartsPage extends React.Component {
             }
           }
         })
-        newDataLine.datasets.push(dataSet);
+      newDataLine.datasets.push(dataSet);
     }
-    this.setState({allResponses: newDataLine, isFetching: false});
+    // console.log(newDataLine);
+    this.setState({ allResponses: newDataLine, isFetching: false });
+    console.log(this.state.allResponses);
   }
 
   selectQuestion = (event) => {
     // this.setState({currentQuestion: event.target.id});
-    let label;
-    let dataSet;
-    let currentQuestion = event.target.id;
-
-    this.setState((prev) => {
-      console.log("Current question: " + currentQuestion)
-      for (const index in this.state.allResponses.question) {
-        console.log("DONKEY");
-        if (this.state.allResponses.question[index] == currentQuestion){
-          console.log("I REACHED THIS POINT");
-          label = this.state.allResponses.labels;
-          dataSet = this.state.allResponses.datasets[index];
-          // this.setState({dataLine: { labels: label, dataSets: [dataSet] }});
-          console.log(this.state.dataLine);
-        }
-      }
-    }, () => {
-      this.setState({dataLine: { labels: label, dataSets: [dataSet] }});
-    });
+    // let currentQuestion = event.target.id;
+    // console.log("Current question: " + currentQuestion)
+    // for (const index in this.state.allResponses.question) {
+    //   console.log("DONKEY");
+    //   if (this.state.allResponses.question[index] == currentQuestion){
+    //     console.log("I REACHED THIS POINT");
+    //     let label = this.state.allResponses.labels;
+    //     let dataSet = this.state.allResponses.datasets[index];
+    //     this.setState({dataLine: { labels: label, dataSets: [dataSet] }});
+    //     console.log(this.state.dataLine);
+    //   }
+    // } 
   }
+
+
 
   renderQuestionSelect = () => {
-    return this.props.location.state.questions.map((e) => <GraphQuestionSelect selectQuestion={this.selectQuestion} key={e.id} questionId={e.id} question={e.question}/>);
+    return this.props.location.state.questions.map((e) => <GraphQuestionSelect selectQuestion={this.selectQuestion} key={e.id} questionId={e.id} question={e.question} />);
   }
-   
+
   returnMonth(monthNumber) {
     switch (monthNumber) {
       case 0:
         return "Jan";
       case 1:
         return "Feb";
-      case 2: 
+      case 2:
         return "Mar";
       case 3:
         return "Apr";
