@@ -4,13 +4,13 @@
 }
 
 .backButton {
-    margin-left: auto;
-    margin-right: 5px;
+   text-align: center;
+    margin-left: 5px;
     padding: 5px;
     min-width: 85px;
     width: auto;
     color:black;
     border-radius: 5px;
-    background-color: #00963D;
+    background-color: white;
 }
 
