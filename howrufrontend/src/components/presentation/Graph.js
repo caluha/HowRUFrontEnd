@@ -35,7 +35,7 @@ class Graph extends React.Component {
     After that, make one dataset for each responseId, containing one response per day */
 
     // let url = "http://localhost:8080/response/question/";
-    let url = "http://ec2-13-53-42-207.eu-north-1.compute.amazonaws.com/response/question"
+    let url = "http://ec2-13-53-42-207.eu-north-1.compute.amazonaws.com:8080/response/question"
     let newTextData = [];
 
     let newDataLine = {

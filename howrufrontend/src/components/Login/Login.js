@@ -22,7 +22,7 @@ export default class Login extends Component {
 
     async login(username, password) {
         // let url = "http://localhost:8080/login";
-        let url = "http://ec2-13-53-42-207.eu-north-1.compute.amazonaws.com/login"
+        let url = "http://ec2-13-53-42-207.eu-north-1.compute.amazonaws.com:8080/login"
         var myHeaders = new Headers();
         myHeaders.append('Content-Type', 'application/json');
         var requestOptions = {
