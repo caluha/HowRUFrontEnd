@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import './graph.css';
 import GraphQuestionSelect from './GraphQuestionSelect';
 
-class ChartsPage extends React.Component {
+class Graph extends React.Component {
   // intervalID = 10;
 
   constructor(props) {
@@ -149,7 +149,7 @@ class ChartsPage extends React.Component {
               fill: true,
               lineTension: 0.3,
               backgroundColor: "rgba(225, 204,230, .3)",
-              borderColor: "rgb(205, 130, 158)",
+              borderColor: "rgb(66, 179, 255)",
               borderCapStyle: "butt",
               borderDash: [],
               borderDashOffset: 0.0,
@@ -194,19 +194,19 @@ class ChartsPage extends React.Component {
       case "TEXT":
         console.log(this.state.tableData);
         return (
-          <table>
-            <col width="50" />
-            <col width="150" />
-            <thead>
-              <tr>
-                <th>Date</th>
-                <th>Response</th>
-              </tr>
-            </thead>
-            <tbody>
-              {renderTextTable(this.state.tableData)}
-            </tbody>
-          </table>
+          <React.Fragment>
+            <table>
+              <thead>
+                <tr>
+                  <th>Date</th>
+                  <th>Response</th>
+                </tr>
+              </thead>
+              <tbody>
+                {renderTextTable(this.state.tableData)}
+              </tbody>
+            </table>
+          </React.Fragment>
         )
       default:
         return <Line data={this.state.showAllResponses ? this.state.allResponses : this.state.dataLine} options={{ responsive: true, maintainAspectRatio: true }} />
@@ -239,4 +239,4 @@ class ChartsPage extends React.Component {
   }
 }
 
-export default ChartsPage;
+export default Graph;

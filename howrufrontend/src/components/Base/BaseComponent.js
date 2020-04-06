@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import CreateQuestionSet from '../CreateEdit/CreateQuestionSet';
 import LoginPage from '../Login/LoginPage'
 import RegistrationPage from '../Registration/RegistrationPage';
-import ChartsPage from '../presentation/graphTest';
+import Graph from '../presentation/Graph';
 
 class Base extends React.Component {
 
@@ -146,7 +146,7 @@ class Base extends React.Component {
                             <Route exact path="/create">
                                 <CreateQuestionSet user={this.state.loginData.user} />
                             </Route>
-                            <Route path="/chart" component={ChartsPage}>
+                            <Route path="/chart" component={Graph}>
                             </Route>
                             {routeFactory(this.state.questionSet, this.state.loginData.user)}
                         </Switch>
