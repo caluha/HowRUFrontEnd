@@ -61,6 +61,7 @@ class ChartsPage extends React.Component {
           }
         ]
       },
+      showAllResponses:true,
       isFetching: true
     }
   }
@@ -205,7 +206,7 @@ class ChartsPage extends React.Component {
         }
 
 
-        this.setState({ dataLine: newDataLine },
+        this.setState({ dataLine: newDataLine, showAllResponses:false },
           () => { console.log(this.state.dataLine) }
         );
       }
@@ -226,7 +227,7 @@ class ChartsPage extends React.Component {
       <React.Fragment>
         <h3 className="mt-5">{this.props.location.state.name}</h3>
         <MDBContainer>
-          <Line data={this.state.dataLine} options={{ responsive: true, maintainAspectRatio: true }} />
+          <Line data={this.state.showAllResponses ? this.state.allResponses : this.state.dataLine} options={{ responsive: true, maintainAspectRatio: true }} />
         </MDBContainer>
         <React.Fragment>
           {this.renderQuestionSelect()}
