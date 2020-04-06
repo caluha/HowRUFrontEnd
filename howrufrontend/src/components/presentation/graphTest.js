@@ -114,12 +114,24 @@ class ChartsPage extends React.Component {
           let value = 0;
 
           for (const i in result) {
+
+            addLabel(result[i].responseTime);
+            
             switch (result[i].type) {
               case "TEXT":
                 dataSet.data.push(result[i].text)
                 break;
               case "CHECKBOX":
-                if (responseTime === "") {
+                if (i == result.length-1) {
+                  console.log("Last element");
+                  if (responseTime === result[i].responseTime) {
+                    console.log("Super if-satsen");
+                    value += result[i].value;
+                  } else {
+                    value = result[i].value;
+                  }
+                  dataSet.data.push(value);
+                } else if (responseTime === "") {
                   responseTime = result[i].responseTime;
                   value = result[i].value;
                 } else if (responseTime === result[i].responseTime) {
@@ -129,20 +141,10 @@ class ChartsPage extends React.Component {
                   dataSet.data.push(value);
                   value = result[i].value;
                 }
-                break;           
+                break;
               default:
                 dataSet.data.push(result[i].value)
                 break;
-            }
-          }
-          
-          let usedResponsetimes = [];
-
-          for (const i in result) {
-            if (!usedResponsetimes.includes(result[i].responseTime)) {
-              usedResponsetimes.push(result[i].responseTime);
-              let label = new Date(result[i].responseTime);
-              newDataLine.labels.push(`${label.getDate()} ${this.returnMonth(label.getMonth())}`);
             }
           }
         })
@@ -150,17 +152,28 @@ class ChartsPage extends React.Component {
     }
     // console.log(newDataLine);
     this.setState({ allResponses: newDataLine, isFetching: false });
+
+    let usedLabels = [];
+
+    function addLabel(responseTime) {
+      if (!usedLabels.includes(responseTime)) {
+        usedLabels.push(responseTime);
+        let monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        let label = new Date(responseTime);
+        newDataLine.labels.push(`${label.getDate()} ${monthArray[label.getMonth()]}`);  
+      }
+    }
   }
 
   selectQuestion = (event) => {
-    let curQuestion = event.target.id; 
+    let curQuestion = event.target.id;
     this.setState({ currentQuestion: event.target.id });
     console.log("Current question: " + curQuestion)
     for (const index in this.state.allResponses.question) {
       // console.log("DONKEY");
       if (this.state.allResponses.question[index] == curQuestion) {
         // console.log("I REACHED THIS POINT");
-        
+
         let label = this.state.allResponses.labels;
         let newData = this.state.allResponses.datasets[index].data;
         let newDataLine = {
@@ -187,8 +200,9 @@ class ChartsPage extends React.Component {
               pointHitRadius: 10,
               data: newData
             },
-            
-          ] }
+
+          ]
+        }
 
 
         this.setState({ dataLine: newDataLine },
@@ -201,39 +215,10 @@ class ChartsPage extends React.Component {
 
 
   renderQuestionSelect = () => {
-    return this.props.location.state.questions.map((e) => 
-    <GraphQuestionSelect selectQuestion={this.selectQuestion} 
-      key={e.id} questionId={e.id} 
-      question={e.question} />);
-  }
-
-  returnMonth(monthNumber) {
-    switch (monthNumber) {
-      case 0:
-        return "Jan";
-      case 1:
-        return "Feb";
-      case 2:
-        return "Mar";
-      case 3:
-        return "Apr";
-      case 4:
-        return "May";
-      case 5:
-        return "Jun";
-      case 6:
-        return "Jul";
-      case 7:
-        return "Aug";
-      case 8:
-        return "Sep";
-      case 9:
-        return "Oct";
-      case 10:
-        return "Nov";
-      case 11:
-        return "Dec";
-    }
+    return this.props.location.state.questions.map((e) =>
+      <GraphQuestionSelect selectQuestion={this.selectQuestion}
+        key={e.id} questionId={e.id}
+        question={e.question} />);
   }
 
   render() {
