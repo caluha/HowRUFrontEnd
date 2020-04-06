@@ -27,7 +27,8 @@ export default class Registration extends Component {
 
 
     async registration(username, password, email) {
-        let url = "http://localhost:8080/user";
+        let url = "http://ec2-13-53-42-207.eu-north-1.compute.amazonaws.com/user";
+        // let url = "http://localhost:8080/user";
         var myHeaders = new Headers();
         myHeaders.append('Content-Type', 'application/json');
         var requestOptions = {

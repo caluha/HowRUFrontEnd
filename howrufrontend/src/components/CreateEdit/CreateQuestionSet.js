@@ -99,7 +99,8 @@ class CreateQuestionSet extends React.Component{
         }
         questionSet.questions=questions;
           
-        const url = "http://localhost:8080/questionset";
+        // const url = "http://localhost:8080/questionset";
+        const url = "http://ec2-13-53-42-207.eu-north-1.compute.amazonaws.com/questionset"
         let response = await fetch(url, {
             method: 'POST',
             headers: {

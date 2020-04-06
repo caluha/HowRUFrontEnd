@@ -40,7 +40,8 @@ class Base extends React.Component {
 
         if (this.state.loginData.loggedIn) {
             // console.log(this.state.loginData)
-            let url = "http://localhost:8080/questionset/user/" + this.state.loginData.user;
+            // let url = "http://localhost:8080/questionset/user/" + this.state.loginData.user;
+            let url = "http://ec2-13-53-42-207.eu-north-1.compute.amazonaws.com/" + this.state.loginData.user; 
             console.log(url);
             fetch(url)
                 .then(result => result.json())
