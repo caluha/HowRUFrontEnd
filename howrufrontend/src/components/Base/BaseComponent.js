@@ -15,7 +15,7 @@ class Base extends React.Component {
     constructor(props) {
         super(props);
 
-        console.log("Constructor ran");
+        // console.log("Constructor ran");
 
         let myStorage = window.localStorage;
         let loginData = {
@@ -39,7 +39,7 @@ class Base extends React.Component {
     getAllQuestionSets = () => {
 
         if (this.state.loginData.loggedIn) {
-            console.log(this.state.loginData)
+            // console.log(this.state.loginData)
             let url = "http://localhost:8080/questionset/user/" + this.state.loginData.user;
             console.log(url);
             fetch(url)
@@ -47,14 +47,13 @@ class Base extends React.Component {
                 .then(result => {
                     this.setState({ questionSet: result })
 
-                    console.log(result)
+                    // console.log(result)
                 })
         }
     }
 
-    componentDidMount() {
+    componentDidMount(){
         let myStorage = window.localStorage;
-
         if (myStorage.getItem("loggedIn") === "true") {
             let loginData = {
                 loggedIn: true,
@@ -62,32 +61,18 @@ class Base extends React.Component {
             }
             this.setState({ loginData: loginData }, this.getAllQuestionSets);
         }
-
-        console.log("ComponentDidMount");
-        // this.getAllQuestionSets();
     }
-    componentDidUpdate(prevProps, prevState) {
-        console.log("ComponentDidUpdate");
 
+    componentDidUpdate(prevProps, prevState) {
         let myStorage = window.localStorage;
         if (myStorage.getItem("loggedIn") === "true") {
             if (myStorage.getItem("user") != this.state.loginData.user) {
-                console.log("ComponentDidUpdate fetched data");
-
                 let loginData = {
                     loggedIn: true,
                     user: myStorage.getItem("user"),
                 }
                 this.setState({ loginData: loginData }, this.getAllQuestionSets);
             }
-
-
-        }
-        //Typical usage, don't forget to compare the props
-        if (this.state.loginData.user !== prevState.loginData.user) {
-            console.log("ComponentDidUpdate detected change of user");
-
-            this.getAllQuestionSets();
         }
     }
 

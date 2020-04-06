@@ -1,22 +1,43 @@
-import React from 'react'
+import React from 'react';
+import { Form, Row, Col, Button } from "react-bootstrap";
+
+import remove_01 from "../../images/remove_01.png";
+
 
 class CreateRadioCheckboxResponses extends React.Component {
 
     constructor(props){
         super(props);
-        this.handleFormChange=this.handleFormChange.bind(this);
+       
+        let errors = [];
+        for(let i in this.props.responses){
+            errors[i]={"option": ""};
+        }
 
         this.state = {
-            responses : this.props.responses
+            responses : this.props.responses,
+            errors: errors,
         } ; 
 
         this.removeElement=this.removeElement.bind(this);
         this.addElement=this.addElement.bind(this); 
     }
 
-    handleFormChange(event){
-        this.setState({[event.target.id] : event.target.value })
-        event.preventDefault(); 
+    validate(el, type, i){
+        let errors = this.state.errors;
+        // console.log(el,type,i); 
+        if(type==="option"){
+            if(el.option ===""){
+
+                errors[i].option = "Option text is required.";
+            } else {
+                errors[i].option = "";
+            }
+
+            // console.log(errors);
+            this.setState({errors:errors});
+        }
+
     }
 
     addElement(){
@@ -30,26 +51,34 @@ class CreateRadioCheckboxResponses extends React.Component {
                 "min_description": "null",
                 "max_description": "null"
             };
-        this.setState({responses: [...this.state.responses,newResp ]});
+        let newErrors = this.state.errors;
+        newErrors[this.state.responses.length]={option:""};
+        this.setState({responses: [...this.state.responses,newResp ], 
+                        errors: newErrors});
     }
 
     removeElement(i){
-        console.log(i);
         let newResp = this.state.responses;
         newResp.splice(i,1);
-        console.log(newResp)
-        this.setState({responses:newResp});
+        let newErrors = this.state.errors;
+        newErrors.splice(i,1);
+        this.setState({responses:newResp, errors:newErrors});
+        
     }
 
-    responseChanger = (el, type) => {
+    responseChanger = (el, type,i) => {
         return ( event ) => {
             if(type==="option"){
                 el.option=event.target.value;
              } else {
                  el.value=event.target.value;
              }
-             console.log(event.target.value)
-             this.setState( {responses : this.state.responses}, this.props.saveResponse(this.state.responses));
+            // console.log(this.validate)
+
+             this.setState( {responses : this.state.responses},
+                 () => { this.validate(el,type,i);
+                         this.props.saveResponse(this.state.responses, this.state.errors); }
+                         );
         }
     }
 
@@ -59,21 +88,55 @@ class CreateRadioCheckboxResponses extends React.Component {
         for(const i in this.state.responses){
             let el = this.state.responses[i];
             responseListElements.push(
-                <tr key={"el"+i}>
-                    <td>
-                        <input type="text" key={"option"+i} id={"option"+i} 
-                        value={el.option}
-                        onChange={this.responseChanger(el,"option") }></input>
-                    </td>
-                    <td>
-                        <input type="number" key={"value"+i} id={"value"+i} 
-                        value={el.value}
-                        onChange={this.responseChanger(el,"value") }></input>
-                    </td>
-                    <td>
-                        <button type="button" onClick={(event) => { this.removeElement(i) }} className="btn btn-danger">X</button>
-                    </td>
-                </tr>
+
+               
+                    <Row className="optionRow" key={"response"+i}>
+                        <Col  xs={6}> 
+                            <Form.Group controlId={"option"+i}>
+                                <Form.Control 
+                                className="input-group"
+                                type="text"
+                                placeholder="Option"
+                                onChange={this.responseChanger(el,"option",i) }
+                                value={el.option}
+                                isInvalid={!! (this.state.errors[i] ? this.state.errors[i].option : "") }
+                                />
+                                <Form.Control.Feedback type="invalid">  
+                                    { (this.state.errors[i] ? this.state.errors[i].option : "")  }
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                        </Col>
+                        <Col >
+                            <Form.Group controlId={"value"+i}>
+                                <Form.Control 
+                                className="input-group"
+                                type="number"
+                                onChange={this.responseChanger(el,"value",i) }
+                                value={el.value}
+                                // isInvalid={!!this.state.errors.min}
+                                />
+                                <Form.Control.Feedback type="invalid">  
+                                    {/* {this.state.errors.min} */}
+                                </Form.Control.Feedback>
+                            </Form.Group>
+                        </Col>
+                        <Col className="removeButtonCol">
+                        <button
+                            // style={{ float: "right" }}
+                            type="button"
+                            className="removeOptionButton"
+                            >
+                            <img
+                                alt="Close"
+                                className={"buttonImage"}
+                                onClick={(event) => { this.removeElement(i) }}
+                                src={remove_01}
+                            />
+                        </button>
+                            {/* <Button type="button" onClick={(event) => { this.removeElement(i) }} className="btn btn-danger">X</Button> */}
+                        </Col>
+                    </Row>
+
             );
         }
         return responseListElements;
@@ -85,20 +148,10 @@ class CreateRadioCheckboxResponses extends React.Component {
         
         return (
             <div>
-                <table className="table">
-                    <thead>
-                        <tr>
-                        <th scope="col">Option</th>
-                        <th scope="col">value</th>
-                        <th scope="col"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {responseElements}
-                    </tbody>
-                </table>
+                {responseElements}
+
                 <button type="button" onClick={this.addElement}
-                 className="btn btn-primary m-3">Add new option</button>    
+                 className="btn btn-primary m-3">Add new option</button>
             </div>
         )
     }
