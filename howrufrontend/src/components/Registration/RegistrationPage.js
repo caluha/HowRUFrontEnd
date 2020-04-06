@@ -1,6 +1,8 @@
 import React from 'react';
 import Registration from './Registration';
 import '../Login/LoginPage.css'
+import '../../index.css'
+import Navbar from '../Base/Navbar'
 import { BrowserRouter as Redirect, Link } from "react-router-dom";
 
 
@@ -14,23 +16,19 @@ class RegistrationPage extends React.Component {
     handleSuccessful(data) {
         this.setState({ handleSuccessful: true })
     }
-
+   
     render() {
-        console.log(this.state.handleSuccessful);
-
         if (this.state.handleSuccessful) {
             return <Redirect to="/" />;
         } else {
             return (
-                <div className="container">
-                    <div className="row">
-                        <div className="card card-signin my-5">
-                            <div className="card-body">
-                            <Link to="/" className="card-title text-center"> HowRU</Link>
-                                <Registration handleSuccessful={this.handleSuccessful} />
-                            </div>
-                        </div>
+                <div className="mainPage">
+                    <Navbar />
+                    <div className="card-body">
+                        <Link to="/"><h3 className="card-title text-center" style={{color:"black"}}> HowRU</h3></Link>
+                        <Registration handleSuccessful={this.handleSuccessful} />
                     </div>
+                    <div className="bottom-bar" />
                 </div>
             )
         }
