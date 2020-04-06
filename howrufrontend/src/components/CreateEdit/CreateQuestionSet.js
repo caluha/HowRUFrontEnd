@@ -180,7 +180,7 @@ class CreateQuestionSet extends React.Component{
 
                     <button 
                     onClick={this.submitQuestionSet}
-                    className="saveQuestionSetButton" type="button">
+                    className="saveQuestionSetButton">
                         Save tracker
                     </button>
                 </div>

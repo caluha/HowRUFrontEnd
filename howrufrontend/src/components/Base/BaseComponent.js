@@ -151,19 +151,18 @@ class Base extends React.Component {
                                 <img alt="Cup of coffee" src={coffee2} style={{ width: "360px" }} />
                                 <div>
                                     {questionSetFactory(this.state.questionSet, this.state.loginData.user)}
-                                    <div>
-                                        <Link to="/create"><button className="floating-menu-icon">New Tracker +</button></Link>
+                                    <div className="bottom-bar">
+                                        <div>
+                                            <Link to="/create"><button className="floating-menu-icon">New Tracker +</button></Link>
+                                        </div>
                                     </div>
                                 </div>
                             </Route>
                             <Route exact path="/create">
-                                <CreateQuestionSet user={this.state.loginData.user}/>
+                                <CreateQuestionSet user={this.state.loginData.user} />
                             </Route>
                             <Route path="/chart" component={ChartsPage}>
                             </Route>
-                            {/* <Route exact path='/logout'>
-                                {this.logOut}
-                            </Route> */}
                             {routeFactory(this.state.questionSet, this.state.loginData.user)}
                         </Switch>
                     </Router>

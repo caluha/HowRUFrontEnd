@@ -41,7 +41,7 @@ class Response extends React.Component {
 
             case "RADIO":
                     return <React.Fragment>
-                            <div className="responseverticalcenter2">
+                            <div className="responseleft">
                                 <input type="radio" id={this.props.responseData.id} 
                                 checked={ this.props.defaultValue.length>0 ? 
                                     this.props.defaultValue[0].optionId == this.props.responseData.id : false }
@@ -54,7 +54,7 @@ class Response extends React.Component {
             case "CHECKBOX":
                 // console.log(this.props.defaultValue);
                 return <React.Fragment>
-                            <div className="responseverticalcenter2">
+                            <div className="responseleft">
                                 <input type={this.props.type} 
                                     id={this.props.responseData.id} 
                                     name={"sel"+this.props.responseData.id} 
