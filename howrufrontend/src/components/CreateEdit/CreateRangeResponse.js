@@ -16,22 +16,18 @@ class CreateRangeResponse extends React.Component {
     }
 
     validate(changed){
+        let min = parseInt(this.state.response.min);
+        let max = parseInt(this.state.response.max);
         let errors = this.state.errors;
-        if(changed==="min"){
-            if(this.state.response.min > this.state.response.max){
-                errors.min="Min value must be smaller than the max value.";
-            } else {
-                errors.min="";
-                errors.max="";
-            }
+        if(min< max){
+            errors.min="";
+            errors.max="";
         }
-        if(changed==="max"){
-            if(this.state.response.min > this.state.response.max){
+        else if(changed==="min" && min > max){
+                errors.min="Min value must be smaller than the max value.";
+        }
+        if(changed==="max" && min > max){
                 errors.max="Max value must be larger than the min value.";
-            } else {
-                errors.max=""; 
-                errors.min="";
-            }
         }
         this.setState({errors: errors}); 
     }

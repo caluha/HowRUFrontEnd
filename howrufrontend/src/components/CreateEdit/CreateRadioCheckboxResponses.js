@@ -9,7 +9,7 @@ class CreateRadioCheckboxResponses extends React.Component {
     constructor(props){
         super(props);
        
-        let errors = {};
+        let errors = [];
         for(let i in this.props.responses){
             errors[i]={"option": ""};
         }
@@ -25,7 +25,7 @@ class CreateRadioCheckboxResponses extends React.Component {
 
     validate(el, type, i){
         let errors = this.state.errors;
-        console.log(el,type,i); 
+        // console.log(el,type,i); 
         if(type==="option"){
             if(el.option ===""){
 
@@ -34,7 +34,7 @@ class CreateRadioCheckboxResponses extends React.Component {
                 errors[i].option = "";
             }
 
-            console.log(errors);
+            // console.log(errors);
             this.setState({errors:errors});
         }
 
@@ -52,7 +52,7 @@ class CreateRadioCheckboxResponses extends React.Component {
                 "max_description": "null"
             };
         let newErrors = this.state.errors;
-        newErrors[this.state.responses.length].option="";
+        newErrors[this.state.responses.length]={option:""};
         this.setState({responses: [...this.state.responses,newResp ], 
                         errors: newErrors});
     }
@@ -61,7 +61,7 @@ class CreateRadioCheckboxResponses extends React.Component {
         let newResp = this.state.responses;
         newResp.splice(i,1);
         let newErrors = this.state.errors;
-        newErrors[i]={option:""};
+        newErrors.splice(i,1);
         this.setState({responses:newResp, errors:newErrors});
         
     }
@@ -76,9 +76,9 @@ class CreateRadioCheckboxResponses extends React.Component {
             // console.log(this.validate)
 
              this.setState( {responses : this.state.responses},
-                 () => { this.props.saveResponse(this.state.responses);
-                        
-                        this.validate(el,type,i)} );
+                 () => { this.validate(el,type,i);
+                         this.props.saveResponse(this.state.responses, this.state.errors); }
+                         );
         }
     }
 

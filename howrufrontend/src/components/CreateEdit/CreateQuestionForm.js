@@ -17,8 +17,6 @@ class CreateQuestionForm extends React.Component {
     this.updateType = this.updateType.bind(this);
     this.saveResponse = this.saveResponse.bind(this);
 
-    console.log(props.question);
-
     this.state = {
       question: props.question
         ? props.question
@@ -30,7 +28,7 @@ class CreateQuestionForm extends React.Component {
           },
       errors: {
         question: "",
-        responses: ""
+        response: []
       }
     };
   }
@@ -95,6 +93,24 @@ class CreateQuestionForm extends React.Component {
   };
 
   handleSubmit = () => {
+    console.log(this.state)
+    if(this.state.question.type==="RADIO" || this.state.question.type==="CHECKBOX"){
+
+      for(let e of this.state.errors.response){
+        if(e.option!==""){
+          return;
+        }
+      }
+    } else if(this.state.question.type==="RANGE"){
+      console.log("IN RANGE BRANCH", this.state.errors.response.length===0)
+      if(this.state.errors.response.length===0){
+
+      } else if( this.state.errors.response.min!=="" || 
+          this.state.errors.response.max!==""){
+          console.log("INside if")
+          return;
+      }
+    }
     
     this.props.saveQuestion(this.state.question);
     
