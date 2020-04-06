@@ -45,27 +45,29 @@ class QuestionSet extends React.Component {
     }
 
     submitData = () => {
+        let responses = [];
         const url = "http://localhost:8080/response";
         for (const i in this.state.answers) {
             for (const j in this.state.answers[i]) {
                 const data = this.state.answers[i][j];
                 console.log(data);
-                fetch(url, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(data),
-                })
-                    .then((response) => response.json())
-                    .then((data) => {
-                        console.log('Success:', data);
-                    })
-                    .catch((error) => {
-                        console.error('Error:', error);
-                    });
+                responses.push(data);
             }
         }
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(responses),
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
     }
 
     addOne = () => {
