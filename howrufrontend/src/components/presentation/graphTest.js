@@ -1,5 +1,5 @@
 import React from "react";
-import { Line } from "react-chartjs-2";
+import { Line, Bar } from "react-chartjs-2";
 import { MDBContainer } from "mdbreact";
 import { Link } from "react-router-dom";
 import './graph.css';
@@ -15,51 +15,8 @@ class ChartsPage extends React.Component {
       currentQuestion: -1,
       allResponses: {},
       dataLine: {
-        labels: ["January", "February", "March", "April", "May", "June", "July"],
-        datasets: [
-          {
-            label: "My First dataset",
-            fill: true,
-            lineTension: 0.3,
-            backgroundColor: "rgba(225, 204,230, .3)",
-            borderColor: "rgb(205, 130, 158)",
-            borderCapStyle: "butt",
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: "miter",
-            pointBorderColor: "rgb(205, 130,1 58)",
-            pointBackgroundColor: "rgb(255, 255, 255)",
-            pointBorderWidth: 10,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgb(0, 0, 0)",
-            pointHoverBorderColor: "rgba(220, 220, 220,1)",
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [65, 59, 80, 81, 56, 55, 40]
-          },
-          {
-            label: "My Second dataset",
-            fill: true,
-            lineTension: 0.3,
-            backgroundColor: "rgba(184, 185, 210, .3)",
-            borderColor: "rgb(35, 26, 136)",
-            borderCapStyle: "butt",
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: "miter",
-            pointBorderColor: "rgb(35, 26, 136)",
-            pointBackgroundColor: "rgb(255, 255, 255)",
-            pointBorderWidth: 10,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgb(0, 0, 0)",
-            pointHoverBorderColor: "rgba(220, 220, 220, 1)",
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [28, 48, 40, 19, 86, 27, 90]
-          }
-        ]
+        labels: [],
+        datasets: []
       },
       showAllResponses:true,
       isFetching: true
@@ -115,12 +72,24 @@ class ChartsPage extends React.Component {
           let value = 0;
 
           for (const i in result) {
+
+            addLabel(result[i].responseTime);
+            
             switch (result[i].type) {
               case "TEXT":
                 dataSet.data.push(result[i].text)
                 break;
               case "CHECKBOX":
-                if (responseTime === "") {
+                if (i == result.length-1) {
+                  console.log("Last element");
+                  if (responseTime === result[i].responseTime) {
+                    console.log("Super if-satsen");
+                    value += result[i].value;
+                  } else {
+                    value = result[i].value;
+                  }
+                  dataSet.data.push(value);
+                } else if (responseTime === "") {
                   responseTime = result[i].responseTime;
                   value = result[i].value;
                 } else if (responseTime === result[i].responseTime) {
@@ -130,20 +99,10 @@ class ChartsPage extends React.Component {
                   dataSet.data.push(value);
                   value = result[i].value;
                 }
-                break;           
+                break;
               default:
                 dataSet.data.push(result[i].value)
                 break;
-            }
-          }
-          
-          let usedResponsetimes = [];
-
-          for (const i in result) {
-            if (!usedResponsetimes.includes(result[i].responseTime)) {
-              usedResponsetimes.push(result[i].responseTime);
-              let label = new Date(result[i].responseTime);
-              newDataLine.labels.push(`${label.getDate()} ${this.returnMonth(label.getMonth())}`);
             }
           }
         })
@@ -151,24 +110,34 @@ class ChartsPage extends React.Component {
     }
     // console.log(newDataLine);
     this.setState({ allResponses: newDataLine, isFetching: false });
+
+    let usedLabels = [];
+
+    function addLabel(responseTime) {
+      if (!usedLabels.includes(responseTime)) {
+        usedLabels.push(responseTime);
+        let monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+        let label = new Date(responseTime);
+        newDataLine.labels.push(`${label.getDate()} ${monthArray[label.getMonth()]}`);  
+      }
+    }
   }
 
   selectQuestion = (event) => {
-    let curQuestion = event.target.id; 
+    let curQuestion = event.target.id;
     this.setState({ currentQuestion: event.target.id });
     console.log("Current question: " + curQuestion)
     for (const index in this.state.allResponses.question) {
-      // console.log("DONKEY");
       if (this.state.allResponses.question[index] == curQuestion) {
-        // console.log("I REACHED THIS POINT");
-        
+        console.log(this.state.allResponses.question[index])
+
         let label = this.state.allResponses.labels;
         let newData = this.state.allResponses.datasets[index].data;
         let newDataLine = {
           labels: label,
           datasets: [
             {
-              label: "fwefwef",
+              label: this.state.allResponses.datasets[index].label,
               fill: true,
               lineTension: 0.3,
               backgroundColor: "rgba(225, 204,230, .3)",
@@ -188,8 +157,9 @@ class ChartsPage extends React.Component {
               pointHitRadius: 10,
               data: newData
             },
-            
-          ] }
+
+          ]
+        }
 
 
         this.setState({ dataLine: newDataLine, showAllResponses:false },
@@ -199,42 +169,11 @@ class ChartsPage extends React.Component {
     }
   }
 
-
-
   renderQuestionSelect = () => {
-    return this.props.location.state.questions.map((e) => 
-    <GraphQuestionSelect selectQuestion={this.selectQuestion} 
-      key={e.id} questionId={e.id} 
-      question={e.question} />);
-  }
-
-  returnMonth(monthNumber) {
-    switch (monthNumber) {
-      case 0:
-        return "Jan";
-      case 1:
-        return "Feb";
-      case 2:
-        return "Mar";
-      case 3:
-        return "Apr";
-      case 4:
-        return "May";
-      case 5:
-        return "Jun";
-      case 6:
-        return "Jul";
-      case 7:
-        return "Aug";
-      case 8:
-        return "Sep";
-      case 9:
-        return "Oct";
-      case 10:
-        return "Nov";
-      case 11:
-        return "Dec";
-    }
+    return this.props.location.state.questions.map((e) =>
+      <GraphQuestionSelect selectQuestion={this.selectQuestion}
+        key={e.id} questionId={e.id}
+        question={e.question} />);
   }
 
   render() {
@@ -248,7 +187,7 @@ class ChartsPage extends React.Component {
           {this.renderQuestionSelect()}
         </React.Fragment>
         <div className="bottom-bar">
-          <Link to="/" className="backButton" type="button">Back To You</Link>
+          <Link to="/" className="backButton" type="button">Back</Link>
         </div>
       </React.Fragment>
     );

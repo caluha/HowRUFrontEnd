@@ -136,11 +136,11 @@ class Base extends React.Component {
                                 <img alt="Cup of coffee" src={coffee2} style={{ width: "360px" }} />
                                 <div>
                                     {questionSetFactory(this.state.questionSet, this.state.loginData.user)}
-                                    <div className="bottom-bar">
+                                   
                                         <div>
                                             <Link to="/create"><button className="floating-menu-icon">New Tracker +</button></Link>
                                         </div>
-                                    </div>
+                                  
                                 </div>
                             </Route>
                             <Route exact path="/create">
@@ -154,7 +154,6 @@ class Base extends React.Component {
 
                 </div>
             </div>
-
         );
     }
 }

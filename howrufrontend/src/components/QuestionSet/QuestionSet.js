@@ -12,6 +12,7 @@ class QuestionSet extends React.Component {
 
         this.state = {
             Questions: this.props.questionSet.questions,
+            firstQuestion: this.props.questionSet.questions[0].id,
             lastQuestion: this.props.questionSet.questions[this.props.questionSet.questions.length - 1].id,
             questionCounter: 0,
             answers: {},
@@ -102,6 +103,7 @@ class QuestionSet extends React.Component {
                 id={e.id}
                 user={this.props.user}
                 lastQuestion={e.id === this.state.lastQuestion ? true : false}
+                firstQuestion={e.id === this.state.firstQuestion ? true : false}
                 question={e.question}
                 type={e.type}
                 responses={e.responses}
