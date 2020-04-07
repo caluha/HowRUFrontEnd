@@ -36,6 +36,8 @@ class Graph extends React.Component {
       type: [],
     }
 
+    let labelsSet = false;
+
     for (const e of this.props.location.state.questions) {
       newResponseData.questionId.push(e.id);
       newResponseData.question.push(e.question);
@@ -46,13 +48,15 @@ class Graph extends React.Component {
       fetch(url + e.id)
         .then(result => result.json())
         .then(result => {
-          console.log(result);
-
+          
           let responseTime = "";
           let value = 0;
 
           for (const i in result) {
-            addLabel(result[i].responseTime);
+
+            if (!labelsSet) {
+              addLabel(result[i].responseTime);
+            }
 
             switch (result[i].type) {
 
@@ -87,18 +91,18 @@ class Graph extends React.Component {
 
             }
           }
+          labelsSet = true;
         })
 
       function addLabel(responseTime) {
         let monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
         let rawlabel = new Date(responseTime);
-        let label = `${rawlabel.getDate()} ${monthArray[rawlabel.getMonth()]}`
-        if (!newResponseData.dateLabel.includes(label)) {
-          newResponseData.dateLabel.push(label)
-        }
+        newResponseData.dateLabel.push(`${rawlabel.getDate()} ${monthArray[rawlabel.getMonth()]}`)
       }
+
       newResponseData.data.push(dataArray);
       console.log(newResponseData);
+      
     }
 
     this.setState({responseData: newResponseData}, console.log(this.state.responseData));
