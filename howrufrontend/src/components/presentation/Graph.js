@@ -4,6 +4,7 @@ import { MDBContainer } from "mdbreact";
 import { Link } from "react-router-dom";
 import './graph.css';
 import GraphQuestionSelect from './GraphQuestionSelect';
+import GraphComponent from './GraphComponent';
 
 class Graph extends React.Component {
   // intervalID = 10;
@@ -14,9 +15,10 @@ class Graph extends React.Component {
     this.state = {
       currentQuestion: -1,
       responseData: {},
-      dataLine: {},
+      dataLine: {date: 1, value: 2},
       showAllResponses: true,
       questionType: "",
+      dataLoaded: false,
     }
   }
 
@@ -48,14 +50,13 @@ class Graph extends React.Component {
       fetch(url + e.id)
         .then(result => result.json())
         .then(result => {
-          
           let responseTime = "";
           let value = 0;
 
           for (const i in result) {
 
             if (!labelsSet) {
-              addLabel(result[i].responseTime);
+              newResponseData.dateLabel.push(result[i].responseTime);
             }
 
             switch (result[i].type) {
@@ -94,18 +95,18 @@ class Graph extends React.Component {
           labelsSet = true;
         })
 
-      function addLabel(responseTime) {
-        let monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
-        let rawlabel = new Date(responseTime);
-        newResponseData.dateLabel.push(`${rawlabel.getDate()} ${monthArray[rawlabel.getMonth()]}`)
-      }
+      // function addLabel(responseTime) {
+      //   let monthArray = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+      //   let rawlabel = new Date(responseTime);
+      //   newResponseData.dateLabel.push(`${rawlabel.getDate()} ${monthArray[rawlabel.getMonth()]}`)
+      // }
 
       newResponseData.data.push(dataArray);
       console.log(newResponseData);
       
     }
 
-    this.setState({responseData: newResponseData}, console.log(this.state.responseData));
+    this.setState({responseData: newResponseData, dataLoaded: true}, console.log(this.state.responseData));
   }
 
   selectQuestion = (event) => {
@@ -130,25 +131,8 @@ class Graph extends React.Component {
               labels: currentResponseData.dateLabel,
               datasets: [
                 {
-                  label: currentResponseData.question[i],
-                  fill: true,
-                  lineTension: 0.3,
-                  backgroundColor: "rgba(225, 204,230, .3)",
-                  borderColor: "rgb(66, 179, 255)",
-                  borderCapStyle: "butt",
-                  borderDash: [],
-                  borderDashOffset: 0.0,
-                  borderJoinStyle: "miter",
-                  pointBorderColor: "rgb(205, 130,1 58)",
-                  pointBackgroundColor: "rgb(255, 255, 255)",
-                  pointBorderWidth: 10,
-                  pointHoverRadius: 5,
-                  pointHoverBackgroundColor: "rgb(0, 0, 0)",
-                  pointHoverBorderColor: "rgba(220, 220, 220,1)",
-                  pointHoverBorderWidth: 2,
-                  pointRadius: 1,
-                  pointHitRadius: 10,
-                  data: currentResponseData.data[i]
+                  date: currentResponseData.question[i],
+                  value: currentResponseData.data[i]
                 },
     
               ]
@@ -178,17 +162,19 @@ class Graph extends React.Component {
       case "TEXT":
         return (
           <React.Fragment>
-            <table>
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Response</th>
-                </tr>
-              </thead>
-              <tbody>
-                {renderTextTable(this.state.dataLine)}
-              </tbody>
-            </table>
+              <div className="tabledisplay">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Response</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {renderTextTable(this.state.dataLine)}
+                </tbody>
+              </table>
+            </div>
           </React.Fragment>
         )
       default:
@@ -208,9 +194,10 @@ class Graph extends React.Component {
     return (
       <React.Fragment>
         <h3 className="mt-5">{this.props.location.state.name}</h3>
-        <MDBContainer>
+        {this.state.dataLoaded ? <GraphComponent dates={this.state.responseData.dateLabel} values={this.state.responseData.data} /> : "Loading..."}
+        {/* <MDBContainer>
           {this.renderGraphComponent()}
-        </MDBContainer>
+        </MDBContainer> */}
         <React.Fragment>
           {this.renderQuestionSelect()}
         </React.Fragment>
