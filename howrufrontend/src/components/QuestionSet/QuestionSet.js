@@ -47,7 +47,8 @@ class QuestionSet extends React.Component {
 
     submitData = () => {
         let responses = [];
-        const url = "http://localhost:8080/response";
+        const url = "http://ec2-13-53-42-207.eu-north-1.compute.amazonaws.com:8080/response";
+        // const url = "http://localhost:8080/response";
         for (const i in this.state.answers) {
             for (const j in this.state.answers[i]) {
                 const data = this.state.answers[i][j];
