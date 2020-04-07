@@ -58,6 +58,22 @@ class Base extends React.Component {
         }
     }
 
+    getAnsweredStates = () => {
+
+        if (this.state.loginData.loggedIn) {
+            let url = "http://localhost:8080/questionsetanswered/user/" + this.state.loginData.user;
+            // let url = "http://ec2-13-53-42-207.eu-north-1.compute.amazonaws.com:8080/questionset/user/" + this.state.loginData.user; 
+            console.log(url);
+            fetch(url)
+                .then(result => result.json())
+                .then(result => {
+                    this.setState({ answeredCheck: result })
+
+                    console.log(result)
+                })
+        }
+    }
+
     componentDidMount(){
         let myStorage = window.localStorage;
         if (myStorage.getItem("loggedIn") === "true") {
@@ -66,6 +82,8 @@ class Base extends React.Component {
                 user: myStorage.getItem("user"),
             }
             this.setState({ loginData: loginData }, this.getAllQuestionSets);
+            this.getAnsweredStates();
+            console.log(this.state.answeredCheck);
         }
     }
 
