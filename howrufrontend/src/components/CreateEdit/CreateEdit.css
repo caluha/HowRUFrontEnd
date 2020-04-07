@@ -6,7 +6,6 @@
 
 .trackerNameHeader{
     padding:13px;
-    
     border-bottom: 1px solid rgb(184, 184, 184);
 }
 
@@ -153,6 +152,21 @@ li:not(:first-child).questionListItem{
     font-weight: bold;
     margin-bottom: 20px;
     padding:0px;
+}
+
+.deleteModalContent{
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    height: auto;
+    overflow: auto;
+
+}
+
+.cancel-button{
+    background-color:#343A40 ;
 }
 
 label {

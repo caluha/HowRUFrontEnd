@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+
 import QuestionSet from '../QuestionSet/QuestionSet';
 import coffee2 from '../../images/coffee2.jpg';
 import Navbar from './Navbar';
@@ -9,6 +10,10 @@ import CreateQuestionSet from '../CreateEdit/CreateQuestionSet';
 import LoginPage from '../Login/LoginPage'
 import RegistrationPage from '../Registration/RegistrationPage';
 import Graph from '../presentation/Graph';
+import EditQuestionSetsList from '../EditQuestionSet/EditQuestionSetsList';
+import EditQuestionSet from '../EditQuestionSet/EditQuestionSet';
+
+
 
 class Base extends React.Component {
 
@@ -147,7 +152,13 @@ class Base extends React.Component {
                             <Route exact path="/create">
                                 <CreateQuestionSet user={this.state.loginData.user} />
                             </Route>
+                            <Route exact path="/edit">
+                                <EditQuestionSetsList user={this.state.loginData.user} questionSets={this.state.questionSet}/>
+                            </Route>
                             <Route path="/chart" component={Graph}>
+                            </Route>
+
+                            <Route path={"/edit/:id"} render={(props) => <EditQuestionSet {...props} user={this.state.loginData.user} /> } >
                             </Route>
                             {routeFactory(this.state.questionSet, this.state.loginData.user)}
                         </Switch>
