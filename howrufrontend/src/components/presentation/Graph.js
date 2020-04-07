@@ -25,8 +25,8 @@ class Graph extends React.Component {
   }
 
   getAllResponses() {
-
-    let url = "http://ec2-13-53-42-207.eu-north-1.compute.amazonaws.com:8080/response/question/"
+    let url = "http://localhost:8080/response/question/";
+    // let url = "http://ec2-13-53-42-207.eu-north-1.compute.amazonaws.com:8080/response/question/";
 
     let newResponseData = {
       questionId: [],
@@ -41,30 +41,32 @@ class Graph extends React.Component {
       newResponseData.question.push(e.question);
       newResponseData.type.push(e.type);
 
+      let dataArray = [];
+
       fetch(url + e.id)
         .then(result => result.json())
         .then(result => {
+
+          let responseTime = "";
+          let value = 0;
+
           for (const i in result) {
-
             addLabel(result[i].responseTime);
-
-            let responseTime = "";
-            let value = 0;
 
             switch (result[i].type) {
 
               case "TEXT":
-                newResponseData.data.push(result[i].text);
+                dataArray.push(result[i].text);
                 break;
-              case "CHECKBOX":
-                if (i == result.length - 1) {
 
+              case "CHECKBOX":
+                if (i == result.length-1) {
                   if (responseTime === result[i].responseTime) {
                     value += result[i].value;
                   } else {
                     value = result[i].value;
                   }
-                  newResponseData.data.push(value);
+                  dataArray.push(value);
 
                 } else if (responseTime === "") {
                   responseTime = result[i].responseTime;
@@ -75,13 +77,12 @@ class Graph extends React.Component {
 
                 } else {
                   responseTime = result[i].responseTime;
-                  newResponseData.data.push(value);
+                  dataArray.push(value);
                   value = result[i].value;
                 }
                 break;
-
               default:
-                newResponseData.data.push(result[i].value);
+                dataArray.push(result[i].value);
 
             }
           }
@@ -95,32 +96,36 @@ class Graph extends React.Component {
           newResponseData.dateLabel.push(label)
         }
       }
+      newResponseData.data.push(dataArray);
+      console.log(newResponseData);
     }
 
-    this.setState({responseData: newResponseData})
+    this.setState({responseData: newResponseData}, console.log(this.state.responseData));
   }
 
   selectQuestion = (event) => {
     let curQuestion = event.target.id;
+    let currentResponseData = this.state.responseData;
 
-    for (const i in this.state.responseData.questionId) {
-      if (this.state.responseData.questionId[i] == curQuestion) {
+    for (const i in currentResponseData.questionId) {
+      if (currentResponseData.questionId[i] == curQuestion) {
         let newDataLine = {};
-        let type = this.state.responseData.type[i];
-        switch (this.state.responseData.type[i]) {
+        let type = currentResponseData.type[i];
+        switch (currentResponseData.type[i]) {
           case "TEXT":
             //Skapa datan som behövs för att visa ett table.
-            newDataLine = {
-              date: this.state.responseData.dateLabel,
-              text: this.state.responseData.data[i]
-            }
+            newDataLine = [];
+            for (const j in currentResponseData.dateLabel) {
+              newDataLine.push({date: currentResponseData.dateLabel[j], text: currentResponseData.data[i][j]});
+            };
+            break;
           default:
             //Skapa datan som behövs för att visa en graf.
             newDataLine = {
-              labels: this.state.responseData.dateLabel,
+              labels: currentResponseData.dateLabel,
               datasets: [
                 {
-                  label: this.state.responseData.question[i],
+                  label: currentResponseData.question[i],
                   fill: true,
                   lineTension: 0.3,
                   backgroundColor: "rgba(225, 204,230, .3)",
@@ -138,14 +143,14 @@ class Graph extends React.Component {
                   pointHoverBorderWidth: 2,
                   pointRadius: 1,
                   pointHitRadius: 10,
-                  data: this.state.responseData.data[i]
+                  data: currentResponseData.data[i]
                 },
     
               ]
             }
         }
         this.setState({ dataLine: newDataLine, showAllResponses: false, questionType: type },
-          () => { console.log(this.state.questionType) }
+          () => { console.log(this.state.dataLine) }
         );
       }
     }
@@ -166,7 +171,6 @@ class Graph extends React.Component {
 
     switch (this.state.questionType) {
       case "TEXT":
-        console.log(this.state.dataLine);
         return (
           <React.Fragment>
             <table>
