@@ -25,8 +25,8 @@ class Graph extends React.Component {
   }
 
   getAllResponses() {
-    let url = "http://localhost:8080/response/question/";
-    // let url = "http://ec2-13-53-42-207.eu-north-1.compute.amazonaws.com:8080/response/question/";
+    // let url = "http://localhost:8080/response/question/";
+    let url = "http://ec2-13-53-42-207.eu-north-1.compute.amazonaws.com:8080/response/question/";
 
     let newResponseData = {
       questionId: [],
@@ -46,6 +46,7 @@ class Graph extends React.Component {
       fetch(url + e.id)
         .then(result => result.json())
         .then(result => {
+          console.log(result);
 
           let responseTime = "";
           let value = 0;
@@ -61,9 +62,12 @@ class Graph extends React.Component {
 
               case "CHECKBOX":
                 if (i == result.length-1) {
+                  console.log("Reached the last checkbox at: " + i);
                   if (responseTime === result[i].responseTime) {
+                    console.log("Same responsetime")
                     value += result[i].value;
                   } else {
+                    console.log("Not the same responsetime")
                     value = result[i].value;
                   }
                   dataArray.push(value);
