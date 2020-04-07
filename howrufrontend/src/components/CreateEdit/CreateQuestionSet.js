@@ -170,9 +170,7 @@ class CreateQuestionSet extends React.Component{
                             maxQuestions = {maxQuestions}
                             saveQuestion={this.addQuestion}
                             removeQuestion={this.removeQuestion} />
-               <pre>
-                   {JSON.stringify(this.state.questions)}
-               </pre>
+
                {errorList}
 
                 <div className="bottom-bar">
