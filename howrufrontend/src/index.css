@@ -68,9 +68,3 @@ body {
   background-image: url('./images/coffe.jpg');
   height: 250px;
 }
-
-.grad1 {
-  height: 55%;
-  background-color: #cccccc;
-  background-image: linear-gradient(rgb(255, 118, 118), rgb(191, 255, 148), rgb(245, 211, 99));
-}
