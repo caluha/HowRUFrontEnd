@@ -17,20 +17,23 @@ class CreateQuestionForm extends React.Component {
     this.updateType = this.updateType.bind(this);
     this.saveResponse = this.saveResponse.bind(this);
 
+    let question={
+      id: this.props.questionId,
+      question: "",
+      type: "RANGE",
+      responses: [JSON.parse(JSON.stringify(defaultResponses.RangeResponse))],
+    };
+    if(props.question){
+      question = props.question; 
+    } 
     this.state = {
-      question: props.question
-        ? props.question
-        : {
-            id: this.props.questionId,
-            question: "",
-            type: "RANGE",
-            responses: [defaultResponses.RangeResponse]
-          },
+      question: question,
       errors: {
         question: "",
         response: []
       }
     };
+    console.log(this.state);
   }
 
   schema = yup.object({
@@ -46,29 +49,29 @@ class CreateQuestionForm extends React.Component {
     newQuestion.type = event.target.value;
     switch (event.target.value) {
       case "RANGE":
-        newQuestion.responses = [defaultResponses.RangeResponse];
+        newQuestion.responses = [JSON.parse(JSON.stringify(defaultResponses.RangeResponse))];
         break;
       case "TEXT":
-        newQuestion.responses = [defaultResponses.TextResponse];
+        newQuestion.responses = [JSON.parse(JSON.stringify(defaultResponses.TextResponse))];
         break;
       case "RADIO":
         newQuestion.responses = [
-          defaultResponses.RadioResponse1,
-          defaultResponses.RadioResponse2,
-          defaultResponses.RadioResponse3
+          JSON.parse(JSON.stringify(defaultResponses.RadioResponse1)),
+          JSON.parse(JSON.stringify(defaultResponses.RadioResponse2)),
+          JSON.parse(JSON.stringify(defaultResponses.RadioResponse3))
         ];
         break;
       case "CHECKBOX":
         newQuestion.responses = [
-          defaultResponses.CheckboxResponse1,
-          defaultResponses.CheckboxResponse2,
-          defaultResponses.CheckboxResponse3
+          JSON.parse(JSON.stringify(defaultResponses.CheckboxResponse1)),
+          JSON.parse(JSON.stringify(defaultResponses.CheckboxResponse2)),
+          JSON.parse(JSON.stringify(defaultResponses.CheckboxResponse3))
         ];
         break;
 
       default:
         newQuestion.type = "RANGE";
-        newQuestion.responses = [defaultResponses.RangeResponse];
+        newQuestion.responses = [JSON.parse(JSON.stringify(defaultResponses.RangeResponse))];
     }
     this.setState({ question: newQuestion });
 
@@ -93,7 +96,6 @@ class CreateQuestionForm extends React.Component {
   };
 
   handleSubmit = () => {
-    console.log(this.state)
     if(this.state.question.type==="RADIO" || this.state.question.type==="CHECKBOX"){
 
       for(let e of this.state.errors.response){
@@ -102,12 +104,11 @@ class CreateQuestionForm extends React.Component {
         }
       }
     } else if(this.state.question.type==="RANGE"){
-      console.log("IN RANGE BRANCH", this.state.errors.response.length===0)
+      
       if(this.state.errors.response.length===0){
 
       } else if( this.state.errors.response.min!=="" || 
           this.state.errors.response.max!==""){
-          console.log("INside if")
           return;
       }
     }
