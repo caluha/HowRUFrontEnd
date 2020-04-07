@@ -44,12 +44,14 @@ class QuestionList extends React.Component {
     }
 
     render() {
-        let qForm = <CreateQuestionForm questionId={this.props.nextId}
+        let qForm = <CreateQuestionForm 
+            questionId={this.props.nextId}
             saveQuestion={this.addQuestion}
             closeForm={this.closeQuestionForm} />;
         let editQuestionForm = null;
         if (this.state.showEditQuestion) {
-            editQuestionForm = <CreateQuestionForm questionId={this.state.editQuestion.id}
+            editQuestionForm = <CreateQuestionForm 
+                questionId={this.state.editQuestion.id}
                 question={this.state.editQuestion}
                 saveQuestion={this.addQuestion}
                 closeForm={this.closeQuestionForm} />
