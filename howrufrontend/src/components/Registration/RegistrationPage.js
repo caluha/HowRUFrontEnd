@@ -3,7 +3,7 @@ import Registration from './Registration';
 import '../Login/LoginPage.css'
 import '../../index.css'
 import howru_logo from '../../images/howru_logo.png'
-import { BrowserRouter as Redirect, Link } from "react-router-dom";
+import  { Redirect, Link } from "react-router-dom";
 
 
 class RegistrationPage extends React.Component {
@@ -18,9 +18,11 @@ class RegistrationPage extends React.Component {
     }
 
     render() {
+
         if (this.state.handleSuccessful) {
+            console.log("try redirect")
             return <Redirect to="/" />;
-        } else {
+        }
             return (
                 <div className="mainPage">
                     <div className="top-bar" >
@@ -37,7 +39,7 @@ class RegistrationPage extends React.Component {
             )
         }
     }
-}
+
 
 
 export default RegistrationPage;

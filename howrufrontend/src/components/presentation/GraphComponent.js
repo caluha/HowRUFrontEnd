@@ -8,6 +8,13 @@ am4core.useTheme(am4themes_animated);
 class GraphComponent extends React.Component {
 
     componentDidMount() {
+        console.log(this.props.dates);
+        console.log(this.props.values);
+        let dates = JSON.parse(JSON.stringify(this.props.dates));
+        let values = JSON.parse(JSON.stringify(this.props.values));
+        console.log(dates);
+
+
         let chart = am4core.create("chartdiv", am4charts.XYChart);
 
         chart.paddingRight = 20;
@@ -19,9 +26,20 @@ class GraphComponent extends React.Component {
             data.push({ date: new Date(2018, 0, i), name: "name" + i, value: visits });
         }
 
-        chart.data = data;
+        let data2 = [];
+        for (let x in dates) {
+            console.log(dates[x]);
+            let dataObject = {date: dates[x], value: values[0][x]};
+            data2.push(dataObject);
+        }
 
-        let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+        console.log(data2);
+        chart.data = data2;
+
+        // let dateAxis = chart.xAxes.push(new am4charts.DateAxis());
+        // dateAxis.renderer.grid.template.location = 0;
+
+        let dateAxis = chart.xAxes.push(new am4charts.ValueAxis());
         dateAxis.renderer.grid.template.location = 0;
 
         let valueAxis = chart.yAxes.push(new am4charts.ValueAxis());
