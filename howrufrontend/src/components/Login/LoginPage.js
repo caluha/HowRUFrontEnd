@@ -1,8 +1,8 @@
 import React from 'react';
 import './LoginPage.css';
-import '../../index.css'
+import '../../index.css';
 import Login from './Login.js';
-import howru_logo from '../../images/howru_logo.png'
+import howru_logo from '../../images/howru_logo.png';
 import { Redirect, Link, } from "react-router-dom";
 
 

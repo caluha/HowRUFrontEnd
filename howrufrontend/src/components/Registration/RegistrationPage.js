@@ -18,9 +18,11 @@ class RegistrationPage extends React.Component {
     }
 
     render() {
+
         if (this.state.handleSuccessful) {
+            console.log("try redirect")
             return <Redirect to="/" />;
-        } else {
+        }
             return (
                 <div className="mainPage">
                     <div className="top-bar" >
@@ -37,7 +39,7 @@ class RegistrationPage extends React.Component {
             )
         }
     }
-}
+
 
 
 export default RegistrationPage;
