@@ -62,12 +62,9 @@ class Graph extends React.Component {
 
               case "CHECKBOX":
                 if (i == result.length-1) {
-                  console.log("Reached the last checkbox at: " + i);
                   if (responseTime === result[i].responseTime) {
-                    console.log("Same responsetime")
                     value += result[i].value;
                   } else {
-                    console.log("Not the same responsetime")
                     value = result[i].value;
                   }
                   dataArray.push(value);
