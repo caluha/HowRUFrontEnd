@@ -1,9 +1,9 @@
 import React from 'react';
 import './LoginPage.css';
-import '../../index.css'
+import '../../index.css';
 import Login from './Login.js';
-import howru_logo from '../../images/howru_logo.png'
-import { BrowserRouter as Redirect, Link, } from "react-router-dom";
+import howru_logo from '../../images/howru_logo.png';
+import { Link } from "react-router-dom";
 
 
 class LoginPage extends React.Component {

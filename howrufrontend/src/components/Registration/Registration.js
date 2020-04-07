@@ -65,9 +65,10 @@ export default class Registration extends Component {
     }
 
     render() {
+      
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.handleSubmit} >
                     <div className="form-label-group">
                         <input type="email" name="email" placeholder="Email" value={this.state.email} onChange={this.handleChange} required />
                         <input type="text" name="username" placeholder="User Name" value={this.state.username} onChange={this.handleChange} required />
