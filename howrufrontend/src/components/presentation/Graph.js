@@ -162,17 +162,19 @@ class Graph extends React.Component {
       case "TEXT":
         return (
           <React.Fragment>
-            <table>
-              <thead>
-                <tr>
-                  <th>Date</th>
-                  <th>Response</th>
-                </tr>
-              </thead>
-              <tbody>
-                {renderTextTable(this.state.dataLine)}
-              </tbody>
-            </table>
+              <div className="tabledisplay">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Response</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {renderTextTable(this.state.dataLine)}
+                </tbody>
+              </table>
+            </div>
           </React.Fragment>
         )
       default:

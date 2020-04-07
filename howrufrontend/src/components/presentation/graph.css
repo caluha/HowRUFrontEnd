@@ -18,3 +18,8 @@ table, th, td {
     border: 2px solid black;
 }
 
+.tabledisplay {
+    overflow-y: auto;
+    max-block-size: 200px;
+}
+
