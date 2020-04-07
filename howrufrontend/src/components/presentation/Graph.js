@@ -4,6 +4,7 @@ import { MDBContainer } from "mdbreact";
 import { Link } from "react-router-dom";
 import './graph.css';
 import GraphQuestionSelect from './GraphQuestionSelect';
+import GraphComponent from './GraphComponent';
 
 class Graph extends React.Component {
   // intervalID = 10;
@@ -48,7 +49,6 @@ class Graph extends React.Component {
       fetch(url + e.id)
         .then(result => result.json())
         .then(result => {
-          
           let responseTime = "";
           let value = 0;
 
@@ -208,9 +208,10 @@ class Graph extends React.Component {
     return (
       <React.Fragment>
         <h3 className="mt-5">{this.props.location.state.name}</h3>
-        <MDBContainer>
+        <GraphComponent data={this.state.dataLine}/>
+        {/* <MDBContainer>
           {this.renderGraphComponent()}
-        </MDBContainer>
+        </MDBContainer> */}
         <React.Fragment>
           {this.renderQuestionSelect()}
         </React.Fragment>
