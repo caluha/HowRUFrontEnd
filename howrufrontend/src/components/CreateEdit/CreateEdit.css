@@ -155,6 +155,21 @@ li:not(:first-child).questionListItem{
     padding:0px;
 }
 
+.deleteModalContent{
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    height: auto;
+    overflow: auto;
+
+}
+
+.cancel-button{
+    background-color:#343A40 ;
+}
+
 label {
     font-size:14px;
     font-weight: bold;

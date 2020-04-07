@@ -10,11 +10,10 @@ import CreateTextResponse from "./CreateTextResponse";
 import CreateRadioCheckboxResponses from "./CreateRadioCheckboxResponses";
 import remove_01 from "../../images/remove_01.png";
 
-class CreateQuestionForm extends React.Component {
+class EditQuestionForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.updateType = this.updateType.bind(this);
     this.saveResponse = this.saveResponse.bind(this);
 
     let question={
@@ -42,40 +41,7 @@ class CreateQuestionForm extends React.Component {
       .max(50)
   });
 
-  updateType(event) {
-    let newQuestion = this.state.question;
 
-    newQuestion.type = event.target.value;
-    switch (event.target.value) {
-      case "RANGE":
-        newQuestion.responses = [JSON.parse(JSON.stringify(defaultResponses.RangeResponse))];
-        break;
-      case "TEXT":
-        newQuestion.responses = [JSON.parse(JSON.stringify(defaultResponses.TextResponse))];
-        break;
-      case "RADIO":
-        newQuestion.responses = [
-          JSON.parse(JSON.stringify(defaultResponses.RadioResponse1)),
-          JSON.parse(JSON.stringify(defaultResponses.RadioResponse2)),
-          JSON.parse(JSON.stringify(defaultResponses.RadioResponse3))
-        ];
-        break;
-      case "CHECKBOX":
-        newQuestion.responses = [
-          JSON.parse(JSON.stringify(defaultResponses.CheckboxResponse1)),
-          JSON.parse(JSON.stringify(defaultResponses.CheckboxResponse2)),
-          JSON.parse(JSON.stringify(defaultResponses.CheckboxResponse3))
-        ];
-        break;
-
-      default:
-        newQuestion.type = "RANGE";
-        newQuestion.responses = [JSON.parse(JSON.stringify(defaultResponses.RangeResponse))];
-    }
-    this.setState({ question: newQuestion });
-
-    event.preventDefault();
-  }
 
   saveResponse(responses, responseErrors) {
     let errors = this.state.errors;
@@ -238,4 +204,4 @@ class CreateQuestionForm extends React.Component {
   }
 }
 
-export default CreateQuestionForm;
+export default EditQuestionForm;
