@@ -9,7 +9,6 @@ class EditQuestionList extends React.Component {
     constructor(props) {
         super(props);
 
-        this.addQuestion = this.addQuestion.bind(this);
         this.showQuestionForm = this.showQuestionForm.bind(this);
         this.closeQuestionForm = this.closeQuestionForm.bind(this);
 
@@ -25,26 +24,34 @@ class EditQuestionList extends React.Component {
         }
     }
 
-    showDeleteModal() {
+    showDeleteModal(question) {
+        return () => {
+            console.log("trying to show delete modal...")
         let deleteModal = <DeleteModal 
-        message={"the question \""+ questionSet.name+"\" "} 
-        delete={this.deleteQuestionSet(questionSet)}
-        hideModal={this.hideDeleteModal} />
-this.setState({
-deleteModal:deleteModal,
-showDeleteModal:true,
+            message={"the question \""+ question.question+"\" "} 
+            delete={this.removeQuestion(question.question)}
+            hideModal={this.hideDeleteModal} />
 
-});
-        let delModal = <DeleteModal message= /> 
-        
-        this.setState(prev => ({ showDeleteModal: !prev.showDeleteModal }))
+        this.setState({
+        deleteModal:deleteModal,
+        showDeleteModal:true,
+
+        });}
         
     }
+
+    hideDeleteModal(){
+        this.setState({
+            deleteModal:null,
+            showDeleteModal:false,
+
+        });
+}
 
     closeDeleteForm() {
         this.setState({
             showDeleteModal: false,
-            deleteQuestion: false,
+            deleteQuestion: null,
             deleteModal: null
         });
     }
@@ -62,10 +69,7 @@ showDeleteModal:true,
         });
     }
 
-    addQuestion(question) {
-        this.props.saveQuestion(question);
-        this.closeQuestionForm();
-    }
+
 
     removeQuestion(question) {
         this.props.removeQuestion(question);
@@ -90,6 +94,7 @@ showDeleteModal:true,
                 <QuestionDisplay
                     key={el.id}
                     question={el}
+                    showDelete={() => { this.showDeleteModal(el)}}
                     showEdit={() => {
                         this.setState({
                             showEditQuestion: true,

@@ -43,7 +43,9 @@ class EditQuestionSet extends React.Component{
         this.getQuestionSet();
     }
 
-
+    removeQuestion(question){
+        
+    }
     submitQuestionSet = () => {
         let errors = [];
         if(this.state.title.trim()===""){
