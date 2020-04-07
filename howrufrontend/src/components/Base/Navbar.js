@@ -7,7 +7,7 @@ export default function navbar(props) {
   return (
     <Navbar  collapseOnSelect expand="x1" bg="dark" variant="dark">
       <Navbar.Brand href="/">
-      <img alt="logo" src={howru_logo} style={{ width: "120px" }} />
+     <div ><img alt="logo" src={howru_logo} style={{ width: "120px" }} /> <a style={{fontWeight:"650"}}>{props.user}</a></div>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
