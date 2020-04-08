@@ -15,6 +15,7 @@ export default function navbar(props) {
         <Nav className="mr-auto" >
         <Nav.Link as={Link} to="/" href="/">My Trackers</Nav.Link>
         <Nav.Link as={Link}to="/create" href="/create" >Create new Tracker</Nav.Link>
+        <Nav.Link as={Link} to="/edit" href="/edit">Edit trackers</Nav.Link>
         <Nav.Link as={Link} to="/" href="/" onClick={props.logout} >Log Out</Nav.Link>
         </Nav >
       </Navbar.Collapse >
