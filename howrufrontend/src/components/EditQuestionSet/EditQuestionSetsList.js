@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink, withRouter, Link } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 
 import coffee2 from '../../images/coffeecup2.jpg';
 import EditQuestionSetButton from './EditQuestionSetButton';

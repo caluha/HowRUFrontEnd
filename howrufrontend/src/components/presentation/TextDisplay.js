@@ -6,7 +6,7 @@ import './graph.css'
 const TextDisplay = (props) => {
 
 
-    let { key, date, texts } = props;
+    let {  date, texts } = props;
 
     date = new Date(date);
     let year = date.getFullYear();
@@ -24,8 +24,8 @@ const TextDisplay = (props) => {
     }
 
     return (
-        <div className="box_small" id="green_box" >
-            <li key={key} style={{ listStyleType: "none" }}>
+        <div className="box_small lightred_box" >
+            <li key={formatted} style={{ listStyleType: "none" }}>
                 <div className="date_graph">
                     <div>{formatted}</div>
                 </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 import { withRouter } from 'react-router'
 
 import QuestionSet from '../QuestionSet/QuestionSet';

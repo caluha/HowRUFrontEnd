@@ -4,7 +4,6 @@ import './graph.css'
 class TextDisplayTable extends Component {
     constructor(props) {
         super(props);
-        
         let textQuestions = [];
         for(let q of props.questions){
             if(q.type==="TEXT"){
@@ -33,7 +32,13 @@ class TextDisplayTable extends Component {
                 </div>
             );
         }
-
+        let questions = [];
+        for(let q of this.state.textQuestions){
+            questions.push(
+            <div key={q.id} className="questionText">
+                {q.question}
+            </div>)
+        }
 
         let textDisplays = [];
         for (let i in dates){
@@ -44,9 +49,17 @@ class TextDisplayTable extends Component {
         }        
         
         return ( 
-            <ul className="tabledisplay" style={{padding:"0"}} >
-                {textDisplays}
-            </ul>
+            <React.Fragment>
+                <div className="questionHeaderContainer">
+                    <div className="questionHeaderBox">
+                        <h4 className="questionHeader">Questions</h4>
+                        {questions}
+                    </div>
+                </div>
+                <ul className="tabledisplay" style={{padding:"0"}} >
+                    {textDisplays}
+                </ul>
+            </React.Fragment>
          );
     }
 }
