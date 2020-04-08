@@ -23,8 +23,8 @@ const TextDisplay = (props) => {
     }
 
     return (
-        <li key={key}>
-            <span>{formatted}</span>
+        <li key={key} className="box">
+            <span className="box">{formatted}</span>
             {textRows}
         </li>
     )
