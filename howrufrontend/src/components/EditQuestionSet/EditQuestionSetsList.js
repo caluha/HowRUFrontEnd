@@ -14,8 +14,10 @@ class EditQuestionSetsList extends React.Component {
         super(props);
         this.showDeleteModal=this.showDeleteModal.bind(this);
         this.hideDeleteModal=this.hideDeleteModal.bind(this); 
+
         this.state={
-            
+
+            questionSets: props.questionSets,   
             
             showDeleteModal:false,
             deleteModal:null,
@@ -24,7 +26,14 @@ class EditQuestionSetsList extends React.Component {
     }
 
     deleteOnBackend(questionSetId){
-        console.log("HERE, we should send a delete request to the backend.")
+
+        let index = this.state.questionSets.findIndex(el => el.id == questionSetId);
+        if(index!==-1){
+            let newQS = this.state.questionSets;
+            newQS.splice(index,1);
+            this.setState({questionSets: newQS});
+        }
+
         // let url = "http://localhost:8080/questionset/"
         let url = "http://howru.live:8080/questionset/";
 
@@ -71,9 +80,9 @@ class EditQuestionSetsList extends React.Component {
     questionSetFactory(questionSets) {
         if (questionSets.length > 0) {
             return questionSets.map((e) => <EditQuestionSetButton key={e.id} 
-            id={e.id} 
-            name={e.name} 
-            showDelete={this.showDeleteModal(e)} />);
+                                                id={e.id} 
+                                                name={e.name} 
+                                                showDelete={this.showDeleteModal(e)} />);
         } else {
             return <p>Create some question sets?</p>
         }
@@ -93,7 +102,7 @@ class EditQuestionSetsList extends React.Component {
                  {this.state.showDeleteModal}
                 <img alt="Cup of coffee" src={coffee2} style={{ width: "360px" }} />
                 <div>
-                    {this.questionSetFactory(this.props.questionSets)}
+                    {this.questionSetFactory(this.state.questionSets)}
                     <div>
                         <NavLink to="/create"><button className="floating-menu-icon">New Tracker +</button></NavLink>
                     </div>
