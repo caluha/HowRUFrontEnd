@@ -14,7 +14,7 @@ class LineGraphContainer extends React.Component {
     this.formatData=this.formatData.bind(this); 
     this.state = {
       graphComponent:null,
-
+      dataLoaded:false,
       responseDataPerQuestion:{},
 
       dates:[],
@@ -135,45 +135,6 @@ class LineGraphContainer extends React.Component {
     return {dates:dates, values: values, texts: texts}; 
 
 
-  }
-
-
-  renderGraphComponent() {
-
-    function renderTextTable(input) {
-      return input.map((e) =>
-        <React.Fragment>
-          <tr>
-            <td>{e.date}</td>
-            <td>{e.text}</td>
-          </tr>
-        </React.Fragment>
-      );
-    }
-
-    switch (this.state.questionType) {
-      case "TEXT":
-        return (
-          <React.Fragment>
-              <div className="tabledisplay">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Date</th>
-                    <th>Response</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {renderTextTable(this.state.dataLine)}
-                </tbody>
-              </table>
-            </div>
-          </React.Fragment>
-        )
-      default:
-        return <Line data={this.state.dataLine} options={{ responsive: true, maintainAspectRatio: true }} />
-
-    }
   }
 
 
