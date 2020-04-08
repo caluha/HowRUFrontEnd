@@ -1,9 +1,5 @@
 import React from "react";
-import { Line, Bar } from "react-chartjs-2";
-import { MDBContainer } from "mdbreact";
-import { Link } from "react-router-dom";
 import './graph.css';
-import GraphQuestionSelect from './GraphQuestionSelect';
 import GraphComponent from './GraphComponent';
 
 class LineGraphContainer extends React.Component {

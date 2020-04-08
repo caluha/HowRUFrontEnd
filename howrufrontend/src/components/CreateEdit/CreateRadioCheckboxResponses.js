@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Row, Col, Button } from "react-bootstrap";
+import { Form, Row, Col } from "react-bootstrap";
 
 import remove_01 from "../../images/remove_01.png";
 

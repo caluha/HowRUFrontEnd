@@ -2,7 +2,6 @@ import React from 'react';
 import QuestionList from '../CreateEdit/QuestionList';
 import '../CreateEdit/CreateEdit.css';
 import { Redirect } from 'react-router-dom';
-import ErrorList from '../CreateEdit/ErrorList';
 import EditQuestionList from './EditQuestionList';
 import '../CreateEdit/CreateEdit.css';
 

@@ -20,7 +20,6 @@ class CalendarContainer extends Component {
         let url = "http://howru.live:8080/response/question/";
         let length = this.props.questions.length; 
         let i = 0;
-        let questionNames = this.props.questions.map(el => el.question ); 
     
         for(const e of this.props.questions){
     
