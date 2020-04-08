@@ -39,6 +39,7 @@ class Base extends React.Component {
             questionSet: []
         }
         this.handleLogin = this.handleLogin.bind(this);
+        this.getAnsweredStates();
     }
 
     getAllQuestionSets = () => {
@@ -58,6 +59,21 @@ class Base extends React.Component {
         }
     }
 
+    getAnsweredStates = () => {
+        //THIS SOMETIMES RESULTS IN answeredCheck BEING UNDEFINDED AND CRASHES THE PROGRAM.
+        if (this.state.loginData.loggedIn) {
+            // let url = "http://localhost:8080/questionsetanswered/user/" + this.state.loginData.user;
+            let url = "http://ec2-13-53-42-207.eu-north-1.compute.amazonaws.com:8080/questionsetanswered/user/" + this.state.loginData.user; 
+            console.log(url);
+            fetch(url)
+                .then(result => result.json())
+                .then(result => {
+                    this.setState({ answeredCheck: result })
+                    console.log(result)
+                })
+        }
+    }
+
     componentDidMount(){
         let myStorage = window.localStorage;
         if (myStorage.getItem("loggedIn") === "true") {
@@ -66,6 +82,8 @@ class Base extends React.Component {
                 user: myStorage.getItem("user"),
             }
             this.setState({ loginData: loginData }, this.getAllQuestionSets);
+            
+            console.log(this.state.answeredCheck);
         }
     }
 
@@ -109,6 +127,19 @@ class Base extends React.Component {
 
     }
 
+    questionSetFactory = (questionSets) => {
+    
+        if (questionSets.length > 0) {
+            let answeredMap = new Map(Object.entries(this.state.answeredCheck));
+            return questionSets.map((e) => {
+                let theId = ''+ e.id;
+                return <QuestionSetButton questions={e.questions} key={e.id} id={e.id} name={e.name} answered={answeredMap.get(theId)}/>
+            })
+        } else {
+            return <p>Create some question sets?</p>
+        }
+    }
+
 
     render() {
 
@@ -141,7 +172,7 @@ class Base extends React.Component {
                             <Route exact path="/">
                                 <img alt="Cup of coffee" src={coffee2} style={{ width: "360px" }} />
                                 <div>
-                                    {questionSetFactory(this.state.questionSet, this.state.loginData.user)}
+                                    {this.questionSetFactory(this.state.questionSet, this.state.loginData.user)}
                                    
                                         <div>
                                             <Link to="/create"><button className="floating-menu-icon">New Tracker +</button></Link>
@@ -170,13 +201,7 @@ class Base extends React.Component {
     }
 }
 
-function questionSetFactory(questionSets) {
-    if (questionSets.length > 0) {
-        return questionSets.map((e) => <QuestionSetButton questions={e.questions} key={e.id} id={e.id} name={e.name} />)
-    } else {
-        return <p>Create some question sets?</p>
-    }
-}
+
 
 function routeFactory(questionSets, user) {
     // console.log(user);
