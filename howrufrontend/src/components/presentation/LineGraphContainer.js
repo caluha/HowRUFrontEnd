@@ -13,15 +13,7 @@ class LineGraphContainer extends React.Component {
     super(props);
     this.formatData=this.formatData.bind(this); 
     this.state = {
-      currentQuestion: -1,
-      responseData: {},
-      dataLine: {date: 1, value: 2},
-      showAllResponses: true,
-      questionType: "",
-      dataLoaded: false,
-
       graphComponent:null,
-
 
       responseDataPerQuestion:{},
 
@@ -36,7 +28,7 @@ class LineGraphContainer extends React.Component {
   }
 
   async getAllResponses(){
-    let url = "http://ec2-13-53-42-207.eu-north-1.compute.amazonaws.com:8080/response/question/";
+    let url = "http://howru.live:8080/response/question/";
     let length = this.props.questions.length; 
     let i = 0;
     let questionNames = this.props.questions.map(el => el.question ); 

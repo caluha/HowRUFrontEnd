@@ -74,7 +74,7 @@ class EditQuestionSet extends React.Component{
         
             // console.log(this.state.loginData)
             // let url = "http://localhost:8080/questionset/user/" + this.state.loginData.user;
-        let url = "http://ec2-13-53-42-207.eu-north-1.compute.amazonaws.com:8080/questionset/"+this.id; 
+        let url = "http://howru.live:8080/questionset/"+this.id; 
         console.log(url);
         fetch(url)
             .then(result => result.json())
@@ -104,7 +104,7 @@ class EditQuestionSet extends React.Component{
         // questionSet.questions=questions;
           
         // // const url = "http://localhost:8080/questionset";
-        // const url = "http://ec2-13-53-42-207.eu-north-1.compute.amazonaws.com:8080/questionset"
+        // const url = "http://howru.live:8080/questionset"
         // let response = await fetch(url, {
         //     method: 'POST',
         //     headers: {
