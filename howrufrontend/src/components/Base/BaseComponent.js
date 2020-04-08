@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { withRouter } from 'react-router'
+
 import QuestionSet from '../QuestionSet/QuestionSet';
 import coffee2 from '../../images/coffee2.jpg';
 import Navbar from './Navbar';
@@ -35,7 +37,8 @@ class Base extends React.Component {
 
         this.state = {
             loginData: loginData,
-            questionSet: []
+            questionSet: [],
+            loadedData:false,
         }
         this.handleLogin = this.handleLogin.bind(this);
         this.getAnsweredStates();
@@ -74,19 +77,25 @@ class Base extends React.Component {
     }
 
     componentDidMount(){
+
+        console.log(this.props.history);
+
         let myStorage = window.localStorage;
         if (myStorage.getItem("loggedIn") === "true") {
             let loginData = {
                 loggedIn: true,
                 user: myStorage.getItem("user"),
             }
-            this.setState({ loginData: loginData }, this.getAllQuestionSets);
+            this.setState({ loginData: loginData }, 
+                ()=> {  this.getAllQuestionSets(); 
+                        this.getAnsweredStates(); } );
             
-            console.log(this.state.answeredCheck);
+            // console.log(this.state.answeredCheck);
         }
     }
 
     componentDidUpdate(prevProps, prevState) {
+        console.log("base updated");
         let myStorage = window.localStorage;
         if (myStorage.getItem("loggedIn") === "true") {
             if (myStorage.getItem("user") != this.state.loginData.user) {
@@ -94,8 +103,12 @@ class Base extends React.Component {
                     loggedIn: true,
                     user: myStorage.getItem("user"),
                 }
-                this.setState({ loginData: loginData }, this.getAllQuestionSets);
+                this.setState({ loginData: loginData }, 
+                    ()=> {  this.getAllQuestionSets(); 
+                            this.getAnsweredStates(); });
             }
+
+            
         }
     }
 
@@ -215,5 +228,5 @@ function routeFactory(questionSets, user) {
     }
 }
 
-export default Base;
+export default withRouter(Base);
 
