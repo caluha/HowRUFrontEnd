@@ -6,19 +6,17 @@ import answered_01 from '../../images/answered_01.png';
 import { NavLink } from "react-router-dom";
 
 
-class QuestionSetButton extends React.Component {
+const QuestionSetButton = (props) => {
 
-    render() {
-
-        return (
-            <div className="box" id="lightred_box">
-                <NavLink exact to={"/" + this.props.name} className="pen"><img alt="Go!" src={arrow} style={{ height: "25px" }} /></NavLink>
-                <div className="pen"><img alt="Answered" src={this.props.answered ? answered_01 : unanswered_01} style={{ height: "25px" }} /></div>
-                <NavLink to={{ pathname: "/chart", state: { questions: this.props.questions, name: this.props.name } }} className="pen"><img alt="Data" src={chart} style={{ height: "25px" }} /></NavLink>
-                <div>{this.props.name}</div>
-            </div>
-        );
-    }
+    return (
+        <div className="box lightred_box" style={{borderColor:props.borderColor}}>
+            <NavLink exact to={"/" + props.name} className="pen"><img alt="Go!" src={arrow} style={{ height: "25px" }} /></NavLink>
+            <div className="pen"><img alt="Answered" src={props.answered ? answered_01 : unanswered_01} style={{ height: "25px" }} /></div>
+            <NavLink to={{ pathname: "/chart", state: { questions: props.questions, name: props.name } }} className="pen"><img alt="Data" src={chart} style={{ height: "25px" }} /></NavLink>
+            <div>{props.name}</div>
+        </div>
+    );
+    
 }
 
 export default QuestionSetButton;

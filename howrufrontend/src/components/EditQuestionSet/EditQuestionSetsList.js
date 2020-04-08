@@ -1,12 +1,18 @@
 import React from 'react';
 import { NavLink, withRouter, Link } from "react-router-dom";
 
-import coffee2 from '../../images/coffee2.jpg';
+import coffee2 from '../../images/coffeecup2.jpg';
 import EditQuestionSetButton from './EditQuestionSetButton';
 import DeleteModal from './DeleteModal';
 
 
 class EditQuestionSetsList extends React.Component {
+    borderColors=[
+        "#F7767A",
+        "#00963D",
+        "#DD3146",
+        "#76b9f7",
+    ]
 
 
     constructor(props) {
@@ -78,9 +84,10 @@ class EditQuestionSetsList extends React.Component {
 
     questionSetFactory(questionSets) {
         if (questionSets.length > 0) {
-            return questionSets.map((e) => <EditQuestionSetButton key={e.id}
+            return questionSets.map((e, index) => <EditQuestionSetButton key={e.id}
                 id={e.id}
                 name={e.name}
+                borderColor={this.borderColors[index%this.borderColors.length]}
                 showDelete={this.showDeleteModal(e)} />);
         } else {
             return <p>Create some question sets?</p>
@@ -99,7 +106,7 @@ class EditQuestionSetsList extends React.Component {
 
             <div>
                 {this.state.showDeleteModal}
-                <img alt="Cup of coffee" src={coffee2} style={{ width: "360px" }} />
+                <img alt="Cup of coffee" src={coffee2} style={{ width: "360px", height:"202px" }} />
                 <div>
                     {this.questionSetFactory(this.state.questionSets)}
                     <div>

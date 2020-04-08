@@ -10,7 +10,7 @@ const EditQuestionSetButton = (props)=> {
 
     
     return (
-        <div className="box" id="lightred_box">
+        <div className="box lightred_box" style={{borderColor:props.borderColor}}>
 
             <button type="button" className="editButton pen"><img alt="Delete" className={"buttonImage"} onClick={props.showDelete} src={remove_01}/></button>
             <NavLink exact to ={"/edit/"+props.id}>

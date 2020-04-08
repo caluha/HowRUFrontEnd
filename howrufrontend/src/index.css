@@ -48,7 +48,10 @@ body {
 #red_box {
   border-left: 15px solid #DD3146;
 }
-
+.lightred_box {
+  border-left: 15px solid;
+  border-color:#F7767A ;
+}
 #lightred_box {
    border-left: 15px solid #F7767A;
 }

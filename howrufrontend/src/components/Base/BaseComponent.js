@@ -146,13 +146,22 @@ class Base extends React.Component {
 
     }
 
+    borderColors=[
+        "#F7767A",
+        "#00963D",
+        "#DD3146",
+        "#76b9f7",
+    ]
+
     questionSetFactory = (questionSets) => {
     
         if (questionSets.length > 0) {
             let answeredMap = new Map(Object.entries(this.state.answeredCheck));
-            return questionSets.map((e) => {
+            return questionSets.map((e, index) => {
                 let theId = ''+ e.id;
-                return <QuestionSetButton questions={e.questions} key={e.id} id={e.id} name={e.name} answered={answeredMap.get(theId)}/>
+                return <QuestionSetButton questions={e.questions} key={e.id} 
+                        borderColor={this.borderColors[index%this.borderColors.length]}
+                        id={e.id} name={e.name} answered={answeredMap.get(theId)}/>
             })
         } else {
             return <p>Create some question sets?</p>
