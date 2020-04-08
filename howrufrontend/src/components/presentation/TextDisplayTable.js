@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TextDisplay from './TextDisplay';
-
+import './graph.css'
 class TextDisplayTable extends Component {
     constructor(props) {
         super(props);
@@ -26,9 +26,11 @@ class TextDisplayTable extends Component {
 
         if(texts.length === 0){
             return (
-                <h2>
-                    This data set has no text answers to display!
-                </h2>
+                <div className="showNoData">
+                    <h2>
+                        This data set has no text answers to display!
+                    </h2>
+                </div>
             );
         }
 
@@ -42,7 +44,7 @@ class TextDisplayTable extends Component {
         }        
         
         return ( 
-            <ul >
+            <ul className="tabledisplay" style={{padding:"0"}} >
                 {textDisplays}
             </ul>
          );

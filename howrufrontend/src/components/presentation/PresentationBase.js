@@ -45,17 +45,17 @@ class PresentationBase extends Component {
 
     render() { 
         return (
-            <div>
+            <div style={{height:"100%"}}>
                 <h4 id="green_box" className="box">{this.props.location.state.name}</h4>
                 <Row xs={4}>
                     <Col ><Button onClick={() => this.switchTab("lineGraph")} className="tab">Line graph</Button></Col>
-                    <Col><Button onClick={() => this.switchTab("calendar")} className="tab">Calendar</Button></Col>
+                    {/* <Col><Button onClick={() => this.switchTab("calendar")} className="tab">Calendar</Button></Col> */}
                     <Col><Button onClick={() => this.switchTab("text")} className="tab">Text entries</Button></Col>
-                    <Col><Button className="tab">Charts</Button></Col>
+                    {/* <Col><Button className="tab">Charts</Button></Col> */}
                 </Row>
-                <div>
+                
                     {this.state.currentComponent}
-                </div>
+                
                 <div className="bottom-bar">
                     <Link to="/" className="backButton" type="button">Back</Link>
                 </div>

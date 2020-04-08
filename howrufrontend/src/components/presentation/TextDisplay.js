@@ -1,32 +1,38 @@
 import React from 'react';
+import './graph.css'
 
 
 
 const TextDisplay = (props) => {
 
 
-    let {key, date, texts} = props; 
+    let { key, date, texts } = props;
 
-    date = new Date(date); 
-    let year = date.getFullYear(); 
+    date = new Date(date);
+    let year = date.getFullYear();
     let month = date.getMonth();
-    let day=date.getDate(); 
-    let hour=date.getHours();
-    let minutes = date.getMinutes(); 
-    let formatted=`${year}-${month}-${day}  ${hour}:${minutes}`
+    let day = date.getDate();
+    let hour = date.getHours();
+    let minutes = date.getMinutes();
+    let formatted = `${year}-${month}-${day}  ${hour}:${minutes}`
 
-    let textRows=[];
-    for(let t of texts){
+    let textRows = [];
+    for (let t of texts) {
         textRows.push(
-            <p>{t}</p>
+            <div style={{marginBottom: "5px",  marginTop: "5px"}}>{t}</div>
         )
     }
 
     return (
-        <li key={key} className="box">
-            <span className="box">{formatted}</span>
-            {textRows}
-        </li>
+        <div className="box_small" id="green_box" >
+            <li key={key} style={{ listStyleType: "none" }}>
+                <div className="date_graph">
+                    <div>{formatted}</div>
+                </div>
+                    <div className="text_graph">{textRows}</div>
+            </li>
+        </div>
+
     )
 }
 
