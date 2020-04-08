@@ -25,6 +25,12 @@ class EditQuestionSetsList extends React.Component {
 
     deleteOnBackend(questionSetId){
         console.log("HERE, we should send a delete request to the backend.")
+        let url = "http://ec2-13-53-42-207.eu-north-1.compute.amazonaws.com:8080/questionset/";
+
+        fetch(url + questionSetId, 
+            { method: 'DELETE', }) 
+            .then(result => result.json()) 
+            .then(res => console.log(res))
     }
 
     deleteQuestionSet(questionSet){

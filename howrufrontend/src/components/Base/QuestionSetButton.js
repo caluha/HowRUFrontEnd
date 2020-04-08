@@ -14,7 +14,7 @@ class QuestionSetButton extends React.Component {
             return (
                 <div className="box" id="lightred_box">
                     <NavLink exact to={"/" + this.props.name} className="pen"><img alt="Go!" src={arrow} style={{ height: "25px" }} /></NavLink>
-                    <NavLink exact to="/unchecked" className="pen"><img alt="Answered" src={answered_01} style={{ height: "25px" }} /></NavLink>
+                    <div className="pen"><img alt="Answered" src={answered_01} style={{ height: "25px" }} /></div>
                     <NavLink to={{pathname: "/chart", state: {questions: this.props.questions, name: this.props.name}}} className="pen"><img alt="Data" src={chart} style={{ height: "25px" }} /></NavLink>
                     <div>{this.props.name}</div>
                 </div>
@@ -23,7 +23,7 @@ class QuestionSetButton extends React.Component {
             return (
                 <div className="box" id="lightred_box">
                     <NavLink exact to={"/" + this.props.name} className="pen"><img alt="Go!" src={arrow} style={{ height: "25px" }} /></NavLink>
-                    <NavLink exact to="/unchecked" className="pen"><img alt="Unanswered" src={unanswered_01} style={{ height: "25px" }} /></NavLink>
+                    <div className="pen"><img alt="Unanswered" src={unanswered_01} style={{ height: "25px" }} /></div>
                     <NavLink to={{pathname: "/chart", state: {questions: this.props.questions, name: this.props.name}}} className="pen"><img alt="Data" src={chart} style={{ height: "25px" }} /></NavLink>
                     <div>{this.props.name}</div>
                 </div>
