@@ -12,6 +12,7 @@ import RegistrationPage from '../Registration/RegistrationPage';
 import Graph from '../presentation/Graph';
 import EditQuestionSetsList from '../EditQuestionSet/EditQuestionSetsList';
 import EditQuestionSet from '../EditQuestionSet/EditQuestionSet';
+import PresentationBase from '../presentation/PresentationBase';
 
 
 
@@ -186,7 +187,8 @@ class Base extends React.Component {
                             <Route exact path="/edit">
                                 <EditQuestionSetsList user={this.state.loginData.user} questionSets={this.state.questionSet}/>
                             </Route>
-                            <Route path="/chart" component={Graph}>
+                            {/* <Route path="/chart" component={Graph}> */}
+                            <Route path="/chart" component={PresentationBase}>
                             </Route>
 
                             <Route path={"/edit/:id"} render={(props) => <EditQuestionSet {...props} user={this.state.loginData.user} /> } >
