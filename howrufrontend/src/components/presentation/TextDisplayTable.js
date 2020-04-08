@@ -45,7 +45,7 @@ class TextDisplayTable extends Component {
         
         
         return ( 
-            <ul>
+            <ul >
                 {textDisplays}
             </ul>
          );
