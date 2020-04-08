@@ -17,7 +17,7 @@ class CalendarContainer extends Component {
     }
 
     async getAllResponses(){
-        let url = "http://ec2-13-53-42-207.eu-north-1.compute.amazonaws.com:8080/response/question/";
+        let url = "http://howru.live:8080/response/question/";
         let length = this.props.questions.length; 
         let i = 0;
         let questionNames = this.props.questions.map(el => el.question ); 
@@ -51,7 +51,7 @@ class CalendarContainer extends Component {
       }
 
 
-      formatData(responseDataPerQuestion)  {
+    formatData(responseDataPerQuestion)  {
 
         let dates = [];
         let values = []; 
