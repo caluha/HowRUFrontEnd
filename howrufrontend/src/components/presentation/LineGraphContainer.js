@@ -53,12 +53,6 @@ class LineGraphContainer extends React.Component {
           });
         i++;
         })
-       
-
-
-
-
-
     }
   }
 
