@@ -41,12 +41,6 @@ class CalendarContainer extends Component {
               });
             i++;
             })
-           
-    
-    
-    
-    
-    
         }
       }
 
