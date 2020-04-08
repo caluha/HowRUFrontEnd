@@ -11,6 +11,8 @@ class EditQuestionList extends React.Component {
 
         this.showQuestionForm = this.showQuestionForm.bind(this);
         this.closeQuestionForm = this.closeQuestionForm.bind(this);
+        this.hideDeleteModal = this.hideDeleteModal.bind(this);
+        this.removeQuestion = this.removeQuestion.bind(this);
 
         this.state = {
             showingNewQuestionForm: false,
@@ -18,35 +20,35 @@ class EditQuestionList extends React.Component {
             showEditQuestion: false,
             editQuestion: null,
 
-            showDeleteModal:false,
+            showDeleteModal: false,
             deleteQuestion: null,
             deleteModal: null,
         }
     }
 
     showDeleteModal(question) {
-        return () => {
-            console.log("trying to show delete modal...")
-        let deleteModal = <DeleteModal 
-            message={"the question \""+ question.question+"\" "} 
-            delete={this.removeQuestion(question.question)}
-            hideModal={this.hideDeleteModal} />
+        console.log("trying to show delete modal...");
+
+        let deleteModal = <DeleteModal
+                            message={"the question \"" + question.question + "\" "}
+                            delete={() => {this.removeQuestion(question.id)}}
+                            hideModal={this.hideDeleteModal} />
 
         this.setState({
-        deleteModal:deleteModal,
-        showDeleteModal:true,
-
-        });}
-        
-    }
-
-    hideDeleteModal(){
-        this.setState({
-            deleteModal:null,
-            showDeleteModal:false,
+            deleteModal: deleteModal,
+            showDeleteModal: true,
 
         });
-}
+
+    }
+
+    hideDeleteModal() {
+
+        this.setState({
+            deleteModal: null,
+            showDeleteModal: false,
+        });
+    }
 
     closeDeleteForm() {
         this.setState({
@@ -69,10 +71,9 @@ class EditQuestionList extends React.Component {
         });
     }
 
-
-
-    removeQuestion(question) {
-        this.props.removeQuestion(question);
+    removeQuestion (questionId) {
+        this.props.removeQuestion(questionId);
+        this.hideDeleteModal();
     }
 
     render() {
@@ -87,14 +88,14 @@ class EditQuestionList extends React.Component {
         //         closeForm={this.closeQuestionForm} />
         // }
         let questionElements = [];
-        let deleteModals = undefined; 
+        let deleteModals = undefined;
 
         for (const el of this.props.questions) {
             questionElements.push(
                 <QuestionDisplay
                     key={el.id}
                     question={el}
-                    showDelete={() => { this.showDeleteModal(el)}}
+                    showDelete={() => { this.showDeleteModal(el) }}
                     showEdit={() => {
                         this.setState({
                             showEditQuestion: true,
@@ -109,6 +110,7 @@ class EditQuestionList extends React.Component {
             <div className="questionListContainer">
                 <ul className="questionList">
                     {questionElements}
+                    {this.state.showDeleteModal ? this.state.deleteModal : null}
                 </ul>
                 {/* {this.state.showEditQuestion ? editQuestionForm : this.state.showingNewQuestionForm && qForm} */}
             </div>

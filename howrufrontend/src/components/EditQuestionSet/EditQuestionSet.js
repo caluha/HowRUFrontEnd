@@ -14,7 +14,7 @@ class EditQuestionSet extends React.Component {
     constructor(props) {
         super(props);
         // this.addQuestion=this.addQuestion.bind(this); 
-        // this.removeQuestion=this.removeQuestion.bind(this); 
+        this.removeQuestion=this.removeQuestion.bind(this); 
         // this.handleChange = this.handleChange.bind(this);
         // this.submitToBackend=this.submitToBackend.bind(this);
 
@@ -34,9 +34,6 @@ class EditQuestionSet extends React.Component {
         }
 
         this.id = this.props.match.params.id;
-
-
-
     }
 
     async getQuestionSet() {
@@ -57,8 +54,26 @@ class EditQuestionSet extends React.Component {
         this.getQuestionSet();
     }
 
-    removeQuestion(question) {
+    removeQuestion = (questionId) => {
+        //Delete in the backend.
+        console.log("Trying to remove question...");
+        console.log(questionId);
+        let url = "http://howru.live:8080/question/";
+        fetch (url + questionId, {method: 'DELETE'})
+            .then(result => result.json())
+            .then(result => {
+                console.log(result)
+            });
 
+        this.setState((prev) => {
+            let questionSet = prev.questionSet;
+            for (const i in questionSet.questions) {
+                if (questionSet.questions[i].id === questionId) {
+                    questionSet.questions.splice(i, 1);
+                }
+            }
+            this.setState({questionSet: questionSet});
+        })
     }
 
     submitQuestionSet = () => {
@@ -129,8 +144,9 @@ class EditQuestionSet extends React.Component {
     }
 
 
-    handleChange(event) {
+    handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
+
         event.preventDefault();
 
 
@@ -171,9 +187,9 @@ class EditQuestionSet extends React.Component {
                             <p className="trackerNameLabel">Tracker name</p>
                         </div>
                         <div className="col-8">
-                            <input className="input-group trackerNameInput" name="title" placeholder="Tracker name"
+                            <input className="input-group trackerNameInput" name="name" placeholder="Tracker name"
                                 onChange={this.handleChange}
-                                value={this.state.questionSet.name}></input>
+                                defaultValue={this.state.questionSet.name}></input>
                         </div>
                     </div>
                 </div>
