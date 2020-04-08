@@ -8,13 +8,14 @@ am4core.useTheme(am4themes_animated);
 class GraphComponent extends React.Component {
 
     componentDidMount() {
+        if(this.props.values.length===0){
+            return;
+        }
+
         let questionNames = this.props.questionNames; 
-        console.log(questionNames); 
         let dates = JSON.parse(JSON.stringify(this.props.dates));
         let values = JSON.parse(JSON.stringify(this.props.values));
         
-        console.log(dates);         
-        console.log(values); 
 
         let chart = am4core.create("chartdiv", am4charts.XYChart);
 
@@ -69,6 +70,13 @@ class GraphComponent extends React.Component {
     }
 
     render() {
+
+        if(this.props.values.length===0){
+            return (<div>
+                <h2>This tracker has no data suitable for a line graph!</h2>
+            </div>);
+        }
+
         return (
             <div id="chartdiv" style={{ width: "100%", height: "350px", backgroundColor:"white" }}></div>
         );

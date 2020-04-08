@@ -7,6 +7,14 @@ const TextDisplay = (props) => {
 
     let {key, date, texts} = props; 
 
+    date = new Date(date); 
+    let year = date.getFullYear(); 
+    let month = date.getMonth();
+    let day=date.getDate(); 
+    let hour=date.getHours();
+    let minutes = date.getMinutes(); 
+    let formatted=`${year}-${month}-${day}  ${hour}:${minutes}`
+
     let textRows=[];
     for(let t of texts){
         textRows.push(
@@ -16,7 +24,7 @@ const TextDisplay = (props) => {
 
     return (
         <li key={key}>
-            <span>{date}</span>
+            <span>{formatted}</span>
             {textRows}
         </li>
     )
