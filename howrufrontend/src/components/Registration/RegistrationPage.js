@@ -20,7 +20,6 @@ class RegistrationPage extends React.Component {
     render() {
 
         if (this.state.handleSuccessful) {
-            console.log("try redirect")
             return <Redirect to="/" />;
         }
             return (

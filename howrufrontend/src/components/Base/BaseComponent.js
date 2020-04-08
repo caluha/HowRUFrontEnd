@@ -21,8 +21,6 @@ class Base extends React.Component {
     constructor(props) {
         super(props);
 
-        // console.log("Constructor ran");
-
         let myStorage = window.localStorage;
         let loginData = {
             loggedIn: false,
@@ -47,16 +45,13 @@ class Base extends React.Component {
     getAllQuestionSets = () => {
 
         if (this.state.loginData.loggedIn) {
-            // console.log(this.state.loginData)
             // let url = "http://localhost:8080/questionset/user/" + this.state.loginData.user;
             let url = "http://howru.live:8080/questionset/user/" + this.state.loginData.user; 
-            console.log(url);
             fetch(url)
                 .then(result => result.json())
                 .then(result => {
                     this.setState({ questionSet: result })
 
-                    // console.log(result)
                 })
         }
     }
@@ -66,12 +61,10 @@ class Base extends React.Component {
         if (this.state.loginData.loggedIn) {
             // let url = "http://localhost:8080/questionsetanswered/user/" + this.state.loginData.user;
             let url = "http://howru.live:8080/questionsetanswered/user/" + this.state.loginData.user; 
-            console.log(url);
             fetch(url)
                 .then(result => result.json())
                 .then(result => {
                     this.setState({ answeredCheck: result })
-                    console.log(result)
                 })
         }
     }
@@ -81,7 +74,6 @@ class Base extends React.Component {
         
 
         this.unlisten = this.props.history.listen((location, action) => {
-            console.log('You changed the page to: '+ location.pathname)
             this.getAllQuestionSets(); 
             this.getAnsweredStates();
           });
@@ -96,7 +88,6 @@ class Base extends React.Component {
                 ()=> {  this.getAllQuestionSets(); 
                         this.getAnsweredStates(); } );
             
-            // console.log(this.state.answeredCheck);
         }
     }
 
@@ -123,7 +114,6 @@ class Base extends React.Component {
 
     handleLogin(data) {
 
-        console.log(data);
         let myStorage = window.localStorage;
 
         myStorage.setItem("user", data.username);
@@ -226,7 +216,6 @@ class Base extends React.Component {
 
 
 function routeFactory(questionSets, user) {
-    // console.log(user);
     if (questionSets.length > 0) {
         return questionSets.map((e) =>
             <Route key={e.id} path={"/" + e.name}>

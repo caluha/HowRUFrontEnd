@@ -37,10 +37,8 @@ class EditQuestionSet extends React.Component {
     }
 
     async getQuestionSet() {
-        // console.log(this.state.loginData)
         // let url = "http://localhost:8080/questionset/user/" + this.props.user;
         let url = "http://howru.live:8080/questionset/"+this.id; 
-        console.log(url);
         await fetch(url)
             .then(result => result.json())
             .then(result => {
@@ -53,14 +51,11 @@ class EditQuestionSet extends React.Component {
     }
 
     removeQuestion = (questionId) => {
-        //Delete in the backend.
-        console.log("Trying to remove question...");
-        console.log(questionId);
+
         let url = "http://howru.live:8080/question/";
         fetch (url + questionId, {method: 'DELETE'})
             .then(result => result.json())
             .then(result => {
-                console.log(result)
             });
 
         this.setState((prev) => {
@@ -162,8 +157,6 @@ class EditQuestionSet extends React.Component {
         }
 
         if (this.props.user !== this.state.questionSet.creator) {
-            console.log("User:" + this.props.user);
-            console.log("Creator: " + this.state.questionSet.creator);
             return <h1>No snooping!</h1>
         }
 

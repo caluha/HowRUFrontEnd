@@ -92,7 +92,6 @@ class QuestionSet extends React.Component {
     render() {
 
         let questionComponents = [];
-        console.log(this.state.Questions);
         for (const e of this.state.Questions) {
 
             questionComponents.push(<Question
