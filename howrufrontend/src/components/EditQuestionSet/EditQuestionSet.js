@@ -44,9 +44,7 @@ class EditQuestionSet extends React.Component {
         await fetch(url)
             .then(result => result.json())
             .then(result => {
-                console.log(result);
-                this.setState({ questionSet: result }, 
-                    () => console.log(this.state.questionSet));
+                this.setState({ questionSet: result });
             })
     }
 
@@ -78,21 +76,19 @@ class EditQuestionSet extends React.Component {
 
     submitQuestionSet = () => {
         let errors = [];
-        if (this.state.title.trim() === "") {
+        if (this.state.questionSet.name.trim() === "") {
             errors.push({ error: "title", message: "Tracker must have a title!" });
         }
-        if (this.state.questions.length < 1) {
+        if (this.state.questionSet.questions.length < 1) {
             errors.push({ error: "noQuestions", message: "Tracker must have at least one question!" });
         }
-        if (this.state.questions.length > maxQuestions) {
+        if (this.state.questionSet.questions.length > maxQuestions) {
             errors.push({ error: "tooManyQuestions", message: "Tracker can't have more than " + maxQuestions + " questions!" });
         }
-
         if (errors.length > 0) {
             this.setState({ errors: errors });
         } else {
             this.submitToBackend();
-
             this.setState({ submitted: true });
         }
 
@@ -120,27 +116,25 @@ class EditQuestionSet extends React.Component {
         // }
         // questionSet.questions=questions;
 
-        // // const url = "http://localhost:8080/questionset";
-        // const url = "http://howru.live:8080/questionset"
-        // let response = await fetch(url, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(questionSet),
-        // })
-        // .then((response) => response.json())
-        // .then((data) => {
-        //     console.log('Success:', data);
-        //     return data;
-        // })
-        // .catch((error) => {
-        //     console.error('Error:', error);
-        //     return error;
-        // });
-
-        // return response;
-
+        // const url = "http://localhost:8080/questionset";
+        const url = "http://howru.live:8080/questionset/"
+        await fetch(url + this.state.questionSet.id, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(this.state.name),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Success:', data);
+            return data;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            return error;
+        });
+        this.setState({submitted: true});
     }
 
 
