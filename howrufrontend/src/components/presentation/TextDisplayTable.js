@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TextDisplay from './TextDisplay';
-
+import './graph.css'
 class TextDisplayTable extends Component {
     constructor(props) {
         super(props);
@@ -45,7 +45,7 @@ class TextDisplayTable extends Component {
         
         
         return ( 
-            <ul >
+            <ul className="tabledisplay" style={{padding:"0"}} >
                 {textDisplays}
             </ul>
          );

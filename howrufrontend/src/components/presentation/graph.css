@@ -20,7 +20,7 @@ table, th, td {
 
 .tabledisplay {
     overflow-y: auto;
-    max-block-size: 200px;
+    max-block-size: 400px;
 }
 
 .row {
@@ -60,5 +60,32 @@ table, th, td {
     border-right: 1px solid rgb(190, 190, 190);   
 }
 
+ul li {
+    padding-left: 5px;
+}
 
+.date_graph {
+    width: 80px;
+    text-align: center;
+    float: left;
+    height: 100%;    
+    font-size: 12px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding-top: 7px;
+    padding-bottom: 7px;
+   
+}
+
+.text_graph {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    max-width: 220px;
+    font-size: 12px;
+    height: 100%;
+    float: left;
+    align-items: center;
+    justify-content: center;   
+}
 

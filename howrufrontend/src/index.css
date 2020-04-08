@@ -33,6 +33,13 @@ body {
   padding: 15px;
 }
 
+.box_small {
+  background: rgb(255, 255, 255);
+  margin-bottom: 2px;
+  display: flex;
+  
+}
+
 
 #green_box {
   border-left: 15px solid #00963D;
