@@ -37,7 +37,6 @@ export default class Login extends Component {
             .then(response => response.json())
             .then(result => {
                 this.loggedUser = result;
-                console.log("login", result);
                 if (result.loggedIn === "true") {
                     this.props.handleSuccessfulAuth(result)
                 }else {

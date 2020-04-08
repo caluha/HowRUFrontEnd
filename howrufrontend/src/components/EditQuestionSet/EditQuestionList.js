@@ -27,7 +27,6 @@ class EditQuestionList extends React.Component {
     }
 
     showDeleteModal(question) {
-        console.log("trying to show delete modal...");
 
         let deleteModal = <DeleteModal
                             message={"the question \"" + question.question + "\" "}

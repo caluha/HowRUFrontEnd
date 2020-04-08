@@ -40,7 +40,7 @@ class EditQuestionSetsList extends React.Component {
         fetch(url + questionSetId, 
             { method: 'DELETE' }) 
             .then(result => result.json()) 
-            .then(res => console.log(res))
+            // .then(res => console.log(res))
     }
 
     deleteQuestionSet(questionSet){

@@ -39,10 +39,7 @@ class TextDisplayTable extends Component {
             textDisplays.push(
                 <TextDisplay key={dates[i]} date={dates[i]} texts = {ts} />
             )
-        }
-
-        console.log(textDisplays);
-        
+        }        
         
         return ( 
             <ul >
