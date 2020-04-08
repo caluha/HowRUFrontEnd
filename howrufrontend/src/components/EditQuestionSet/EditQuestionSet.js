@@ -41,8 +41,8 @@ class EditQuestionSet extends React.Component {
 
     getQuestionSet = () => {
         // console.log(this.state.loginData)
-        let url = "http://localhost:8080/questionset/user/" + this.props.user;
-        // let url = "http://ec2-13-53-42-207.eu-north-1.compute.amazonaws.com:8080/questionset/"+this.id; 
+        // let url = "http://localhost:8080/questionset/user/" + this.props.user;
+        let url = "http://ec2-13-53-42-207.eu-north-1.compute.amazonaws.com:8080/questionset/"+this.id; 
         console.log(url);
         fetch(url)
             .then(result => result.json())
