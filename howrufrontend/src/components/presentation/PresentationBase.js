@@ -25,10 +25,10 @@ class PresentationBase extends Component {
             case "lineGraph":
                 this.setState( {currentTab: "lineGraph", currentComponent: <LineGraphContainer name={this.props.location.state.name} 
                                      questions={this.props.location.state.questions} /> } );
-                break;
-            case "calendar":
-                this.setState( {currentTab: "calendar", currentComponent: <CalendarContainer name={this.props.location.state.name} 
-                                        questions={this.props.location.state.questions} /> } );
+            //     break;
+            // case "calendar":
+            //     this.setState( {currentTab: "calendar", currentComponent: <CalendarContainer name={this.props.location.state.name} 
+            //                             questions={this.props.location.state.questions} /> } );
                 break;
             case "text":
                 this.setState( {currentTab: "text", currentComponent: <TextContainer name={this.props.location.state.name} 
@@ -50,9 +50,9 @@ class PresentationBase extends Component {
                 
                 <Row>
                     <Col><Button onClick={() => this.switchTab("lineGraph")}>Line graph</Button></Col>
-                    <Col><Button onClick={() => this.switchTab("calendar")}>Calendar</Button></Col>
+                    {/* <Col><Button onClick={() => this.switchTab("calendar")}>Calendar</Button></Col> */}
                     <Col><Button onClick={() => this.switchTab("text")}>Text entries</Button></Col>
-                    <Col><Button>Charts</Button></Col>
+                    {/* <Col><Button>Charts</Button></Col> */}
                 </Row>
 
                 <div>
