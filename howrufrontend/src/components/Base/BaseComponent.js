@@ -1,6 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
-
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import QuestionSet from '../QuestionSet/QuestionSet';
 import coffee2 from '../../images/coffee2.jpg';
 import Navbar from './Navbar';
@@ -9,7 +8,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import CreateQuestionSet from '../CreateEdit/CreateQuestionSet';
 import LoginPage from '../Login/LoginPage'
 import RegistrationPage from '../Registration/RegistrationPage';
-import Graph from '../presentation/Graph';
 import EditQuestionSetsList from '../EditQuestionSet/EditQuestionSetsList';
 import EditQuestionSet from '../EditQuestionSet/EditQuestionSet';
 import PresentationBase from '../presentation/PresentationBase';
