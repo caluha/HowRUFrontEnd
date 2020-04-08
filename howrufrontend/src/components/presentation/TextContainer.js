@@ -41,18 +41,11 @@ class TextContainer extends Component {
                   let textComponent = <TextDisplayTable dates={formatted.dates} texts = {formatted.texts} 
                                         questions = {this.props.questions}/> ; 
                   this.setState({dataLoaded:true, dates:formatted.dates, texts: formatted.texts, 
-                                values:formatted.values, textComponent: textComponent } )
-                
+                                values:formatted.values, textComponent: textComponent } )  
                 }
               });
             i++;
             })
-           
-    
-    
-    
-    
-    
         }
       }
 

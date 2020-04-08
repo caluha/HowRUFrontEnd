@@ -13,7 +13,7 @@ export default function navbar(props) {
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto" >
-        <Nav.Link as={Link} to="/" >My Trackers</Nav.Link>
+        <Nav.Link as={Link} to="/" href="/" >My Trackers</Nav.Link>
         <Nav.Link as={Link}to="/create" href="/create" >Create new Tracker</Nav.Link>
         <Nav.Link as={Link} to="/edit" href="/edit">Edit trackers</Nav.Link>
         <Nav.Link as={Link} to="/" onClick={props.logout} >Log Out</Nav.Link>
