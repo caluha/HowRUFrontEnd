@@ -126,7 +126,7 @@ class TextContainer extends Component {
 
 
         return ( 
-            <div>
+            <div className="pContainer">
 
             {this.state.dataLoaded ? this.state.textComponent : ""}
 

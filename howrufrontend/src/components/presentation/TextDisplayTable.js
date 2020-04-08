@@ -27,9 +27,9 @@ class TextDisplayTable extends Component {
         if(texts.length === 0){
             return (
                 <div className="showNoData">
-                    <h2>
+                    <p className="bordered">
                         This data set has no text answers to display!
-                    </h2>
+                    </p>
                 </div>
             );
         }

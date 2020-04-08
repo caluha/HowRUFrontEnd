@@ -20,6 +20,7 @@ class Base extends React.Component {
 
     constructor(props) {
         super(props);
+        this.historyUpdater=this.historyUpdater.bind(this); 
 
         let myStorage = window.localStorage;
         let loginData = {
@@ -69,14 +70,21 @@ class Base extends React.Component {
         }
     }
 
+    sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+
+    async historyUpdater(location, action){
+        await this.sleep(500); 
+        this.getAllQuestionSets(); 
+        this.getAnsweredStates();
+    }
+
     componentDidMount(){
 
         
 
-        this.unlisten = this.props.history.listen((location, action) => {
-            this.getAllQuestionSets(); 
-            this.getAnsweredStates();
-          });
+        this.unlisten = this.props.history.listen(this.historyUpdater);
 
         let myStorage = window.localStorage;
         if (myStorage.getItem("loggedIn") === "true") {

@@ -10,9 +10,14 @@
     padding-top: 50px;
     margin-left: 30px;
     margin-right:30px;
-    color:white; 
+    
+    color:grey; 
 }
-
+.bordered{
+    padding:5px;
+    border:1px solid gray;
+    border-radius: 5px;
+}
 .backButton {
    text-align: center;
     margin-left: 5px;
@@ -39,31 +44,41 @@ table, th, td {
 }
 
 .tab {
+    border-radius:5px;
     font-size: 12px;
     width: 100%;
     height: 40px;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    background-color: white;
+    background-color: grey;
     color: black;
     border:0;    
 }
 
 .tab:hover {
-    background-color: rgb(158, 158, 158);
+    background-color: rgb(236, 236, 236);
 }
 
-.tab:active {
-    background-color: grey;
-    outline: grey;
-    
+.active-tab:hover {
+    background-color: white;
+}
+.active-tab{
+    background-color: white;
+    outline: white;
 }
 
 .tab:focus {
-    background-color: grey;
-    border-color: grey;    
+    background-color: white;
+    border-color: white; 
+    color:black;
+    outline:white;   
 }
-
+.pContainer {
+    padding-top:40px;
+    height:510px;
+    /* height:auto; */
+    background-color:white; 
+}
 .col {
     padding: 0;
     border-left: 1px solid rgb(190, 190, 190);

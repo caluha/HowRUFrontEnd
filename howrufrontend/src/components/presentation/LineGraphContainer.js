@@ -133,7 +133,7 @@ class LineGraphContainer extends React.Component {
 
   render() {
     return (
-      <div style={{height:"100%"}}>
+      <div className="pContainer">
         
         {/* <h3 className="mt-5">{this.props.location.state.name}</h3> */}
         
