@@ -9,7 +9,6 @@ import { NavLink } from "react-router-dom";
 class QuestionSetButton extends React.Component {
 
     render() {
-        console.log(this.props.answered);
         if(this.props.answered){
             return (
                 <div className="box" id="lightred_box">

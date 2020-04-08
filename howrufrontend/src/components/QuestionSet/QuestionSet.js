@@ -52,7 +52,6 @@ class QuestionSet extends React.Component {
         for (const i in this.state.answers) {
             for (const j in this.state.answers[i]) {
                 const data = this.state.answers[i][j];
-                console.log(data);
                 responses.push(data);
             }
         }
@@ -65,10 +64,8 @@ class QuestionSet extends React.Component {
         })
             .then((response) => response.json())
             .then((data) => {
-                console.log('Success:', data);
             })
             .catch((error) => {
-                console.error('Error:', error);
             });
     }
 
