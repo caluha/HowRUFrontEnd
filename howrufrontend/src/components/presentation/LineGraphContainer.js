@@ -139,14 +139,14 @@ class LineGraphContainer extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <div style={{height:"100%"}}>
         
         {/* <h3 className="mt-5">{this.props.location.state.name}</h3> */}
         
         {this.state.dataLoaded ? this.state.graphComponent : "" }
 
 
-      </React.Fragment>
+      </div>
     );
   }
 }

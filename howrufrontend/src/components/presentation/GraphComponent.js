@@ -72,7 +72,7 @@ class GraphComponent extends React.Component {
     render() {
 
         if(this.props.values.length===0){
-            return (<div>
+            return (<div className="showNoData">
                 <h2>This tracker has no data suitable for a line graph!</h2>
             </div>);
         }

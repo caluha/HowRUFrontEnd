@@ -3,6 +3,16 @@
     text-align: center;
 }
 
+.showNoData{
+    
+    height:100%;
+    
+    padding-top: 50px;
+    margin-left: 30px;
+    margin-right:30px;
+    color:white; 
+}
+
 .backButton {
    text-align: center;
     margin-left: 5px;
