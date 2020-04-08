@@ -25,7 +25,6 @@ class CreateRadioCheckboxResponses extends React.Component {
 
     validate(el, type, i){
         let errors = this.state.errors;
-        // console.log(el,type,i); 
         if(type==="option"){
             if(el.option ===""){
 
@@ -34,7 +33,6 @@ class CreateRadioCheckboxResponses extends React.Component {
                 errors[i].option = "";
             }
 
-            // console.log(errors);
             this.setState({errors:errors});
         }
 
@@ -73,7 +71,6 @@ class CreateRadioCheckboxResponses extends React.Component {
              } else {
                  el.value=event.target.value;
              }
-            // console.log(this.validate)
 
              this.setState( {responses : this.state.responses},
                  () => { this.validate(el,type,i);

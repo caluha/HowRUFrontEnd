@@ -21,8 +21,6 @@ class Base extends React.Component {
     constructor(props) {
         super(props);
 
-        // console.log("Constructor ran");
-
         let myStorage = window.localStorage;
         let loginData = {
             loggedIn: false,
@@ -47,16 +45,13 @@ class Base extends React.Component {
     getAllQuestionSets = () => {
 
         if (this.state.loginData.loggedIn) {
-            // console.log(this.state.loginData)
             // let url = "http://localhost:8080/questionset/user/" + this.state.loginData.user;
             let url = "http://howru.live:8080/questionset/user/" + this.state.loginData.user; 
-            console.log(url);
             fetch(url)
                 .then(result => result.json())
                 .then(result => {
                     this.setState({ questionSet: result })
 
-                    // console.log(result)
                 })
         }
     }
@@ -66,19 +61,22 @@ class Base extends React.Component {
         if (this.state.loginData.loggedIn) {
             // let url = "http://localhost:8080/questionsetanswered/user/" + this.state.loginData.user;
             let url = "http://howru.live:8080/questionsetanswered/user/" + this.state.loginData.user; 
-            console.log(url);
             fetch(url)
                 .then(result => result.json())
                 .then(result => {
                     this.setState({ answeredCheck: result })
-                    console.log(result)
                 })
         }
     }
 
     componentDidMount(){
 
-        console.log(this.props.history);
+        
+
+        this.unlisten = this.props.history.listen((location, action) => {
+            this.getAllQuestionSets(); 
+            this.getAnsweredStates();
+          });
 
         let myStorage = window.localStorage;
         if (myStorage.getItem("loggedIn") === "true") {
@@ -90,12 +88,10 @@ class Base extends React.Component {
                 ()=> {  this.getAllQuestionSets(); 
                         this.getAnsweredStates(); } );
             
-            // console.log(this.state.answeredCheck);
         }
     }
 
     componentDidUpdate(prevProps, prevState) {
-        console.log("base updated");
         let myStorage = window.localStorage;
         if (myStorage.getItem("loggedIn") === "true") {
             if (myStorage.getItem("user") != this.state.loginData.user) {
@@ -112,9 +108,12 @@ class Base extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+        this.unlisten();
+    }
+
     handleLogin(data) {
 
-        console.log(data);
         let myStorage = window.localStorage;
 
         myStorage.setItem("user", data.username);
@@ -159,7 +158,7 @@ class Base extends React.Component {
             return (
                 <div style={{ height: "100%" }}>
                     <div className="mainpage">
-                        <Router>
+                        
                             <Switch>
                                 <Route exact path="/registration">
                                     <RegistrationPage />
@@ -169,7 +168,7 @@ class Base extends React.Component {
                                     <LoginPage handleLogin={this.handleLogin} />
                                 </Route>
                             </Switch>
-                        </Router>
+                        
                     </div>
                 </div>
             );
@@ -178,35 +177,35 @@ class Base extends React.Component {
         return (
             <div style={{ height: "100%" }}>
                 <div className="mainpage">
-                    <Router>
-                        <Navbar user={this.state.loginData.user} logout={this.logOut} />
-                        <Switch>
-                            <Route exact path="/">
-                                <img alt="Cup of coffee" src={coffee2} style={{ width: "360px" }} />
-                                <div>
-                                    {this.questionSetFactory(this.state.questionSet, this.state.loginData.user)}
-                                   
-                                        <div>
-                                            <Link to="/create"><button className="floating-menu-icon">New Tracker +</button></Link>
-                                        </div>
-                                  
-                                </div>
-                            </Route>
-                            <Route exact path="/create">
-                                <CreateQuestionSet user={this.state.loginData.user} />
-                            </Route>
-                            <Route exact path="/edit">
-                                <EditQuestionSetsList user={this.state.loginData.user} questionSets={this.state.questionSet}/>
-                            </Route>
-                            {/* <Route path="/chart" component={Graph}> */}
-                            <Route path="/chart" component={PresentationBase}>
-                            </Route>
+                    
+                    <Navbar user={this.state.loginData.user} logout={this.logOut} />
+                    <Switch>
+                        <Route exact path="/">
+                            <img alt="Cup of coffee" src={coffee2} style={{ width: "360px" }} />
+                            <div>
+                                {this.questionSetFactory(this.state.questionSet, this.state.loginData.user)}
+                                
+                                    <div>
+                                        <Link to="/create"><button className="floating-menu-icon">New Tracker +</button></Link>
+                                    </div>
+                                
+                            </div>
+                        </Route>
+                        <Route exact path="/create">
+                            <CreateQuestionSet user={this.state.loginData.user} />
+                        </Route>
+                        <Route exact path="/edit">
+                            <EditQuestionSetsList user={this.state.loginData.user} questionSets={this.state.questionSet}/>
+                        </Route>
+                        {/* <Route path="/chart" component={Graph}> */}
+                        <Route path="/chart" component={PresentationBase}>
+                        </Route>
 
-                            <Route path={"/edit/:id"} render={(props) => <EditQuestionSet {...props} user={this.state.loginData.user} /> } >
-                            </Route>
-                            {routeFactory(this.state.questionSet, this.state.loginData.user)}
-                        </Switch>
-                    </Router>
+                        <Route path={"/edit/:id"} render={(props) => <EditQuestionSet {...props} user={this.state.loginData.user} /> } >
+                        </Route>
+                        {routeFactory(this.state.questionSet, this.state.loginData.user)}
+                    </Switch>
+                    
 
                 </div>
             </div>
@@ -217,7 +216,6 @@ class Base extends React.Component {
 
 
 function routeFactory(questionSets, user) {
-    // console.log(user);
     if (questionSets.length > 0) {
         return questionSets.map((e) =>
             <Route key={e.id} path={"/" + e.name}>

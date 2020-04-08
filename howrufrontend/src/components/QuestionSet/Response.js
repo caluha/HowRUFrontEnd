@@ -52,7 +52,6 @@ class Response extends React.Component {
                             </React.Fragment> 
                 
             case "CHECKBOX":
-                // console.log(this.props.defaultValue);
                 return <React.Fragment>
                             <div className="responseleft">
                                 <input type={this.props.type} 

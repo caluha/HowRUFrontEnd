@@ -14,7 +14,7 @@ class EditQuestionSet extends React.Component {
     constructor(props) {
         super(props);
         // this.addQuestion=this.addQuestion.bind(this); 
-        // this.removeQuestion=this.removeQuestion.bind(this); 
+        this.removeQuestion=this.removeQuestion.bind(this); 
         // this.handleChange = this.handleChange.bind(this);
         // this.submitToBackend=this.submitToBackend.bind(this);
 
@@ -34,49 +34,56 @@ class EditQuestionSet extends React.Component {
         }
 
         this.id = this.props.match.params.id;
-
-
-
     }
 
-    getQuestionSet = () => {
-        // console.log(this.state.loginData)
+    async getQuestionSet() {
         // let url = "http://localhost:8080/questionset/user/" + this.props.user;
-        let url = "http://ec2-13-53-42-207.eu-north-1.compute.amazonaws.com:8080/questionset/"+this.id; 
-        console.log(url);
-        fetch(url)
+        let url = "http://howru.live:8080/questionset/"+this.id; 
+        await fetch(url)
             .then(result => result.json())
             .then(result => {
-                console.log(result);
-                this.setState({ questionSet: result })
-            }, () => console.log(this.state.questionSet));
+                this.setState({ questionSet: result });
+            })
     }
 
     componentDidMount() {
         this.getQuestionSet();
     }
 
-    removeQuestion(question) {
+    removeQuestion = (questionId) => {
 
+        let url = "http://howru.live:8080/question/";
+        fetch (url + questionId, {method: 'DELETE'})
+            .then(result => result.json())
+            .then(result => {
+            });
+
+        this.setState((prev) => {
+            let questionSet = prev.questionSet;
+            for (const i in questionSet.questions) {
+                if (questionSet.questions[i].id === questionId) {
+                    questionSet.questions.splice(i, 1);
+                }
+            }
+            this.setState({questionSet: questionSet});
+        })
     }
 
     submitQuestionSet = () => {
         let errors = [];
-        if (this.state.title.trim() === "") {
+        if (this.state.questionSet.name.trim() === "") {
             errors.push({ error: "title", message: "Tracker must have a title!" });
         }
-        if (this.state.questions.length < 1) {
+        if (this.state.questionSet.questions.length < 1) {
             errors.push({ error: "noQuestions", message: "Tracker must have at least one question!" });
         }
-        if (this.state.questions.length > maxQuestions) {
+        if (this.state.questionSet.questions.length > maxQuestions) {
             errors.push({ error: "tooManyQuestions", message: "Tracker can't have more than " + maxQuestions + " questions!" });
         }
-
         if (errors.length > 0) {
             this.setState({ errors: errors });
         } else {
             this.submitToBackend();
-
             this.setState({ submitted: true });
         }
 
@@ -104,32 +111,31 @@ class EditQuestionSet extends React.Component {
         // }
         // questionSet.questions=questions;
 
-        // // const url = "http://localhost:8080/questionset";
-        // const url = "http://howru.live:8080/questionset"
-        // let response = await fetch(url, {
-        //     method: 'POST',
-        //     headers: {
-        //         'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(questionSet),
-        // })
-        // .then((response) => response.json())
-        // .then((data) => {
-        //     console.log('Success:', data);
-        //     return data;
-        // })
-        // .catch((error) => {
-        //     console.error('Error:', error);
-        //     return error;
-        // });
-
-        // return response;
-
+        // const url = "http://localhost:8080/questionset";
+        const url = "http://howru.live:8080/questionset/"
+        await fetch(url + this.state.questionSet.id, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(this.state.name),
+        })
+        .then((response) => response.json())
+        .then((data) => {
+            console.log('Success:', data);
+            return data;
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+            return error;
+        });
+        this.setState({submitted: true});
     }
 
 
-    handleChange(event) {
+    handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
+
         event.preventDefault();
 
 
@@ -151,8 +157,6 @@ class EditQuestionSet extends React.Component {
         }
 
         if (this.props.user !== this.state.questionSet.creator) {
-            console.log("User:" + this.props.user);
-            console.log("Creator: " + this.state.questionSet.creator);
             return <h1>No snooping!</h1>
         }
 
@@ -170,9 +174,9 @@ class EditQuestionSet extends React.Component {
                             <p className="trackerNameLabel">Tracker name</p>
                         </div>
                         <div className="col-8">
-                            <input className="input-group trackerNameInput" name="title" placeholder="Tracker name"
+                            <input className="input-group trackerNameInput" name="name" placeholder="Tracker name"
                                 onChange={this.handleChange}
-                                value={this.state.questionSet.name}></input>
+                                defaultValue={this.state.questionSet.name}></input>
                         </div>
                     </div>
                 </div>
